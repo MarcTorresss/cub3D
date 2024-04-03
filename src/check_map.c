@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/02 17:28:55 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:32:15 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,20 @@ void    data_init(char *str, t_data *data)
     data->width = 0;
     data->mlx = 0;
     data->window = 0;
+	data->rowsy = 0;
+    data->colsx = 0;
+	data->the_y = 0;
     data->map = check_file(str, *data);
+	if (data->map != NULL)
+		data->mapcpy = check_file(str, *data);
 }
 
 int check_map(t_data data)
 {
-    (void) data;
+	t_point	size;
+
+	size.x = data.colsx;
+	size.y = data.rowsy;
+    flood_fill(&data, size);
     return (0);
 }
