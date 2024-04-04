@@ -56,7 +56,7 @@ vec :
 	$(MAKE) -C ./vector
 
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(COMP) -o $@
+	@$(CC) $(CFLAGS) $(OBJ) $(COMP) -o $@ -lm
 
 	@echo "${BLUE_BOLD}cub3D ${GREEN}compiled ✅\n${RESET}"
 

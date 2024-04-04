@@ -92,6 +92,7 @@ typedef struct s_ray
 	t_vec2	dir;
 	t_vec2	hpoint;
 	double	t;
+    double  perp_dist;
 	char	w_dir;
 }	t_ray;
 
@@ -102,6 +103,6 @@ int     flood_fill(t_data *data, t_point size);
 int     check_elements(t_data *data);
 
 void	draw(t_data data);
-void	hit(t_ray *ray, t_data data);
+void	hit(t_ray *ray, t_data data, t_player player);
 
 #endif

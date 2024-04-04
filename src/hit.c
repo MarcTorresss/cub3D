@@ -21,11 +21,11 @@ void	check_hit_x_pos(t_ray *ray, t_data data, t_vec2 p, double m)
 	i = (int)trunc(p.x);
 	p.y = p.y + ((double)i - p.x) * m;
 	j = 0;
-	while (++i < data.colsx && j < data.rowsy && j >= 0)
+	while (++i < data.rowsy && j < data.colsx && j >= 0)
 	{
 		p.y += m;
 		j = (int)trunc(p.y);
-		if (j < data.rowsy && j >= 0 && data.map[i][j] == '1')
+		if (j < data.colsx && j >= 0 && data.map[i][j] == '1')
 		{
 			p.x = (double)i;
 			t_tmp = distance_vec2(p, ray->from);
@@ -33,7 +33,7 @@ void	check_hit_x_pos(t_ray *ray, t_data data, t_vec2 p, double m)
 			{
 				ray->hpoint = p;
 				ray->t = t_tmp;
-				ray->w_dir = 'E';
+				ray->w_dir = 'S';
 			}
 			return ;
 		}
@@ -49,11 +49,11 @@ void	check_hit_x_neg(t_ray *ray, t_data data, t_vec2 p, double m)
 	i = (int)ceil(p.x);
 	p.y = p.y + ((double)i - p.x) * m;
 	j = 0;
-	while (--i > 0 && j < data.rowsy && j >= 0)
+	while (--i > 0 && j < data.colsx && j >= 0)
 	{
 		p.y -= m;
 		j = (int)trunc(p.y);
-		if (j < data.rowsy && j >= 0 && data.map[i - 1][j] == '1')
+		if (j < data.colsx && j >= 0 && data.map[i - 1][j] == '1')
 		{
 			p.x = (double)i;
 			t_tmp = distance_vec2(p, ray->from);
@@ -61,7 +61,7 @@ void	check_hit_x_neg(t_ray *ray, t_data data, t_vec2 p, double m)
 			{
 				ray->hpoint = p;
 				ray->t = t_tmp;
-				ray->w_dir = 'W';
+				ray->w_dir = 'N';
 			}
 			return ;
 		}
@@ -77,11 +77,11 @@ void	check_hit_y_pos(t_ray *ray, t_data data, t_vec2 p, double m)
 	j = (int)trunc(p.y);
 	p.x = p.x + ((double)j - p.y) * m;
 	i = 0;
-	while (++j < data.rowsy && i < data.colsx && i >= 0)
+	while (++j < data.colsx && i < data.rowsy && i >= 0)
 	{
 		p.x += m;
 		i = (int)trunc(p.x);
-		if (i < data.colsx && i >= 0 && data.map[i][j] == '1')
+		if (i < data.rowsy && i >= 0 && data.map[i][j] == '1')
 		{
 			p.y = (double)j;
 			t_tmp = distance_vec2(p, ray->from);
@@ -89,7 +89,7 @@ void	check_hit_y_pos(t_ray *ray, t_data data, t_vec2 p, double m)
 			{
 				ray->hpoint = p;
 				ray->t = t_tmp;
-				ray->w_dir = 'N';
+				ray->w_dir = 'E';
 			}
 			return ;
 		}
@@ -105,11 +105,11 @@ void	check_hit_y_neg(t_ray *ray, t_data data, t_vec2 p, double m)
 	j = (int)ceil(p.y);
 	p.x = p.x + ((double)j - p.y) * m;
 	i = 0;
-	while (--j > 0 && i < data.colsx && i >= 0)
+	while (--j > 0 && i < data.rowsy && i >= 0)
 	{
 		p.x -= m;
 		i = (int)trunc(p.x);
-		if (i < data.colsx && i >= 0 && data.map[i][j - 1] == '1')
+		if (i < data.rowsy && i >= 0 && data.map[i][j - 1] == '1')
 		{
 			p.y = (double)j;
 			t_tmp = distance_vec2(p, ray->from);
@@ -117,14 +117,14 @@ void	check_hit_y_neg(t_ray *ray, t_data data, t_vec2 p, double m)
 			{
 				ray->hpoint = p;
 				ray->t = t_tmp;
-				ray->w_dir = 'S';
+				ray->w_dir = 'W';
 			}
 			return ;
 		}
 	}
 }
 
-void	hit(t_ray *ray, t_data data)
+void	hit(t_ray *ray, t_data data, t_player player)
 {
 	t_vec2	p;
 	double	m;
@@ -147,4 +147,6 @@ void	hit(t_ray *ray, t_data data)
 		else if (ray->dir.y < 0)
 			check_hit_y_neg(ray, data, p, m);
 	}
+	ray->perp_dist = ray->t / length_vec2(ray->dir) * \
+						length_vec2(player.dir);
 }

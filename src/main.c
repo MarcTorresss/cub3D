@@ -25,13 +25,13 @@ void	custom_data_init(t_data *data)
 	data->map[5] = NULL;
 	ft_strlcpy(data->map[0], "111111", 100);
 	ft_strlcpy(data->map[1], "110011", 100);
-	ft_strlcpy(data->map[2], "100N01", 100);
+	ft_strlcpy(data->map[2], "100E01", 100);
 	ft_strlcpy(data->map[3], "110111", 100);
 	ft_strlcpy(data->map[4], "111111", 100);
 	data->width = 1920;
 	data->high = 1080;
 	data->colsx = 6;
-	data->rowsy = 6;
+	data->rowsy = 5;
 }
 
 int	main(int argc, char **argv)
@@ -42,5 +42,11 @@ int	main(int argc, char **argv)
 	(void) argv;
 	custom_data_init(&data);
 	draw(data);
+	free(data.map[0]);
+	free(data.map[1]);
+	free(data.map[2]);
+	free(data.map[3]);
+	free(data.map[4]);
+	free(data.map);
 	return (0);
 }

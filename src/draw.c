@@ -12,6 +12,30 @@
 
 #include "../inc/cub3D.h"
 
+void	set_player_direction(t_player *player, char dir)
+{
+	if (dir == 'N')
+	{
+		player->dir = create_vector2d(-1, 0);
+		player->plane = create_vector2d(0, 1);
+	}
+	else if (dir == 'E')
+	{
+		player->dir = create_vector2d(0, 1);
+		player->plane = create_vector2d(1, 0);
+	}
+	else if (dir == 'S')
+	{
+		player->dir = create_vector2d(1, 0);
+		player->plane = create_vector2d(0, -1);
+	}
+	else if (dir == 'W')
+	{
+		player->dir = create_vector2d(0, -1);
+		player->plane = create_vector2d(-1, 0);
+	}
+}
+
 t_player	set_player(t_data data)
 {
 	int			i;
@@ -25,11 +49,10 @@ t_player	set_player(t_data data)
 		j = 0;
 		while (j < data.rowsy)
 		{
-			if (data.map[i][j] == 'N')
+			if (ft_strchr("NSEW", data.map[i][j]) != NULL)
 			{
 				player.pos = create_vector2d((double)i + 0.5, (double)j + 0.5);
-				player.dir = create_vector2d(0, 1);
-				player.plane = create_vector2d(1, 0);
+				set_player_direction(&player, data.map[i][j]);
 				return (player);
 			}
 			j++;
@@ -52,26 +75,19 @@ void	set_ray(t_ray *ray, t_player player, double width, double i)
 	ray->t = 1000000000;
 }
 
-unsigned int	get_color_pixel(t_ray *ray, t_data data)
-{
-	hit(ray, data);
-	printf("%.2f %.2f %.2f\n", ray->hpoint.x, ray->hpoint.y, ray->t);
-	return (0);
-}
-
 void	draw(t_data data)
 {
 	int				i;
 	t_player		player;
 	t_ray			ray;
-	unsigned int	color;
 
 	player = set_player(data);
 	i = 0;
 	while (i < data.width)
 	{
 		set_ray(&ray, player, data.width, i);
-		color = get_color_pixel(&ray, data);
+		hit(&ray, data, player);
+		printf("%.2f %.2f %.2f %c %.2f\n", ray.hpoint.x, ray.hpoint.y, ray.t, ray.w_dir, ray.perp_dist);
 		i++;
 	}
 }
