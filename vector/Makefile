@@ -6,7 +6,7 @@
 #    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
-#    Updated: 2024/03/28 14:24:48 by junghwle         ###   ########.fr        #
+#    Updated: 2024/04/04 17:44:05 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OBJDIR=objs
 SRCS=create_vector2d.c create_vector3d.c create_matrix2d.c create_matrix3d.c \
 	 print_vector.c addition.c substraction.c dot_product.c dot_product2.c \
 	 scalar_product.c transpose_mat.c length.c normalize.c cross_product.c \
-	 determinant.c inverse.c adjacent.c
+	 determinant.c inverse.c adjacent.c distance.c
 OBJS=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 TESTSRCS=test.c test1.c test2.c test3.c test4.c
 TESTOBJS=$(patsubst %.c, $(OBJDIR)/%.o, $(TESTSRCS))

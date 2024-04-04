@@ -6,7 +6,7 @@
 #    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 17:31:34 by martorre          #+#    #+#              #
-#    Updated: 2024/04/04 16:04:39 by junghwle         ###   ########.fr        #
+#    Updated: 2024/04/04 22:04:46 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ DIR_SRC		=	src/
 
 # *******************************	FILES	******************************* #
 
-FILES		=	main.c check_map.c check_fill.c utils_map.c check_elements.c
+FILES		=	main.c check_map.c check_fill.c utils_map.c check_elements.c \
+				draw.c
 
 FILES_SRC	=	$(addprefix $(DIR_SRC),$(FILES))
 
@@ -74,6 +75,7 @@ clean	:
 
 fclean	: clean
 	@$(MAKE) -C libft fclean --no-print-directory
+	@$(MAKE) -C vector fclean --no-print-directory
 	@$(RM) $(NAME) 
 	@echo "${BLUE_BOLD}cub3D ${RED}deleted${RESET}"
 

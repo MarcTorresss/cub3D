@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/04 16:05:33 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/04 20:51:18 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 # define ERR_FD "Error:\nInvalid fd :(\n"
 # define ERR_EX "Error:\nInvalid extension :(\n"
@@ -78,6 +79,21 @@ typedef struct s_pos
     char    posplayer;
 }			t_pos;
 
+typedef struct s_player
+{
+	t_vec2	pos;
+	t_vec2	dir;
+	t_vec2	plane;
+}	t_player;
+
+typedef struct s_ray
+{
+	t_vec2	from;
+	t_vec2	dir;
+	t_vec2	hpoint;
+	double	t;
+	char	w_dir;
+}	t_ray;
 
 void    data_init(char *str, t_data *data);
 int     check_map(t_data data);

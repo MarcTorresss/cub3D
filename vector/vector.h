@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:45 by junghwle          #+#    #+#             */
-/*   Updated: 2024/03/28 14:11:10 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:44:01 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ t_mat3	transpose_mat3(t_mat3 m1);
 
 double	length_vec2(t_vec2 v);
 double	length_vec3(t_vec3 v);
+
+double	distance_vec2(t_vec2 p1, t_vec2 p2);
+double	distance_vec3(t_vec3 p1, t_vec3 p2);
 
 t_vec2	normalize_vec2(t_vec2 v);
 t_vec3	normalize_vec3(t_vec3 v);
