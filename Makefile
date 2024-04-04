@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
+#    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 17:31:34 by martorre          #+#    #+#              #
-#    Updated: 2024/04/03 18:10:22 by martorre         ###   ########.fr        #
+#    Updated: 2024/04/04 16:04:39 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
 RM		=	rm -fr
 
 NAME		=	cub3D
-COMP		=	./libft/libft.a
+COMP		=	./libft/libft.a ./vector/vector.a
 INC			=	./inc/cub3D.h
 
 DIR_OBJ		=	obj/
@@ -46,10 +46,13 @@ CYAN_BOLD	=	\033[1;36m
 
 # *******************************  RULES ******************************* #
 
-all : $(DIR_OBJ) lib $(NAME)
+all : $(DIR_OBJ) lib vec $(NAME)
 
 lib :
 	$(MAKE) -C ./libft --no-print-directory
+
+vec :
+	$(MAKE) -C ./vector
 
 $(NAME) : $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(COMP) -o $@
