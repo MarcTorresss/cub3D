@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/03 18:32:15 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:08:17 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,26 @@ int     check_ext(char *str, char **new)
 int	calc_line(char *str)
 {
 	char	*new;
-	int		i;
 	int		fd;
+	int		y;
 
-	i = 0;
+	y = 0;
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 		return (ft_fprintf(2, "Invalid fd!\n"), 0);
 	new = get_next_line(fd);
 	while (new != NULL)
 	{
-		i++;
+		y++;
 		free(new);
 		new = get_next_line(fd);
 	}
 	free(new);
 	close(fd);
-	return (i);
+	return (y);
 }
 
-char	**check_file(char *str, t_data data)
+char	**check_file(char *str, t_data *data)
 {
 	int		i;
 	int		fd;
@@ -76,10 +76,15 @@ void    data_init(char *str, t_data *data)
     data->window = 0;
 	data->rowsy = 0;
     data->colsx = 0;
-	data->the_y = 0;
-    data->map = check_file(str, *data);
-	if (data->map != NULL)
-		data->mapcpy = check_file(str, *data);
+	data->rowsfile = 0;
+	data->elem.qtt.NO = 0;
+	data->elem.qtt.SO = 0;
+	data->elem.qtt.WE = 0;
+	data->elem.qtt.EA = 0;
+	data->elem.qtt.F = 0;
+	data->elem.qtt.C = 0;
+	data->elem.qtt.is_zero = 0;
+    data->file = check_file(str, data);
 }
 
 int check_map(t_data data)
@@ -88,6 +93,5 @@ int check_map(t_data data)
 
 	size.x = data.colsx;
 	size.y = data.rowsy;
-    flood_fill(&data, size);
-    return (0);
+    return (flood_fill(&data, size));
 }

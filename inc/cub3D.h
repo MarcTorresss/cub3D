@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/03 18:31:20 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:39:42 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_qtts
     int     F;
     int     C;
 	int		y;
+    int     is_zero;
 }			t_qtt;
 
 typedef struct s_elements
@@ -55,13 +56,14 @@ typedef struct s_data
 {
     void    *window;
     void    *mlx;
-    char    **map;
+    char    **file;
+    char	**map;
     char    **mapcpy;
     int     width;
     int     high;
+	int		rowsfile;
     int     rowsy;
     int     colsx;
-    int     the_y;
     t_elem  elem;
 }       t_data;
 
@@ -80,8 +82,10 @@ typedef struct s_pos
 
 void    data_init(char *str, t_data *data);
 int     check_map(t_data data);
-void	calc_x_y(t_data *data);
+int     calc_line(char *str);
 int     flood_fill(t_data *data, t_point size);
 int     check_elements(t_data *data);
+int     init_map(t_data *data);
+void    calc_x_y(t_data *data);
 
 #endif
