@@ -6,11 +6,12 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/04 21:59:57 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/04 22:20:41 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
+
 void	draw(t_data data);
 
 void	custom_data_init(t_data *data)
@@ -33,12 +34,13 @@ void	custom_data_init(t_data *data)
 	data->rowsy = 6;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_data  data;
-    (void) argc;
-    (void) argv;
+	t_data	data;
+
+	(void) argc;
+	(void) argv;
 	custom_data_init(&data);
 	draw(data);
-    return (0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/04 22:02:36 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/04 22:18:27 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,142 +52,6 @@ void	set_ray(t_ray *ray, t_player player, double width, double i)
 	ray->t = 1000000000;
 }
 
-void	check_hit_x_pos(t_ray *ray, t_data data, t_vec2 p)
-{
-	int		i;
-	int		j;
-	double	m;
-	double	t_tmp;
-
-	m = ray->dir.y / ray->dir.x;
-	i = (int)trunc(p.x);
-	p.y = p.y + ((double)i - p.x) * m;
-	j = 0;
-	while (++i < data.colsx && j < data.rowsy && j >= 0)
-	{
-		p.y += m;
-		j = (int)trunc(p.y);
-		if (j < data.rowsy && j >= 0 && data.map[i][j] == '1')
-		{
-			p.x = (double)i;
-			t_tmp = distance_vec2(p, ray->from);
-			if (t_tmp < ray->t)
-			{
-				ray->hpoint = p;
-				ray->t = t_tmp;
-				ray->w_dir = 'E';
-			}
-			return ;
-		}
-	}
-}
-
-void	check_hit_x_neg(t_ray *ray, t_data data, t_vec2 p)
-{
-	int		i;
-	int		j;
-	double	m;
-	double	t_tmp;
-
-	m = ray->dir.y / ray->dir.x;
-	i = (int)ceil(p.x);
-	p.y = p.y + ((double)i - p.x) * m;
-	j = 0;
-	while (--i > 0 && j < data.rowsy && j >= 0)
-	{
-		p.y -= m;
-		j = (int)trunc(p.y);
-		if (j < data.rowsy && j >= 0 && data.map[i - 1][j] == '1')
-		{
-			p.x = (double)i;
-			t_tmp = distance_vec2(p, ray->from);
-			if (t_tmp < ray->t)
-			{
-				ray->hpoint = p;
-				ray->t = t_tmp;
-				ray->w_dir = 'W';
-			}
-			return ;
-		}
-	}
-}
-
-void	check_hit_y_pos(t_ray *ray, t_data data, t_vec2 p)
-{
-	int		i;
-	int		j;
-	double	m;
-	double	t_tmp;
-
-	m = ray->dir.x / ray->dir.y;
-	j = (int)trunc(p.y);
-	p.x = p.x + ((double)j - p.y) * m;
-	i = 0;
-	while (++j < data.rowsy && i < data.colsx && i >= 0)
-	{
-		p.x += m;
-		i = (int)trunc(p.x);
-		if (i < data.colsx && i >= 0 && data.map[i][j] == '1')
-		{
-			p.y = (double)j;
-			t_tmp = distance_vec2(p, ray->from);
-			if (t_tmp < ray->t)
-			{
-				ray->hpoint = p;
-				ray->t = t_tmp;
-				ray->w_dir = 'N';
-			}
-			return ;
-		}
-	}
-}
-
-void	check_hit_y_neg(t_ray *ray, t_data data, t_vec2 p)
-{
-	int		i;
-	int		j;
-	double	m;
-	double	t_tmp;
-
-	m = ray->dir.x / ray->dir.y;
-	j = (int)ceil(p.y);
-	p.x = p.x + ((double)j - p.y) * m;
-	i = 0;
-	while (--j > 0 && i < data.colsx && i >= 0)
-	{
-		p.x -= m;
-		i = (int)trunc(p.x);
-		if (i < data.colsx && i >= 0 && data.map[i][j - 1] == '1')
-		{
-			p.y = (double)j;
-			t_tmp = distance_vec2(p, ray->from);
-			if (t_tmp < ray->t)
-			{
-				ray->hpoint = p;
-				ray->t = t_tmp;
-				ray->w_dir = 'S';
-			}
-			return ;
-		}
-	}
-}
-
-void	hit(t_ray *ray, t_data data)
-{
-	t_vec2	p;
-
-	p.x = ray->from.x;
-	p.y = ray->from.y;
-	if (ray->dir.x > 0)
-		check_hit_x_pos(ray, data, p);
-	else if (ray->dir.x < 0)
-		check_hit_x_neg(ray, data, p);
-	if (ray->dir.y > 0)
-		check_hit_y_pos(ray, data, p);
-	if (ray->dir.y < 0)
-		check_hit_y_neg(ray, data, p);
-}
-
 unsigned int	get_color_pixel(t_ray *ray, t_data data)
 {
 	hit(ray, data);
@@ -204,8 +68,6 @@ void	draw(t_data data)
 
 	player = set_player(data);
 	i = 0;
-	// set_ray(&ray, player, data.width, 1900);
-	// color = get_color_pixel(&ray, data);
 	while (i < data.width)
 	{
 		set_ray(&ray, player, data.width, i);

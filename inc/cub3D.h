@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/04 20:51:18 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/04 22:12:44 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,8 @@ int     check_map(t_data data);
 void	calc_x_y(t_data *data);
 int     flood_fill(t_data *data, t_point size);
 int     check_elements(t_data *data);
+
+void	draw(t_data data);
+void	hit(t_ray *ray, t_data data);
 
 #endif

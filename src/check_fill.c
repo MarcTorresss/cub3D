@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 11:24:18 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/03 15:39:33 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/04 22:22:11 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	check_fill_map(t_pos pos, t_data *data)
 {
 	int		y;
 	int		x;
-	
+
 	y = 0;
 	x = -1;
 	(void) pos;
