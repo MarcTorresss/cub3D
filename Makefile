@@ -6,12 +6,12 @@
 #    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 17:31:34 by martorre          #+#    #+#              #
-#    Updated: 2024/04/05 20:56:13 by junghwle         ###   ########.fr        #
+#    Updated: 2024/04/05 21:01:24 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror #-g -fsanitize=address
 RM		=	rm -fr
 
 NAME		=	cub3D
@@ -26,7 +26,7 @@ DIR_SRC		=	src/
 # *******************************	FILES	******************************* #
 
 FILES		=	main.c check_map.c check_fill.c utils_map.c check_elements.c \
-				draw.c hit.c player.c key_hook.c image.c
+				draw.c hit.c player.c key_hook.c image.c ray.c
 
 FILES_SRC	=	$(addprefix $(DIR_SRC),$(FILES))
 

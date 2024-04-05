@@ -6,24 +6,39 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/05 20:56:22 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:08:51 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "image.h"
 
-void	set_ray(t_ray *ray, t_player player, double width, double x)
+void	draw_ceiling(t_data data, int x, int end)
 {
-	double	plane_len;
+	unsigned int	color;
+	int				y;
 
-	plane_len = (x / width) * 2 - 1;
-	ray->from = player.pos;
-	ray->dir.x = player.dir.x + player.plane.x * plane_len;
-	ray->dir.y = player.dir.y + player.plane.y * plane_len;
-	ray->hpoint.x = 0;
-	ray->hpoint.y = 0;
-	ray->t = 1000000000;
+	color = 0x0000FFFF;
+	y = 0;
+	while (y < end)
+	{
+		put_pixel(&data.img, x, y, color);
+		y++;
+	}
+}
+
+void	draw_floor(t_data data, int x, int start)
+{
+	unsigned int	color;
+	int				y;
+
+	color = 0x00808080;
+	y = data.high - 1;
+	while (y > start)
+	{
+		put_pixel(&data.img, x, y, color);
+		y--;
+	}
 }
 
 unsigned int	get_color_pixel(t_data data, t_ray ray, double h)
@@ -31,7 +46,14 @@ unsigned int	get_color_pixel(t_data data, t_ray ray, double h)
 	(void) data;
 	(void) ray;
 	(void) h;
-	return (0x00FF0000);
+	if (ray.w_dir == 'N')
+		return (0x00FF0000);
+	else if (ray.w_dir == 'E')
+		return (0x0000FF00);
+	else if (ray.w_dir == 'S')
+		return (0x000000FF);
+	else
+		return (0x00FFFF00);
 }
 
 void	draw_line(t_data data, t_ray ray, int x, double h)
@@ -48,12 +70,14 @@ void	draw_line(t_data data, t_ray ray, int x, double h)
 		start = data.high - 1;
 	if (end < 0)
 		end = 0;
-	while (start > end)
+	draw_floor(data, x, start);
+	while (start >= end)
 	{
 		color = get_color_pixel(data, ray, start / size);
 		put_pixel(&data.img, x, start, color);
 		start--;
 	}
+	draw_ceiling(data, x, end);
 }
 
 void	draw(t_data data, t_player player)

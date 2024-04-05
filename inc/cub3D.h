@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/05 20:56:09 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:01:17 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int			check_elements(t_data *data);
 
 t_player	set_player(t_data data);
 void		draw(t_data data, t_player player);
+void		set_ray(t_ray *ray, t_player player, double width, double x);
 void		hit(t_ray *ray, t_data data);
 
 
