@@ -6,17 +6,19 @@
 #    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 17:31:34 by martorre          #+#    #+#              #
-#    Updated: 2024/04/04 22:15:47 by junghwle         ###   ########.fr        #
+#    Updated: 2024/04/05 20:56:13 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
 RM		=	rm -fr
 
 NAME		=	cub3D
 COMP		=	./libft/libft.a ./vector/vector.a
 INC			=	./inc/cub3D.h
+MLXLIB		=	-Lmlx -lmlx -framework OpenGL -framework AppKit -lm
+LIB			=	-I./inc -I./libft -I./vector -I./mlx
 
 DIR_OBJ		=	obj/
 DIR_SRC		=	src/
@@ -24,7 +26,7 @@ DIR_SRC		=	src/
 # *******************************	FILES	******************************* #
 
 FILES		=	main.c check_map.c check_fill.c utils_map.c check_elements.c \
-				draw.c hit.c player.c
+				draw.c hit.c player.c key_hook.c image.c
 
 FILES_SRC	=	$(addprefix $(DIR_SRC),$(FILES))
 
@@ -47,7 +49,7 @@ CYAN_BOLD	=	\033[1;36m
 
 # *******************************  RULES ******************************* #
 
-all : $(DIR_OBJ) lib vec $(NAME)
+all : $(DIR_OBJ) minilibx lib vec $(NAME)
 
 lib :
 	$(MAKE) -C ./libft --no-print-directory
@@ -56,13 +58,13 @@ vec :
 	$(MAKE) -C ./vector
 
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(COMP) -o $@ -lm
+	@$(CC) $(CFLAGS) $(OBJ) $(COMP) $(MLXLIB) -o $@
 
 	@echo "${BLUE_BOLD}cub3D ${GREEN}compiled ✅\n${RESET}"
 
 $(DIR_OBJ)%.o: %.c Makefile $(INC)
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(LIB) -c $< -o $@
 	@echo "${YELLOW}Compiling ${RESET}$@...${RESET}"
 
 $(DIR_OBJ):
@@ -70,6 +72,8 @@ $(DIR_OBJ):
 
 clean	:
 	@$(MAKE) -C libft clean --no-print-directory
+	@$(MAKE) -C mlx clean --no-print-directory
+	@$(MAKE) -C vector clean --no-print-directory
 	@$(RM) $(DIR_OBJ)
 	@echo "${RED}Deleting${RESET} all objects 🗑"
 
@@ -90,5 +94,8 @@ norm	:
 
 re		: fclean
 	@$(MAKE) all
+
+minilibx:
+	make -C mlx
 
 .PHONY : all clean fclean re lib

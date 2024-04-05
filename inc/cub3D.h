@@ -6,15 +6,16 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/04 22:12:44 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:56:09 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libft/libft.h"
-# include "../vector/vector.h"
+# include "libft.h"
+# include "vector.h"
+# include "../mlx/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -53,6 +54,16 @@ typedef struct s_elements
 	t_qtt   qtt;
 }			t_elem;
 
+typedef struct s_img
+{
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	struct s_img	*next;
+}	t_img;
+
 typedef struct s_data
 {
 	void	*window;
@@ -65,6 +76,7 @@ typedef struct s_data
 	int	 colsx;
 	int	 the_y;
 	t_elem  elem;
+	t_img	img;
 }	t_data;
 
 typedef struct s_point
@@ -104,7 +116,8 @@ int			flood_fill(t_data *data, t_point size);
 int			check_elements(t_data *data);
 
 t_player	set_player(t_data data);
-void		draw(t_data data);
-void		hit(t_ray *ray, t_data data, t_player player);
+void		draw(t_data data, t_player player);
+void		hit(t_ray *ray, t_data data);
+
 
 #endif

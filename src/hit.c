@@ -6,146 +6,105 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 22:12:17 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/04 22:18:19 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:55:56 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "cub3D.h"
+#include "hit.h"
+#include <math.h>
 
-void	check_hit_x_pos(t_ray *ray, t_data data, t_vec2 p, double m)
+void	set_hit_step(t_hit *hit, t_ray *ray)
 {
-	int		i;
-	int		j;
-	double	t_tmp;
-
-	i = (int)trunc(p.x);
-	p.y = p.y + ((double)i - p.x) * m;
-	j = 0;
-	while (++i < data.rowsy && j < data.colsx && j >= 0)
+	if (ray->dir.x < 0)
 	{
-		p.y += m;
-		j = (int)trunc(p.y);
-		if (j < data.colsx && j >= 0 && data.map[i][j] == '1')
+		hit->stepX = -1;
+		hit->sideDistX = (ray->from.x - (double)hit->mapx) * hit->deltaDistX;
+	}
+	else
+	{
+		hit->stepX = 1;
+		hit->sideDistX = ((double)hit->mapx + 1.0f - ray->from.x) * \
+							hit->deltaDistX;
+	}
+	if (ray->dir.y < 0)
+	{
+		hit->stepY = -1;
+		hit->sideDistY = (ray->from.y - (double)hit->mapy) * hit->deltaDistY;
+	}
+	else
+	{
+		hit->stepY = 1;
+		hit->sideDistY = ((double)hit->mapy + 1.0f - ray->from.y) * \
+							hit->deltaDistY;
+	}
+}
+
+void	add_hit_point(t_ray *ray, t_hit hit, int side)
+{
+	ray->hpoint = create_vector2d(hit.sideDistX, hit.sideDistY);
+	ray->t = distance_vec2(ray->from, ray->hpoint);
+	if (side == 0)
+	{
+		if (hit.stepX == -1)
+			ray->w_dir = 'N';
+		else
+			ray->w_dir = 'S';
+		ray->perp_dist = (hit.sideDistX - hit.deltaDistX);
+	}
+	else
+	{
+		if (hit.stepY == -1)
+			ray->w_dir = 'W';
+		else
+			ray->w_dir = 'E';
+		ray->perp_dist = (hit.sideDistY - hit.deltaDistY);
+	}
+}
+
+void	perform_dda(t_hit h, t_ray *r)
+{
+	int	hit;
+	int	side;
+
+	hit = 0;
+	while (hit == 0)
+	{
+		if (h.sideDistX < h.sideDistY)
 		{
-			p.x = (double)i;
-			t_tmp = distance_vec2(p, ray->from);
-			if (t_tmp < ray->t)
-			{
-				ray->hpoint = p;
-				ray->t = t_tmp;
-				ray->w_dir = 'S';
-			}
-			return ;
+			h.sideDistX += h.deltaDistX;
+			h.mapx += h.stepX;
+			side = 0;
+		}
+		else
+		{
+			h.sideDistY += h.deltaDistY;
+			h.mapy += h.stepY;
+			side = 1;
+		}
+		if (h.map[h.mapx][h.mapy] == '1')
+		{
+			hit = 1;
+			add_hit_point(r, h, side);
 		}
 	}
 }
 
-void	check_hit_x_neg(t_ray *ray, t_data data, t_vec2 p, double m)
+void	hit(t_ray *ray, t_data data)
 {
-	int		i;
-	int		j;
-	double	t_tmp;
-
-	i = (int)ceil(p.x);
-	p.y = p.y + ((double)i - p.x) * m;
-	j = 0;
-	while (--i > 0 && j < data.colsx && j >= 0)
-	{
-		p.y -= m;
-		j = (int)trunc(p.y);
-		if (j < data.colsx && j >= 0 && data.map[i - 1][j] == '1')
-		{
-			p.x = (double)i;
-			t_tmp = distance_vec2(p, ray->from);
-			if (t_tmp < ray->t)
-			{
-				ray->hpoint = p;
-				ray->t = t_tmp;
-				ray->w_dir = 'N';
-			}
-			return ;
-		}
-	}
-}
-
-void	check_hit_y_pos(t_ray *ray, t_data data, t_vec2 p, double m)
-{
-	int		i;
-	int		j;
-	double	t_tmp;
-
-	j = (int)trunc(p.y);
-	p.x = p.x + ((double)j - p.y) * m;
-	i = 0;
-	while (++j < data.colsx && i < data.rowsy && i >= 0)
-	{
-		p.x += m;
-		i = (int)trunc(p.x);
-		if (i < data.rowsy && i >= 0 && data.map[i][j] == '1')
-		{
-			p.y = (double)j;
-			t_tmp = distance_vec2(p, ray->from);
-			if (t_tmp < ray->t)
-			{
-				ray->hpoint = p;
-				ray->t = t_tmp;
-				ray->w_dir = 'E';
-			}
-			return ;
-		}
-	}
-}
-
-void	check_hit_y_neg(t_ray *ray, t_data data, t_vec2 p, double m)
-{
-	int		i;
-	int		j;
-	double	t_tmp;
-
-	j = (int)ceil(p.y);
-	p.x = p.x + ((double)j - p.y) * m;
-	i = 0;
-	while (--j > 0 && i < data.rowsy && i >= 0)
-	{
-		p.x -= m;
-		i = (int)trunc(p.x);
-		if (i < data.rowsy && i >= 0 && data.map[i][j - 1] == '1')
-		{
-			p.y = (double)j;
-			t_tmp = distance_vec2(p, ray->from);
-			if (t_tmp < ray->t)
-			{
-				ray->hpoint = p;
-				ray->t = t_tmp;
-				ray->w_dir = 'W';
-			}
-			return ;
-		}
-	}
-}
-
-void	hit(t_ray *ray, t_data data, t_player player)
-{
-	t_vec2	p;
-	double	m;
-
-	p.x = ray->from.x;
-	p.y = ray->from.y;
-	if (ray->dir.x != 0)
-	{
-		m = ray->dir.y / ray->dir.x;
-		if (ray->dir.x > 0)
-			check_hit_x_pos(ray, data, p, m);
-		else if (ray->dir.x < 0)
-			check_hit_x_neg(ray, data, p, m);
-	}
-	if (ray->dir.y != 0)
-	{
-		m = ray->dir.x / ray->dir.y;
-		if (ray->dir.y > 0)
-			check_hit_y_pos(ray, data, p, m);
-		else if (ray->dir.y < 0)
-			check_hit_y_neg(ray, data, p, m);
-	}
-	ray->perp_dist = ray->t / length_vec2(ray->dir) * player.dir_len;
+	t_hit	hit;
+	
+	hit.map = data.map;
+	hit.mapx = (ray->from.x);
+	hit.mapy = (ray->from.y);
+	if (ray->dir.x == 0)
+		hit.deltaDistX = 1e308;
+	else
+		hit.deltaDistX = fabs(1.0f / ray->dir.x);
+	if (ray->dir.y == 0)
+		hit.deltaDistY = 1e308;
+	else
+		hit.deltaDistY = fabs(1.0f / ray->dir.y);
+	set_hit_step(&hit, ray);
+	perform_dda(hit, ray);
 }

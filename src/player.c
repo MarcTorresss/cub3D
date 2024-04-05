@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/04 22:18:27 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:50:44 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	set_player_direction(t_player *player, char dir)
 		player->dir = create_vector2d(0, -1);
 		player->plane = create_vector2d(-1, 0);
 	}
-    player->dir = scalar_vec2(player->dir, 0.5f);
-    player->plane = scalar_vec2(player->plane, 0.5f);
 }
 
 t_player	set_player(t_data data)

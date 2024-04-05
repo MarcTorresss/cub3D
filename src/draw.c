@@ -6,11 +6,12 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/04 22:18:27 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:56:22 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "cub3D.h"
+#include "image.h"
 
 void	set_ray(t_ray *ray, t_player player, double width, double x)
 {
@@ -30,14 +31,7 @@ unsigned int	get_color_pixel(t_data data, t_ray ray, double h)
 	(void) data;
 	(void) ray;
 	(void) h;
-	return (0);
-}
-
-void	mlx_put_pixel(unsigned int color, int x, int start)
-{
-	(void) color;
-	(void) x;
-	(void) start;
+	return (0x00FF0000);
 }
 
 void	draw_line(t_data data, t_ray ray, int x, double h)
@@ -50,30 +44,32 @@ void	draw_line(t_data data, t_ray ray, int x, double h)
 	start = data.high * (h + 1) * 0.5f;
 	end = data.high * (1 - h) * 0.5f;
 	size = start - end;
+	if (start >= data.high)
+		start = data.high - 1;
+	if (end < 0)
+		end = 0;
 	while (start > end)
 	{
 		color = get_color_pixel(data, ray, start / size);
-		mlx_put_pixel(color, x, start);
+		put_pixel(&data.img, x, start, color);
 		start--;
 	}
 }
 
-void	draw(t_data data)
+void	draw(t_data data, t_player player)
 {
 	int				x;
-	t_player		player;
 	t_ray			ray;
 	double			w_height;
 
-	player = set_player(data);
 	x = 0;
 	while (x < data.width)
 	{
 		set_ray(&ray, player, data.width, x);
-		hit(&ray, data, player);
-		printf("%.2f %.2f %.2f %c %.2f\n", ray.hpoint.x, ray.hpoint.y, ray.t, ray.w_dir, ray.perp_dist);
-		w_height = player.dir_len / ray.perp_dist;
+		hit(&ray, data);
+		w_height = BOX_UNIT / ray.perp_dist;
 		draw_line(data, ray, x, w_height);
 		x++;
 	}
+	mlx_put_image_to_window(data.mlx, data.window, data.img.img, 0, 0);
 }
