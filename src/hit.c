@@ -147,6 +147,5 @@ void	hit(t_ray *ray, t_data data, t_player player)
 		else if (ray->dir.y < 0)
 			check_hit_y_neg(ray, data, p, m);
 	}
-	ray->perp_dist = ray->t / length_vec2(ray->dir) * \
-						length_vec2(player.dir);
+	ray->perp_dist = ray->t / length_vec2(ray->dir) * player.dir_len;
 }

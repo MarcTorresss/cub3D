@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror #-g -fsanitize=address
 RM		=	rm -fr
 
 NAME		=	cub3D
@@ -24,7 +24,7 @@ DIR_SRC		=	src/
 # *******************************	FILES	******************************* #
 
 FILES		=	main.c check_map.c check_fill.c utils_map.c check_elements.c \
-				draw.c hit.c
+				draw.c hit.c player.c
 
 FILES_SRC	=	$(addprefix $(DIR_SRC),$(FILES))
 

@@ -2,5 +2,6 @@ cub3D
 /obj
 /libft/temp
 **/*.a
-.o
+*.o
+*.d
 /.vscode
