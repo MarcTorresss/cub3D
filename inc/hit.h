@@ -13,6 +13,8 @@
 #ifndef HIT_H
 # define HIT_H
 
+# include "ray.h"
+
 typedef struct s_hit
 {
 	char	**map;
@@ -25,5 +27,7 @@ typedef struct s_hit
 	int		stepX;
 	int		stepY;
 }	t_hit;
+
+void	hit(t_ray *ray, char **map);
 
 #endif

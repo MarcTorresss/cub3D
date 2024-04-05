@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "ray.h"
 
 void	set_ray(t_ray *ray, t_player player, double width, double x)
 {
@@ -20,7 +20,5 @@ void	set_ray(t_ray *ray, t_player player, double width, double x)
 	ray->from = player.pos;
 	ray->dir.x = player.dir.x + player.plane.x * plane_len;
 	ray->dir.y = player.dir.y + player.plane.y * plane_len;
-	ray->hpoint.x = 0;
-	ray->hpoint.y = 0;
-	ray->t = 1000000000;
+	ray->p_dir = player.dir;
 }

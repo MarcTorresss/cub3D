@@ -10,90 +10,111 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include "image.h"
+#include "scene.h"
+#include "ray.h"
+#include "hit.h"
 
-void	draw_ceiling(t_data data, int x, int end)
+static void	draw_ceiling(t_scene scene, int x, int end)
 {
-	unsigned int	color;
-	int				y;
+	int	y;
 
-	color = 0x0000FFFF;
 	y = 0;
 	while (y < end)
 	{
-		put_pixel(&data.img, x, y, color);
+		put_pixel(scene.screen, x, y, scene.ccolor);
 		y++;
 	}
 }
 
-void	draw_floor(t_data data, int x, int start)
+static void	draw_floor(t_scene scene, int x, int start)
 {
-	unsigned int	color;
-	int				y;
+	int	y;
 
-	color = 0x00808080;
-	y = data.high - 1;
+	y = scene.height - 1;
 	while (y > start)
 	{
-		put_pixel(&data.img, x, y, color);
+		put_pixel(scene.screen, x, y, scene.fcolor);
 		y--;
 	}
 }
 
-unsigned int	get_color_pixel(t_data data, t_ray ray, double h)
+static unsigned int	get_color_pixel(t_scene scene, t_ray ray, double h)
 {
-	(void) data;
-	(void) ray;
+	double	w;
+
+	(void) scene;
 	(void) h;
+	(void) w;
 	if (ray.w_dir == 'N')
+	{
+		w = ray.hpoint.y - (int)ray.hpoint.y;
+		//get_texture_color(scene.Nwall, w, h);
 		return (0x00FF0000);
+	}
 	else if (ray.w_dir == 'E')
+	{
+		w = ray.hpoint.x - (int)ray.hpoint.x;
+		//get_texture_color(scene.Ewall, w, h);
 		return (0x0000FF00);
+	}
 	else if (ray.w_dir == 'S')
+	{
+		w = 1 - (ray.hpoint.y - (int)ray.hpoint.y);
+		//get_texture_color(scene.Swall, w, h);
 		return (0x000000FF);
+	}
 	else
+	{
+		w = 1 - (ray.hpoint.x - (int)ray.hpoint.x);
+		//get_texture_color(scene.Wwall, w, h);
 		return (0x00FFFF00);
+	}
 }
 
-void	draw_line(t_data data, t_ray ray, int x, double h)
+static void	draw_line(t_scene scene, t_ray ray, int x, double h)
 {
 	int				size;
 	int				start;
 	int				end;
 	unsigned int	color;
 
-	start = data.high * (h + 1) * 0.5f;
-	end = data.high * (1 - h) * 0.5f;
+	start = scene.height * (h + 1) * 0.5f;
+	end = scene.height * (1 - h) * 0.5f;
 	size = start - end;
-	if (start >= data.high)
-		start = data.high - 1;
+	if (start >= scene.height)
+		start = scene.height - 1;
 	if (end < 0)
 		end = 0;
-	draw_floor(data, x, start);
+	draw_floor(scene, x, start);
 	while (start >= end)
 	{
-		color = get_color_pixel(data, ray, start / size);
-		put_pixel(&data.img, x, start, color);
+		color = get_color_pixel(scene, ray, start / size);
+		put_pixel(scene.screen, x, start, color);
 		start--;
 	}
-	draw_ceiling(data, x, end);
+	draw_ceiling(scene, x, end);
+	(void)draw_floor;
+	(void)draw_ceiling;
+	(void)color;
+	(void)x;
 }
 
-void	draw(t_data data, t_player player)
+#include <stdio.h>
+
+void	draw(t_scene scene)
 {
-	int				x;
-	t_ray			ray;
-	double			w_height;
+	int		x;
+	t_ray	ray;
+	double	height;
 
 	x = 0;
-	while (x < data.width)
+	while (x < scene.width)
 	{
-		set_ray(&ray, player, data.width, x);
-		hit(&ray, data);
-		w_height = BOX_UNIT / ray.perp_dist;
-		draw_line(data, ray, x, w_height);
+		set_ray(&ray, scene.player, scene.width, x);
+		hit(&ray, scene.map);
+		height = BOX_UNIT / ray.perp_dist;
+		draw_line(scene, ray, x, height);
 		x++;
 	}
-	mlx_put_image_to_window(data.mlx, data.window, data.img.img, 0, 0);
+	mlx_put_image_to_window(scene.mlx, scene.win, scene.screen->img, 0, 0);
 }

@@ -54,16 +54,6 @@ typedef struct s_elements
 	t_qtt   qtt;
 }			t_elem;
 
-typedef struct s_img
-{
-	void			*img;
-	char			*addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-	struct s_img	*next;
-}	t_img;
-
 typedef struct s_data
 {
 	void	*window;
@@ -76,7 +66,6 @@ typedef struct s_data
 	int	 colsx;
 	int	 the_y;
 	t_elem  elem;
-	t_img	img;
 }	t_data;
 
 typedef struct s_point
@@ -91,34 +80,11 @@ typedef struct s_pos
 	char	posplayer;
 }	t_pos;
 
-typedef struct s_player
-{
-	t_vec2	pos;
-	t_vec2	dir;
-	t_vec2	plane;
-	double  dir_len;
-}	t_player;
-
-typedef struct s_ray
-{
-	t_vec2	from;
-	t_vec2	dir;
-	t_vec2	hpoint;
-	double	t;
-	double  perp_dist;
-	char	w_dir;
-}	t_ray;
-
 void		data_init(char *str, t_data *data);
 int			check_map(t_data data);
 void		calc_x_y(t_data *data);
 int			flood_fill(t_data *data, t_point size);
 int			check_elements(t_data *data);
-
-t_player	set_player(t_data data);
-void		draw(t_data data, t_player player);
-void		set_ray(t_ray *ray, t_player player, double width, double x);
-void		hit(t_ray *ray, t_data data);
 
 
 #endif

@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "cub3D.h"
+#include "scene.h"
 #include "key_hook.h"
 
 void	custom_data_init(t_data *data)
@@ -33,21 +34,35 @@ void	custom_data_init(t_data *data)
 	data->rowsy = 5;
 	data->mlx = mlx_init();
 	data->window = mlx_new_window(data->mlx, data->width, data->high, "cub3D");
-	data->img.img = mlx_new_image(data->mlx, data->width, data->high);
-	data->img.addr = mlx_get_data_addr(data->img.img, &(data->img.bits_per_pixel), \
-								&(data->img.line_length), &(data->img.endian));
+}
+
+void	set_scene(t_scene *scene, t_data data)
+{
+	scene->player = set_player(data.map);
+	scene->map = data.map;
+	scene->width = data.width;
+	scene->height = data.high;
+	scene->mlx = data.mlx;
+	scene->win = data.window;
+	scene->screen = get_new_image(scene->mlx, scene->width, scene->height);
+	scene->Nwall = NULL;
+	scene->Swall = NULL;
+	scene->Ewall = NULL;
+	scene->Wwall = NULL;
+    scene->ccolor = 0x0000FFFF;
+    scene->fcolor = 0x00808080;
 }
 
 int	main(int argc, char **argv)
 {
 	t_data		data;
-	t_player	player;
+	t_scene		scene;
 
 	(void) argc;
 	(void) argv;
 	custom_data_init(&data);
-	player = set_player(data);
-	draw(data, player);
+	set_scene(&scene, data);
+	draw(scene);
 	free(data.map[0]);
 	free(data.map[1]);
 	free(data.map[2]);

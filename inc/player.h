@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.h                                            :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 15:36:31 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/05 20:55:05 by junghwle         ###   ########.fr       */
+/*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
+/*   Updated: 2024/04/05 20:33:18 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGE_H
-# define IMAGE_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
-typedef struct s_img
+# include "vector.h"
+
+typedef struct s_player
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}	t_img;
+	t_vec2	pos;
+	t_vec2	dir;
+	t_vec2	plane;
+	double  dir_len;
+}	t_player;
 
-t_img			*get_new_image(void *mlx, int w, int h);
-unsigned int    get_texture_color(t_img *img, double w, double h);
-void			put_pixel(t_img *im_data, int x, int y, int color);
+t_player	set_player(char **map);
 
 #endif

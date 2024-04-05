@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
 #include "hit.h"
 #include <math.h>
 
-void	set_hit_step(t_hit *hit, t_ray *ray)
+static void	set_hit_step(t_hit *hit, t_ray *ray)
 {
 	if (ray->dir.x < 0)
 	{
@@ -40,17 +39,17 @@ void	set_hit_step(t_hit *hit, t_ray *ray)
 	}
 }
 
-void	add_hit_point(t_ray *ray, t_hit hit, int side)
+static void	record_hit(t_ray *ray, t_hit hit, int side)
 {
-	ray->hpoint = create_vector2d(hit.sideDistX, hit.sideDistY);
-	ray->t = distance_vec2(ray->from, ray->hpoint);
+	double	ratio;
+
 	if (side == 0)
 	{
 		if (hit.stepX == -1)
 			ray->w_dir = 'N';
 		else
 			ray->w_dir = 'S';
-		ray->perp_dist = (hit.sideDistX - hit.deltaDistX);
+		ray->perp_dist = hit.sideDistX - hit.deltaDistX;
 	}
 	else
 	{
@@ -58,11 +57,14 @@ void	add_hit_point(t_ray *ray, t_hit hit, int side)
 			ray->w_dir = 'W';
 		else
 			ray->w_dir = 'E';
-		ray->perp_dist = (hit.sideDistY - hit.deltaDistY);
+		ray->perp_dist = hit.sideDistY - hit.deltaDistY;
 	}
+	ratio = ray->perp_dist / length_vec2(ray->p_dir);
+	ray->hpoint.x = ray->from.x + ray->dir.x * ratio;
+	ray->hpoint.y = ray->from.y + ray->dir.y * ratio;
 }
 
-void	perform_dda(t_hit h, t_ray *r)
+static void	perform_dda(t_hit h, t_ray *r)
 {
 	int	hit;
 	int	side;
@@ -85,16 +87,16 @@ void	perform_dda(t_hit h, t_ray *r)
 		if (h.map[h.mapx][h.mapy] == '1')
 		{
 			hit = 1;
-			add_hit_point(r, h, side);
+			record_hit(r, h, side);
 		}
 	}
 }
 
-void	hit(t_ray *ray, t_data data)
+void	hit(t_ray *ray, char **map)
 {
 	t_hit	hit;
 	
-	hit.map = data.map;
+	hit.map = map;
 	hit.mapx = (ray->from.x);
 	hit.mapy = (ray->from.y);
 	if (ray->dir.x == 0)

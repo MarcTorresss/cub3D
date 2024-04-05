@@ -17,7 +17,7 @@ RM		=	rm -fr
 NAME		=	cub3D
 COMP		=	./libft/libft.a ./vector/vector.a
 INC			=	./inc/cub3D.h
-MLXLIB		=	-Lmlx -lmlx -framework OpenGL -framework AppKit -lm
+MLXLIB		=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 LIB			=	-I./inc -I./libft -I./vector -I./mlx
 
 DIR_OBJ		=	obj/
@@ -49,7 +49,7 @@ CYAN_BOLD	=	\033[1;36m
 
 # *******************************  RULES ******************************* #
 
-all : $(DIR_OBJ) minilibx lib vec $(NAME)
+all : $(DIR_OBJ) lib vec minilibx $(NAME)
 
 lib :
 	$(MAKE) -C ./libft --no-print-directory
@@ -57,8 +57,11 @@ lib :
 vec :
 	$(MAKE) -C ./vector
 
+minilibx:
+	make -C mlx
+
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(COMP) $(MLXLIB) -o $@
+	@$(CC) $(CFLAGS) $(OBJ) $(COMP) $(MLXLIB)-lm -o $@
 
 	@echo "${BLUE_BOLD}cub3D ${GREEN}compiled ✅\n${RESET}"
 
@@ -94,8 +97,5 @@ norm	:
 
 re		: fclean
 	@$(MAKE) all
-
-minilibx:
-	make -C mlx
 
 .PHONY : all clean fclean re lib

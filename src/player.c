@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "libft.h"
+#include "player.h"
+#include <stdlib.h>
 
 void	set_player_direction(t_player *player, char dir)
 {
@@ -36,7 +38,7 @@ void	set_player_direction(t_player *player, char dir)
 	}
 }
 
-t_player	set_player(t_data data)
+t_player	set_player(char ** map)
 {
 	int			i;
 	int			j;
@@ -44,15 +46,15 @@ t_player	set_player(t_data data)
 
 	ft_memset(&player, 0, sizeof(t_player));
 	i = 0;
-	while (i < data.colsx)
+	while (map[i] != NULL)
 	{
 		j = 0;
-		while (j < data.rowsy)
+		while (map[i][j] != '\0')
 		{
-			if (ft_strchr("NSEW", data.map[i][j]) != NULL)
+			if (ft_strchr("NSEW", map[i][j]) != NULL)
 			{
 				player.pos = create_vector2d((double)i + 0.5, (double)j + 0.5);
-				set_player_direction(&player, data.map[i][j]);
+				set_player_direction(&player, map[i][j]);
 				player.dir_len = length_vec2(player.dir);
 				return (player);
 			}
