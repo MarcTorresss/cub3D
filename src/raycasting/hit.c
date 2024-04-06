@@ -107,6 +107,7 @@ void	hit(t_ray *ray, char **map)
 		hit.deltaDistY = 1e308;
 	else
 		hit.deltaDistY = fabs(1.0f / ray->dir.y);
+	
 	set_hit_step(&hit, ray);
 	perform_dda(hit, ray);
 }

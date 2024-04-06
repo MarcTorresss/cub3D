@@ -5,97 +5,68 @@
 #                                                     +:+ +:+         +:+      #
 #    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/05 17:31:34 by martorre          #+#    #+#              #
-#    Updated: 2024/04/05 21:01:24 by junghwle         ###   ########.fr        #
+#    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
+#    Updated: 2023/11/13 23:55:40 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror #-g -fsanitize=address
-RM		=	rm -fr
+NAME			:=cub3D
 
-NAME		=	cub3D
-COMP		=	./libft/libft.a ./vector/vector.a
-INC			=	./inc/cub3D.h
-MLXLIB		=	-Lmlx -lmlx -framework OpenGL -framework AppKit
-LIB			=	-I./inc -I./libft -I./vector -I./mlx
+SRCDIR			:=src
+SRCS			:=main.c check_elements.c check_fill.c check_map.c utils_map.c \
+			  draw.c hit.c image.c key_hook.c player.c ray.c
 
-DIR_OBJ		=	obj/
-DIR_SRC		=	src/
+OBJDIR			:=objs
+OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 
-# *******************************	FILES	******************************* #
+DEPS			:=$(OBJS:.o=.d)
+DEPFLAGS		:=-MMD
 
-FILES		=	main.c check_map.c check_fill.c utils_map.c check_elements.c \
-				draw.c hit.c player.c key_hook.c image.c ray.c
+CC				:=gcc
+CFLAGS			:=-Wall -Werror -Wextra
+DEBUG			:=-g -fsanitize=address
 
-FILES_SRC	=	$(addprefix $(DIR_SRC),$(FILES))
+INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux
+LIBS			:=-Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
 
-# *********************************	OBJECTS	****************************** #
+all: 			$(OBJDIR) libft vector minilibx $(NAME)
 
-OBJ			=	$(addprefix $(DIR_OBJ),$(FILES_SRC:.c=.o))
+$(NAME):		$(OBJS) Makefile
+					$(CC) $(CFLAGS) $(DEBUG) $(OBJS) libft/libft.a vector/vector.a -o $(NAME) $(LIBS) $(INCS)
+					echo "(CUB3D) COMPILING $@"
 
-# *******************************  COLORS	******************************* #
+$(OBJDIR)/%.o:	$(SRCDIR)/%.c Makefile
+					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
+					echo "(CUB3D) COMPILING $@"
 
-RED			=	\033[0;31m
-GREEN		=	\033[0;32m
-YELLOW		=	\033[0;33m
-BLUE		=	\033[0;34m
-PURPLE		=	\033[0;35m
-CYAN		=	\033[0;36m
-RESET		=	\033[0m
-GREEN_BOLD	=	\033[1;32m
-BLUE_BOLD	=	\033[1;34m
-CYAN_BOLD	=	\033[1;36m
+$(OBJDIR)/%.o:	$(SRCDIR)/raycasting/%.c Makefile
+					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
+					echo "(CUB3D) COMPILING $@"
 
-# *******************************  RULES ******************************* #
+$(OBJDIR):		Makefile
+					mkdir -p $@
 
-all : $(DIR_OBJ) lib vec minilibx $(NAME)
+libft:
+					make -C libft
 
-lib :
-	$(MAKE) -C ./libft --no-print-directory
-
-vec :
-	$(MAKE) -C ./vector
+vector:
+					make -C vector
 
 minilibx:
-	make -C mlx
+					make -C mlx_linux
 
-$(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(COMP) $(MLXLIB)-lm -o $@
+clean:
+					make -C libft fclean
+					make -C vector fclean
+					make -C mlx_linux clean
+					rm -rf $(OBJDIR)
 
-	@echo "${BLUE_BOLD}cub3D ${GREEN}compiled ✅\n${RESET}"
+fclean:			clean
+					rm -f $(NAME)
 
-$(DIR_OBJ)%.o: %.c Makefile $(INC)
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(LIB) -c $< -o $@
-	@echo "${YELLOW}Compiling ${RESET}$@...${RESET}"
+re:				fclean all
 
-$(DIR_OBJ):
-	@mkdir -p $(DIR_OBJ)
+-include $(DEPS)
 
-clean	:
-	@$(MAKE) -C libft clean --no-print-directory
-	@$(MAKE) -C mlx clean --no-print-directory
-	@$(MAKE) -C vector clean --no-print-directory
-	@$(RM) $(DIR_OBJ)
-	@echo "${RED}Deleting${RESET} all objects 🗑"
-
-fclean	: clean
-	@$(MAKE) -C libft fclean --no-print-directory
-	@$(MAKE) -C vector fclean --no-print-directory
-	@$(RM) $(NAME) 
-	@echo "${BLUE_BOLD}cub3D ${RED}deleted${RESET}"
-
-norm	:
-	@printf "${PURPLE}SEARCHING FOR A PRINTF IN THE PROJECT: "
-	@printf "%i \n${RESET}" $(shell grep "	printf" *.c | wc -l)
-	@printf "${YELLOW}Norminette...\n${RESET}"
-	@printf "${RED}"
-	@norminette src/*/*.c src/*.c inc/*.h > test && printf "$(GREEN)\t[OK]\n" || grep Error test
-	@printf "${RESET}"
-	@rm test
-
-re		: fclean
-	@$(MAKE) all
-
-.PHONY : all clean fclean re lib
+.PHONY:			all clean fclean re libft vector minilibx
+.SILENT:

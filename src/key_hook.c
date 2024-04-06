@@ -10,14 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
-#include "../inc/cub3D.h"
+#include "cub3D.h"
 #include "key_hook.h"
 
 static void	check_exit(int keycode, t_data *data)
 {
 	(void) data;
-	if (keycode == KEY_EXIT)
+	if (keycode == KEY_EXIT || keycode == 65307)
 	{
 		exit(0);
 	}

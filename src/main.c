@@ -13,6 +13,7 @@
 #include "cub3D.h"
 #include "scene.h"
 #include "key_hook.h"
+#include <mlx.h>
 
 void	custom_data_init(t_data *data)
 {
@@ -22,12 +23,23 @@ void	custom_data_init(t_data *data)
 	data->map[2] = (char *)malloc(sizeof(char) * 100);
 	data->map[3] = (char *)malloc(sizeof(char) * 100);
 	data->map[4] = (char *)malloc(sizeof(char) * 100);
-	data->map[5] = NULL;
-	ft_strlcpy(data->map[0], "111111", 100);
-	ft_strlcpy(data->map[1], "110011", 100);
-	ft_strlcpy(data->map[2], "100W01", 100);
-	ft_strlcpy(data->map[3], "110111", 100);
-	ft_strlcpy(data->map[4], "111111", 100);
+	data->map[5] = (char *)malloc(sizeof(char) * 100);
+	data->map[6] = (char *)malloc(sizeof(char) * 100);
+	data->map[7] = (char *)malloc(sizeof(char) * 100);
+	data->map[8] = (char *)malloc(sizeof(char) * 100);
+	data->map[9] = (char *)malloc(sizeof(char) * 100);
+	data->map[10] = (char *)malloc(sizeof(char) * 100);
+	data->map[11] = NULL;
+	ft_strlcpy(data->map[0], "111111111", 100);
+	ft_strlcpy(data->map[1], "1100000011", 100);
+	ft_strlcpy(data->map[2], "1000000001111111", 100);
+	ft_strlcpy(data->map[3], "110100001000000111", 100);
+	ft_strlcpy(data->map[4], "1100010000000001111", 100);
+	ft_strlcpy(data->map[5], "111000010000W0111", 100);
+	ft_strlcpy(data->map[6], "11001000000000011", 100);
+	ft_strlcpy(data->map[7], "1000000001111111", 100);
+	ft_strlcpy(data->map[8], "1101001111", 100);
+	ft_strlcpy(data->map[9], "11001111", 100);
 	data->width = 1920;
 	data->high = 1080;
 	data->colsx = 6;
@@ -45,10 +57,10 @@ void	set_scene(t_scene *scene, t_data data)
 	scene->mlx = data.mlx;
 	scene->win = data.window;
 	scene->screen = get_new_image(scene->mlx, scene->width, scene->height);
-	scene->Nwall = NULL;
-	scene->Swall = NULL;
-	scene->Ewall = NULL;
-	scene->Wwall = NULL;
+	scene->Nwall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
+	scene->Swall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
+	scene->Ewall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
+	scene->Wwall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
     scene->ccolor = 0x0000FFFF;
     scene->fcolor = 0x00808080;
 }

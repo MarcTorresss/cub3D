@@ -1,7 +1,9 @@
 cub3D
 /obj
+/objs
 /libft/temp
 **/*.a
 *.o
 *.d
 /.vscode
+/mlx_linux

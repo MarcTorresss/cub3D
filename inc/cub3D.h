@@ -15,7 +15,7 @@
 
 # include "libft.h"
 # include "vector.h"
-# include "../mlx/mlx.h"
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>

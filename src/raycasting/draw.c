@@ -13,6 +13,7 @@
 #include "scene.h"
 #include "ray.h"
 #include "hit.h"
+#include <mlx.h>
 
 static void	draw_ceiling(t_scene scene, int x, int end)
 {
@@ -42,32 +43,25 @@ static unsigned int	get_color_pixel(t_scene scene, t_ray ray, double h)
 {
 	double	w;
 
-	(void) scene;
-	(void) h;
-	(void) w;
 	if (ray.w_dir == 'N')
 	{
 		w = ray.hpoint.y - (int)ray.hpoint.y;
-		//get_texture_color(scene.Nwall, w, h);
-		return (0x00FF0000);
+		return (get_texture_color(scene.Nwall, w, h));
 	}
 	else if (ray.w_dir == 'E')
 	{
 		w = ray.hpoint.x - (int)ray.hpoint.x;
-		//get_texture_color(scene.Ewall, w, h);
-		return (0x0000FF00);
+		return (get_texture_color(scene.Ewall, w, h));
 	}
 	else if (ray.w_dir == 'S')
 	{
 		w = 1 - (ray.hpoint.y - (int)ray.hpoint.y);
-		//get_texture_color(scene.Swall, w, h);
-		return (0x000000FF);
+		return (get_texture_color(scene.Swall, w, h));
 	}
 	else
 	{
 		w = 1 - (ray.hpoint.x - (int)ray.hpoint.x);
-		//get_texture_color(scene.Wwall, w, h);
-		return (0x00FFFF00);
+		return (get_texture_color(scene.Wwall, w, h));
 	}
 }
 
@@ -88,7 +82,7 @@ static void	draw_line(t_scene scene, t_ray ray, int x, double h)
 	draw_floor(scene, x, start);
 	while (start >= end)
 	{
-		color = get_color_pixel(scene, ray, start / size);
+		color = get_color_pixel(scene, ray, (double)(start - end) / size);
 		put_pixel(scene.screen, x, start, color);
 		start--;
 	}
@@ -98,8 +92,6 @@ static void	draw_line(t_scene scene, t_ray ray, int x, double h)
 	(void)color;
 	(void)x;
 }
-
-#include <stdio.h>
 
 void	draw(t_scene scene)
 {
