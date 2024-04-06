@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "image.h"
+#include "vector.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <mlx.h>
 
@@ -32,26 +34,6 @@ t_img	*get_new_image(void *mlx, int w, int h)
 	image->height = h;
 	return (image);
 }
-
-/*
-t_img	*get_new_image_png(void *mlx, char *img_path)
-{
-	t_img	*image;
-
-	image = (t_img *)malloc(sizeof(t_img));
-	if (image == NULL)
-		return (NULL);
-	image->img = mlx_png_file_to_image(mlx, img_path, \
-										&image->width, &image->height);
-	if (image->img == NULL)
-		return (free(image), NULL);
-	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel, \
-									&image->line_length, &image->endian);
-	if (image->addr == NULL)
-		return (mlx_destroy_image(mlx, image->img), free(image), NULL);
-	return (image);
-}
-*/
 
 t_img	*get_new_image_xpm(void *mlx, char *img_path)
 {

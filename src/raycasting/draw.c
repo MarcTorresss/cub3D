@@ -31,4 +31,11 @@ void	draw(t_scene scene)
 		x++;
 	}
 	mlx_put_image_to_window(scene.mlx, scene.win, scene.screen->img, 0, 0);
+	draw_minimap(scene, ray);
+	mlx_put_image_to_window(scene.mlx, scene.win, scene.mmap->img, \
+		scene.width - 50 - scene.mmap->width, \
+		scene.height - 100 - scene.mmap->height);
+	mlx_put_image_to_window(scene.mlx, scene.win, scene.full_map->img, \
+		scene.width - 500 - scene.full_map->width, \
+		scene.height - 650 - scene.full_map->height);
 }

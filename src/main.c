@@ -30,20 +30,20 @@ void	custom_data_init(t_data *data)
 	data->map[9] = (char *)malloc(sizeof(char) * 100);
 	data->map[10] = (char *)malloc(sizeof(char) * 100);
 	data->map[11] = NULL;
-	ft_strlcpy(data->map[0], "111111111", 100);
-	ft_strlcpy(data->map[1], "1100000011", 100);
-	ft_strlcpy(data->map[2], "1000000001111111", 100);
-	ft_strlcpy(data->map[3], "110100001000000111", 100);
+	ft_strlcpy(data->map[0], "       111111111   ", 100);
+	ft_strlcpy(data->map[1], "      111100000111 ", 100);
+	ft_strlcpy(data->map[2], "1111111001111111   ", 100);
+	ft_strlcpy(data->map[3], "110100001000000111 ", 100);
 	ft_strlcpy(data->map[4], "1100010000000001111", 100);
-	ft_strlcpy(data->map[5], "111000010000W0111", 100);
-	ft_strlcpy(data->map[6], "11001000000000011", 100);
-	ft_strlcpy(data->map[7], "1000000001111111", 100);
-	ft_strlcpy(data->map[8], "1101001111", 100);
-	ft_strlcpy(data->map[9], "11001111", 100);
+	ft_strlcpy(data->map[5], "111000010000W0111  ", 100);
+	ft_strlcpy(data->map[6], "11001000000000011  ", 100);
+	ft_strlcpy(data->map[7], "1000000001111111   ", 100);
+	ft_strlcpy(data->map[8], " 111101001111      ", 100);
+	ft_strlcpy(data->map[9], "     1111111       ", 100);
 	data->width = 1920;
 	data->high = 1080;
-	data->colsx = 6;
-	data->rowsy = 5;
+	data->colsx = 19;
+	data->rowsy = 10;
 	data->mlx = mlx_init();
 	data->window = mlx_new_window(data->mlx, data->width, data->high, "cub3D");
 }
@@ -63,8 +63,10 @@ void	set_scene(t_scene *scene, t_data data)
 	scene->Wwall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
 	scene->ccolor = 0x0000FFFF;
 	scene->fcolor = 0x00808080;
-	scene->mmap = get_new_image(scene->mlx, \
+	scene->full_map = get_new_image(scene->mlx, \
 							data.colsx * GRID_UNIT, data.rowsy * GRID_UNIT);
+	scene->mmap = get_new_image(scene->mlx, \
+							MMAP_SIZE * GRID_UNIT, MMAP_SIZE * GRID_UNIT);
 }
 
 int	main(int argc, char **argv)

@@ -14,7 +14,8 @@ NAME			:=cub3D
 
 SRCDIR			:=src
 SRCS			:=main.c check_elements.c check_fill.c check_map.c utils_map.c \
-				  draw.c hit.c image.c key_hook.c player.c ray.c draw_field.c 
+				  draw.c hit.c image.c key_hook.c player.c ray.c draw_field.c  \
+				  draw_minimap.c draw_square.c draw_triangle.c
 
 OBJDIR			:=objs
 OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))

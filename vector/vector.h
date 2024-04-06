@@ -114,6 +114,10 @@ t_mat3	adjacent_mat3(t_mat3 m);
 t_mat2	inverse_mat2(t_mat2 m1);
 t_mat3	inverse_mat3(t_mat3 m1);
 
+t_vec2	translate(t_vec2 p, t_vec2 dist);
+t_vec2	rotate_vec2(t_vec2 p, double angle);
+t_vec2	scale(t_vec2 p, t_vec2 scale);
+
 void	print_vector2d(t_vec2 v);
 void	print_vector3d(t_vec3 v);
 void	print_matrix2d(t_mat2 m);
