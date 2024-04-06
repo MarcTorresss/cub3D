@@ -14,7 +14,7 @@ NAME			:=cub3D
 
 SRCDIR			:=src
 SRCS			:=main.c check_elements.c check_fill.c check_map.c utils_map.c \
-			  draw.c hit.c image.c key_hook.c player.c ray.c
+				  draw.c hit.c image.c key_hook.c player.c ray.c draw_field.c 
 
 OBJDIR			:=objs
 OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
@@ -24,7 +24,7 @@ DEPFLAGS		:=-MMD
 
 CC				:=gcc
 CFLAGS			:=-Wall -Werror -Wextra
-DEBUG			:=-g -fsanitize=address
+#DEBUG			:=-g -fsanitize=address
 
 INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux
 LIBS			:=-Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz

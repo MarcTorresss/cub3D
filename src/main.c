@@ -61,8 +61,10 @@ void	set_scene(t_scene *scene, t_data data)
 	scene->Swall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
 	scene->Ewall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
 	scene->Wwall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
-    scene->ccolor = 0x0000FFFF;
-    scene->fcolor = 0x00808080;
+	scene->ccolor = 0x0000FFFF;
+	scene->fcolor = 0x00808080;
+	scene->mmap = get_new_image(scene->mlx, \
+							data.colsx * GRID_UNIT, data.rowsy * GRID_UNIT);
 }
 
 int	main(int argc, char **argv)

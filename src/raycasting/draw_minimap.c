@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,23 +12,19 @@
 
 #include "scene.h"
 #include "ray.h"
-#include "hit.h"
-#include <mlx.h>
 
-void	draw(t_scene scene)
+void	fill_minimap(t_img *mmap, char **map)
 {
-	int		x;
-	t_ray	ray;
-	double	height;
+	int	i;
+	int	j;
 
-	x = 0;
-	while (x < scene.width)
-	{
-		set_ray(&ray, scene.player, scene.width, x);
-		hit(&ray, scene.map);
-		height = BOX_UNIT / ray.perp_dist;
-		draw_field(scene, ray, x, height);
-		x++;
-	}
-	mlx_put_image_to_window(scene.mlx, scene.win, scene.screen->img, 0, 0);
+	i = 0;
+}
+
+void	draw_minimap(t_scene scene, t_ray ray)
+{
+	static int  instance;
+
+	if (!instance)
+		nimap(scene.mmap, scene.map);
 }

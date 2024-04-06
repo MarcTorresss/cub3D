@@ -20,7 +20,7 @@ typedef struct s_player
 	t_vec2	pos;
 	t_vec2	dir;
 	t_vec2	plane;
-	double  dir_len;
+	double	dir_len;
 }	t_player;
 
 t_player	set_player(char **map);
