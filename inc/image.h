@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:36:31 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/05 20:55:05 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 18:45:57 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ t_img			*get_new_image(void *mlx, int w, int h);
 t_img			*get_new_image_xpm(void *mlx, char *img_path);
 unsigned int	get_texture_color(t_img *img, double w, double h);
 void			put_pixel(t_img *im_data, int x, int y, int color);
+void			copy_image(t_img *dst, t_img *src, t_vec2 pmin, t_vec2 pmax);
 #endif

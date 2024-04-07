@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/05 21:08:51 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 19:19:24 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,22 @@ static unsigned int	get_color_pixel(t_scene scene, t_ray ray, double h)
 	if (ray.w_dir == 'N')
 	{
 		w = ray.hpoint.y - (int)ray.hpoint.y;
-		return (get_texture_color(scene.Nwall, w, h));
+		return (get_texture_color(scene.n_wall, w, h));
 	}
 	else if (ray.w_dir == 'E')
 	{
 		w = ray.hpoint.x - (int)ray.hpoint.x;
-		return (get_texture_color(scene.Ewall, w, h));
+		return (get_texture_color(scene.e_wall, w, h));
 	}
 	else if (ray.w_dir == 'S')
 	{
 		w = 1 - (ray.hpoint.y - (int)ray.hpoint.y);
-		return (get_texture_color(scene.Swall, w, h));
+		return (get_texture_color(scene.s_wall, w, h));
 	}
 	else
 	{
 		w = 1 - (ray.hpoint.x - (int)ray.hpoint.x);
-		return (get_texture_color(scene.Wwall, w, h));
+		return (get_texture_color(scene.w_wall, w, h));
 	}
 }
 

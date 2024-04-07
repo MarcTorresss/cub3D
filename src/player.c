@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/05 20:50:44 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 19:16:02 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	set_player_direction(t_player *player, char dir)
 	}
 }
 
-t_player	set_player(char ** map)
+t_player	set_player(char **map)
 {
 	int			i;
 	int			j;

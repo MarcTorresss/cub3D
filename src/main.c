@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/05 20:55:20 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 19:19:24 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ void	custom_data_init(t_data *data)
 	data->map[7] = (char *)malloc(sizeof(char) * 100);
 	data->map[8] = (char *)malloc(sizeof(char) * 100);
 	data->map[9] = (char *)malloc(sizeof(char) * 100);
-	data->map[10] = (char *)malloc(sizeof(char) * 100);
-	data->map[11] = NULL;
+	data->map[10] = NULL;
 	ft_strlcpy(data->map[0], "       111111111   ", 100);
 	ft_strlcpy(data->map[1], "      111100000111 ", 100);
 	ft_strlcpy(data->map[2], "1111111001111111   ", 100);
 	ft_strlcpy(data->map[3], "110100001000000111 ", 100);
 	ft_strlcpy(data->map[4], "1100010000000001111", 100);
-	ft_strlcpy(data->map[5], "111000010000W0111  ", 100);
+	ft_strlcpy(data->map[5], "111000010E0000111  ", 100);
 	ft_strlcpy(data->map[6], "11001000000000011  ", 100);
 	ft_strlcpy(data->map[7], "1000000001111111   ", 100);
 	ft_strlcpy(data->map[8], " 111101001111      ", 100);
@@ -57,14 +56,15 @@ void	set_scene(t_scene *scene, t_data data)
 	scene->mlx = data.mlx;
 	scene->win = data.window;
 	scene->screen = get_new_image(scene->mlx, scene->width, scene->height);
-	scene->Nwall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
-	scene->Swall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
-	scene->Ewall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
-	scene->Wwall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
+	scene->n_wall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
+	scene->s_wall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
+	scene->e_wall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
+	scene->w_wall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
 	scene->ccolor = 0x0000FFFF;
 	scene->fcolor = 0x00808080;
 	scene->full_map = get_new_image(scene->mlx, \
-							data.colsx * GRID_UNIT, data.rowsy * GRID_UNIT);
+							data.colsx * GRID_UNIT + MMAP_SIZE * GRID_UNIT, \
+							data.rowsy * GRID_UNIT + MMAP_SIZE * GRID_UNIT);
 	scene->mmap = get_new_image(scene->mlx, \
 							MMAP_SIZE * GRID_UNIT, MMAP_SIZE * GRID_UNIT);
 }
