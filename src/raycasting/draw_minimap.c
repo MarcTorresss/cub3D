@@ -6,12 +6,11 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/07 20:30:25 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:38:04 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
-#include "ray.h"
 #include "image.h"
 #include "libft.h"
 #include <stdlib.h>
@@ -75,14 +74,15 @@ static void	draw_player_icon(t_img *map, t_vec2 dir)
 	draw_triangle(map, triangle[1], PLAYER_COLOR);
 }
 
-void	draw_minimap(t_scene scene, t_ray ray, t_player player)
+void	draw_minimap(t_scene scene, t_player player)
 {
 	static int	full_map;
 
 	if (!full_map)
+	{
 		draw_full_map(scene.full_map, scene.map);
-	full_map = 1;
+		full_map = 1;
+	}
 	copy_minimap(scene.full_map, scene.mmap, player.pos);
 	draw_player_icon(scene.mmap, player.dir);
-	(void) ray;
 }

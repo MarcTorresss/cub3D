@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/07 20:09:56 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:39:50 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	draw(t_scene scene)
 	int		x;
 	t_ray	ray;
 	double	height;
-
+	
+	draw_minimap(scene, scene.player);
 	x = 0;
 	while (x < scene.width)
 	{
@@ -30,7 +31,6 @@ void	draw(t_scene scene)
 		draw_field(scene, ray, x, height);
 		x++;
 	}
-	draw_minimap(scene, ray, scene.player);
 	mlx_put_image_to_window(scene.mlx, scene.win, scene.screen->img, 0, 0);
 	mlx_put_image_to_window(scene.mlx, scene.win, scene.mmap->img, \
 		scene.width - 50 - scene.mmap->width, \

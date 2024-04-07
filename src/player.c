@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/07 19:16:02 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:50:40 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_player	set_player(char **map)
 				player.pos = create_vector2d((double)i + 0.5, (double)j + 0.5);
 				set_player_direction(&player, map[i][j]);
 				player.dir_len = length_vec2(player.dir);
+				player.plane = scalar_vec2(player.plane, PLANE_SCALE);
 				return (player);
 			}
 			j++;

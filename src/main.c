@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/07 20:22:27 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:44:11 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	custom_data_init(t_data *data)
 	ft_strlcpy(data->map[0], "       111111111   ", 100);
 	ft_strlcpy(data->map[1], "      111100000111 ", 100);
 	ft_strlcpy(data->map[2], "1111111001111111   ", 100);
-	ft_strlcpy(data->map[3], "110100001000000111 ", 100);
+	ft_strlcpy(data->map[3], "110100001100000111 ", 100);
 	ft_strlcpy(data->map[4], "1100010000000001111", 100);
 	ft_strlcpy(data->map[5], "111000010N0000111  ", 100);
 	ft_strlcpy(data->map[6], "11001000000000011  ", 100);
