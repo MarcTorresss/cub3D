@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/07 19:19:24 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 19:46:16 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	draw_floor(t_scene scene, int x, int start)
 	}
 }
 
-static unsigned int	get_color_pixel(t_scene scene, t_ray ray, double h)
+static t_uint	get_color_pixel(t_scene scene, t_ray ray, double h)
 {
 	double	w;
 
@@ -65,10 +65,10 @@ static unsigned int	get_color_pixel(t_scene scene, t_ray ray, double h)
 
 void	draw_field(t_scene scene, t_ray ray, int x, double h)
 {
-	int				size;
-	int				start;
-	int				end;
-	unsigned int	color;
+	int		size;
+	int		start;
+	int		end;
+	t_uint	color;
 
 	start = scene.height * (h + 1) * 0.5f;
 	end = scene.height * (1 - h) * 0.5f;

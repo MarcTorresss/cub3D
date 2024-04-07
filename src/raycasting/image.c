@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:37:03 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/07 19:17:13 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 19:46:31 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_img	*get_new_image_xpm(void *mlx, char *img_path)
 	return (image);
 }
 
-unsigned int	get_texture_color(t_img *img, double w, double h)
+t_uint	get_texture_color(t_img *img, double w, double h)
 {
 	int		x;
 	int		y;
@@ -66,7 +66,7 @@ unsigned int	get_texture_color(t_img *img, double w, double h)
 	if (y >= img->height)
 		y = img->height - 1;
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	return (*(unsigned int *) dst);
+	return (*(t_uint *) dst);
 }
 
 void	put_pixel(t_img *img, int x, int y, int color)
@@ -74,7 +74,7 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	char	*dst;
 
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *) dst = color;
+	*(t_uint *) dst = color;
 }
 
 void	copy_image(t_img *dst, t_img *src, t_vec2 pmin, t_vec2 pmax)
@@ -91,7 +91,7 @@ void	copy_image(t_img *dst, t_img *src, t_vec2 pmin, t_vec2 pmax)
 		{
 			src_addr = src->addr + (j + (int)pmin.y) * src->line_length + \
 								(i + (int)pmin.x) * (src->bits_per_pixel / 8);
-			put_pixel(dst, i, j, *(unsigned int *) src_addr);
+			put_pixel(dst, i, j, *(t_uint *) src_addr);
 			j++;
 		}
 		i++;

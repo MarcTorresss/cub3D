@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 19:29:45 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/04 17:44:01 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:16:45 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,9 @@ t_mat3	adjacent_mat3(t_mat3 m);
 t_mat2	inverse_mat2(t_mat2 m1);
 t_mat3	inverse_mat3(t_mat3 m1);
 
-t_vec2	translate(t_vec2 p, t_vec2 dist);
+t_vec2	translate_vec2(t_vec2 p, t_vec2 dist);
 t_vec2	rotate_vec2(t_vec2 p, double angle);
-t_vec2	scale(t_vec2 p, t_vec2 scale);
+t_vec2	scale_vec2(t_vec2 p, t_vec2 scale);
 
 void	print_vector2d(t_vec2 v);
 void	print_vector3d(t_vec3 v);
