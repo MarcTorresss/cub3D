@@ -6,12 +6,12 @@
 #    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 17:31:34 by martorre          #+#    #+#              #
-#    Updated: 2024/04/04 15:56:26 by martorre         ###   ########.fr        #
+#    Updated: 2024/04/08 18:02:29 by martorre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror #-g -fsanitize=address
 RM		=	rm -fr
 
 NAME		=	cub3D

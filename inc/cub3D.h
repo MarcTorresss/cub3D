@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/04 18:39:42 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:05:29 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,20 @@ typedef struct s_data
 {
     void    *window;
     void    *mlx;
-    char    **file;
     char	**map;
-    char    **mapcpy;
     int     width;
     int     high;
+}       t_data;
+
+typedef struct s_parser
+{
+    char    **file;
 	int		rowsfile;
     int     rowsy;
     int     colsx;
+    char    letterplayer;
     t_elem  elem;
-}       t_data;
+}           t_parser;
 
 typedef struct s_point
 {
@@ -76,16 +80,15 @@ typedef struct s_point
 typedef struct s_pos
 {
 	t_point	begin;
-    char    posplayer;
 }			t_pos;
 
 
-void    data_init(char *str, t_data *data);
-int     check_map(t_data data);
+void    parser_init(char *str, t_parser *parser, t_data *data);
+int     check_map(t_data data, t_parser *parser);
 int     calc_line(char *str);
-int     flood_fill(t_data *data, t_point size);
-int     check_elements(t_data *data);
-int     init_map(t_data *data);
-void    calc_x_y(t_data *data);
+int     check_elements(t_parser *parser);
+int     init_map(t_data *data, t_parser *parser);
+void    calc_x_y(t_parser *parser);
+void    free_all(t_parser *parser, t_data *data);
 
 #endif

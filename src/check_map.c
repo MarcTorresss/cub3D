@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/04 19:08:17 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:02:12 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ int	calc_line(char *str)
 	return (y);
 }
 
-char	**check_file(char *str, t_data *data)
+char	**check_file(char *str, t_parser *parser, t_data *data)
 {
 	int		i;
 	int		fd;
 	char	**new;
 
-    (void) data;
 	fd = 0;
 	i = -1;
+	(void) parser;
 	if (calc_line(str) == 0)
 		return (NULL);
 	new = malloc(sizeof(char *) * (calc_line(str) + 1));
@@ -60,7 +60,7 @@ char	**check_file(char *str, t_data *data)
         return (NULL);
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
-	    return (free(new), /*ft_free_map(data),*/ ft_fprintf(2, ERR_FD), NULL);
+	    return (free(new), free_all(parser, data), ft_fprintf(2, ERR_FD), NULL);
 	new[++i] = get_next_line(fd);
 	while (new[i++] != NULL)
 	    new[i] = get_next_line(fd);
@@ -68,30 +68,23 @@ char	**check_file(char *str, t_data *data)
 	return (new);
 }
 
-void    data_init(char *str, t_data *data)
+void    parser_init(char *str, t_parser *parser, t_data *data)
 {
-    data->high = 0;
-    data->width = 0;
-    data->mlx = 0;
-    data->window = 0;
-	data->rowsy = 0;
-    data->colsx = 0;
-	data->rowsfile = 0;
-	data->elem.qtt.NO = 0;
-	data->elem.qtt.SO = 0;
-	data->elem.qtt.WE = 0;
-	data->elem.qtt.EA = 0;
-	data->elem.qtt.F = 0;
-	data->elem.qtt.C = 0;
-	data->elem.qtt.is_zero = 0;
-    data->file = check_file(str, data);
-}
-
-int check_map(t_data data)
-{
-	t_point	size;
-
-	size.x = data.colsx;
-	size.y = data.rowsy;
-    return (flood_fill(&data, size));
+	parser->elem.qtt.NO = 0;
+	parser->elem.qtt.SO = 0;
+	parser->elem.qtt.WE = 0;
+	parser->elem.qtt.EA = 0;
+	parser->elem.qtt.F = 0;
+	parser->elem.qtt.C = 0;
+	parser->elem.NO = NULL;
+	parser->elem.SO = NULL;
+	parser->elem.WE = NULL;
+	parser->elem.EA = NULL;
+	parser->elem.F = NULL;
+	parser->elem.C = NULL;
+	parser->elem.qtt.is_zero = 0;
+	parser->rowsfile = 0;
+	parser->colsx = 0;
+	parser->rowsy = 0;
+    parser->file = check_file(str, parser, data);
 }
