@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/07 20:44:11 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:54:55 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	custom_data_init(t_data *data)
 	ft_strlcpy(data->map[2], "1111111001111111   ", 100);
 	ft_strlcpy(data->map[3], "110100001100000111 ", 100);
 	ft_strlcpy(data->map[4], "1100010000000001111", 100);
-	ft_strlcpy(data->map[5], "111000010N0000111  ", 100);
+	ft_strlcpy(data->map[5], "111000010S0000111  ", 100);
 	ft_strlcpy(data->map[6], "11001000000000011  ", 100);
 	ft_strlcpy(data->map[7], "1000000001111111   ", 100);
 	ft_strlcpy(data->map[8], " 111101001111      ", 100);
@@ -67,6 +67,13 @@ void	set_scene(t_scene *scene, t_data data)
 							data.rowsy * GRID_UNIT + MMAP_SIZE * GRID_UNIT);
 	scene->mmap = get_new_image(scene->mlx, \
 							MMAP_SIZE * GRID_UNIT, MMAP_SIZE * GRID_UNIT);
+	if (scene->screen == NULL || scene->n_wall == NULL || \
+		scene->s_wall == NULL || scene->e_wall == NULL || scene->mmap == NULL \
+		|| scene->w_wall == NULL || scene->full_map == NULL)
+	{
+		free_mlx(scene);
+		exit(0);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -79,12 +86,6 @@ int	main(int argc, char **argv)
 	custom_data_init(&data);
 	set_scene(&scene, data);
 	draw(scene);
-	free(data.map[0]);
-	free(data.map[1]);
-	free(data.map[2]);
-	free(data.map[3]);
-	free(data.map[4]);
-	free(data.map);
-	mlx_key_hook(data.window, key_hook, &data);
+	mlx_key_hook(data.window, key_hook, &scene);
 	mlx_loop(data.mlx);
 }

@@ -6,7 +6,7 @@
 #    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 17:31:34 by martorre          #+#    #+#              #
-#    Updated: 2024/04/07 20:05:55 by junghwle         ###   ########.fr        #
+#    Updated: 2024/04/08 12:36:35 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ DIR_SRC		=	src/
 
 FILES		=	main.c check_map.c check_fill.c utils_map.c check_elements.c \
 				player.c key_hook.c draw.c hit.c image.c ray.c draw_field.c \
-				draw_minimap.c draw_square.c draw_triangle.c
+				draw_minimap.c draw_square.c draw_triangle.c free_mlx.c
 
 FILES_SRC	=	$(addprefix $(DIR_SRC),$(FILES))
 

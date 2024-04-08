@@ -6,13 +6,14 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/07 20:50:40 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:05:19 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "player.h"
 #include <stdlib.h>
+#include <math.h>
 
 void	set_player_direction(t_player *player, char dir)
 {

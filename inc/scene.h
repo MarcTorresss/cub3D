@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/07 20:43:33 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:54:10 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ void	draw_full_map(t_img *full_map, char **map);
 void	draw_minimap(t_scene scene, t_player player);
 void	draw_square(t_img *img, t_vec2 pmin, t_vec2 pmax, t_uint color);
 void	draw_triangle(t_img *img, t_vec2 vertices[3], t_uint color);
+
+void	free_mlx(t_scene *scene);
 
 #endif

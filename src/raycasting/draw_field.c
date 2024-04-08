@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/07 19:46:16 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:40:40 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static t_uint	get_color_pixel(t_scene scene, t_ray ray, double h)
 {
 	double	w;
 
+	h = 1 - h;
 	if (ray.w_dir == 'N')
 	{
 		w = ray.hpoint.y - (int)ray.hpoint.y;
@@ -62,7 +63,7 @@ static t_uint	get_color_pixel(t_scene scene, t_ray ray, double h)
 		return (get_texture_color(scene.w_wall, w, h));
 	}
 }
-
+#include <stdio.h>
 void	draw_field(t_scene scene, t_ray ray, int x, double h)
 {
 	int		size;
@@ -70,19 +71,23 @@ void	draw_field(t_scene scene, t_ray ray, int x, double h)
 	int		end;
 	t_uint	color;
 
-	start = scene.height * (h + 1) * 0.5f;
-	end = scene.height * (1 - h) * 0.5f;
-	size = start - end;
+	start = (scene.height - h) * 0.5;
+	end = (scene.height + h) * 0.5f;
+	size = end - start;
+	if (start < 0)
+		start = 0;
 	if (start >= scene.height)
 		start = scene.height - 1;
+	if (end >= scene.height)
+		end = scene.height - 1;
 	if (end < 0)
 		end = 0;
-	draw_floor(scene, x, start);
-	while (start >= end)
+	draw_ceiling(scene, x, start);
+	while (start <= end && size > 0)
 	{
-		color = get_color_pixel(scene, ray, (double)(start - end) / size);
+		color = get_color_pixel(scene, ray, (double)(end - start) / size);
 		put_pixel(scene.screen, x, start, color);
-		start--;
+		start++;
 	}
-	draw_ceiling(scene, x, end);
+	draw_floor(scene, x, end);
 }

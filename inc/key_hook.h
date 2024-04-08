@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:13 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/05 18:30:51 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:53:43 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@
 # define KEY_EXIT 53
 # define KEY_SPACE 49
 
-int	key_hook(int keycode, t_data *data);
+int	key_hook(int keycode, t_scene *data);
 
 #endif
