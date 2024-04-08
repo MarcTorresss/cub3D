@@ -7,3 +7,4 @@ cub3D
 *.d
 /.vscode
 /mlx_linux
+.bonus

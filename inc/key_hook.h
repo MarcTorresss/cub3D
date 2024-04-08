@@ -13,6 +13,26 @@
 #ifndef KEY_HOOK_H
 # define KEY_HOOK_H
 
+typedef char	t_byte;
+
+typedef struct s_keys
+{
+	t_byte	esc;
+	t_byte	w;
+	t_byte	a;
+	t_byte	s;
+	t_byte	d;
+	t_byte	up;
+	t_byte	down;
+	t_byte	left;
+	t_byte	right;
+}	t_keys;
+
+# define KEY_PRESS 02
+# define KEY_RELEASE 03
+# define KEY_PRESS_MASK (1L<<0)
+# define KEY_RELEASE_MASK (1L<<1)
+
 /*--NUMBERS--*/
 # define KEY_1 18
 # define KEY_2 19
@@ -26,10 +46,17 @@
 # define KEY_0 29
 
 /*--ALPHABETS--*/
-# define KEY_A 0
+// # define KEY_A 0
+// # define KEY_D 2
+// # define KEY_S 1
+// # define KEY_W 13
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_S 115
+# define KEY_W 119
+
 # define KEY_B 11
 # define KEY_C 8
-# define KEY_D 2
 # define KEY_E 14
 # define KEY_F 3
 # define KEY_G 5
@@ -44,25 +71,28 @@
 # define KEY_P 35
 # define KEY_Q 12
 # define KEY_R 15
-# define KEY_S 1
 # define KEY_T 17
 # define KEY_U 32
 # define KEY_V 9
-# define KEY_W 13
 # define KEY_X 7
 # define KEY_Y 16
 # define KEY_Z 6
 
 /*--ARROWS--*/
-# define KEY_UP 126
-# define KEY_DOWN 125
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
+// # define KEY_UP 126
+// # define KEY_DOWN 125
+// # define KEY_LEFT 123
+// # define KEY_RIGHT 124
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 /*--EXTRA--*/
-# define KEY_EXIT 53
+// # define KEY_EXIT 53
+# define KEY_EXIT 65307
 # define KEY_SPACE 49
 
-int	key_hook(int keycode, t_scene *data);
+void	listen_input(t_scene scene, t_keys *kesy);
 
 #endif

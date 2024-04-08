@@ -22,6 +22,7 @@
 # define WALL_COLOR 0x00808080
 # define PLAYER_COLOR 0x00FFFF00
 # define MMAP_SIZE 20.0F
+# define FRQ 0.03f
 
 typedef unsigned int	t_uint;
 
@@ -29,6 +30,8 @@ typedef struct s_scene
 {
 	t_player	player;
 	char		**map;
+	int			rows;
+	int			cols;
 	int			width;
 	int			height;
 	void		*mlx;
@@ -43,6 +46,8 @@ typedef struct s_scene
 	t_img		*full_map;
 	t_img		*mmap;
 }	t_scene;
+
+int		render(void **pack);
 
 void	draw(t_scene scene);
 void	draw_field(t_scene scene, t_ray ray, int x, double h);

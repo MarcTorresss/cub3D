@@ -24,6 +24,7 @@ typedef struct s_ray
 	double	perp_dist;
 	char	w_dir;
 	t_vec2	hpoint;
+	int		v_dist;
 }	t_ray;
 
 void	set_ray(t_ray *ray, t_player player, double width, double x);

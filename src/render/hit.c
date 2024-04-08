@@ -64,13 +64,11 @@ static void	record_hit(t_ray *ray, t_hit hit, int side)
 	ray->hpoint.y = ray->from.y + ray->dir.y * ratio;
 }
 
-static void	perform_dda(t_hit h, t_ray *r)
+int	perform_dda(t_hit h, t_ray *r)
 {
-	int	hit;
 	int	side;
-
-	hit = 0;
-	while (hit == 0)
+	
+	while (h.mapx >= 0 && h.mapx < h.rows && h.mapy >= 0 && h.mapy < h.cols)
 	{
 		if (h.sidedist_x < h.sidedist_y)
 		{
@@ -84,21 +82,28 @@ static void	perform_dda(t_hit h, t_ray *r)
 			h.mapy += h.stepy;
 			side = 1;
 		}
-		if (h.map[h.mapx][h.mapy] == '1')
+		if (h.mapx >= 0 && h.mapx < h.rows && h.mapy >= 0 && h.mapy < h.cols \
+			&& h.map[h.mapx][h.mapy] == '1')
 		{
-			hit = 1;
 			record_hit(r, h, side);
+			return (1);
 		}
 	}
+	return (0);
 }
 
-void	hit(t_ray *ray, char **map)
+int	hit(t_ray *ray, char **map, int rows, int cols)
 {
 	t_hit	hit;
 
+	if (ray->from.x < 0 || ray->from.x >= rows || \
+		ray->from.y < 0 || ray->from.y >= cols)
+		return (0);
 	hit.map = map;
 	hit.mapx = (ray->from.x);
 	hit.mapy = (ray->from.y);
+	hit.rows = rows;
+	hit.cols = cols;
 	if (ray->dir.x == 0)
 		hit.deltadist_x = 1e308;
 	else
@@ -108,5 +113,5 @@ void	hit(t_ray *ray, char **map)
 	else
 		hit.deltadist_y = fabs(1.0f / ray->dir.y);
 	set_hit_step(&hit, ray);
-	perform_dda(hit, ray);
+	return (perform_dda(hit, ray));
 }

@@ -26,8 +26,10 @@ typedef struct s_hit
 	double	deltadist_y;
 	int		stepx;
 	int		stepy;
+	int		rows;
+	int		cols;
 }	t_hit;
 
-void	hit(t_ray *ray, char **map);
+int	hit(t_ray *ray, char **map, int rows, int cols);
 
 #endif

@@ -58,6 +58,7 @@ t_player	set_player(char **map)
 				set_player_direction(&player, map[i][j]);
 				player.dir_len = length_vec2(player.dir);
 				player.plane = scalar_vec2(player.plane, PLANE_SCALE);
+				player.v_dist = 0;
 				return (player);
 			}
 			j++;
