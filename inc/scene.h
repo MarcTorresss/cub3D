@@ -16,6 +16,7 @@
 # include "image.h"
 # include "player.h"
 # include "ray.h"
+# include <stdio.h>
 
 # define BOX_UNIT 0.5f
 # define GRID_UNIT 10

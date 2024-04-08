@@ -34,12 +34,13 @@ DEPS			:=$(OBJS:.o=.d)
 DEPFLAGS		:=-MMD
 
 CC				:=gcc
-CFLAGS			:=-Wall -Werror -Wextra
-DEBUG			:=-g -fsanitize=address
+CFLAGS			:=-Wall -Werror -Wextra 
+#DEBUG			:=-g -fsanitize=address
 
 INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux
-LIBS			:=-Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz \
-				  libft/libft.a vector/vector.a
+LIBS			:=libft/libft.a vector/vector.a -Lmlx_linux -lmlx_Linux \
+				  -lXext -lX11 -lm -lz 
+				  
 
 
 all: 			$(OBJDIR) libft vector minilibx $(NAME)

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "vector.h"
-#include "math.h"
+#include <math.h>
 
 double	length_vec2(t_vec2 v)
 {

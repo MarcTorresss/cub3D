@@ -13,6 +13,7 @@
 #include "scene.h"
 #include "key_hook.h"
 #include <mlx.h>
+#include <stdlib.h>
 
 static int    key_press_handler(int keycode, t_keys *keys)
 {
@@ -39,8 +40,6 @@ static int    key_press_handler(int keycode, t_keys *keys)
 
 static int    key_release_handler(int keycode, t_keys *keys)
 {
-	if (keycode == KEY_EXIT)
-		keys->esc = 0;
 	if (keycode == KEY_UP)
         keys->up = 0;
 	if (keycode == KEY_DOWN)
@@ -60,8 +59,15 @@ static int    key_release_handler(int keycode, t_keys *keys)
 	return (0);
 }
 
-void	listen_input(t_scene scene, t_keys *kesy)
+static int	finish_program(t_keys *key)
 {
-	mlx_hook(scene.win, KEY_PRESS, KEY_PRESS_MASK, key_press_handler, kesy);
-	mlx_hook(scene.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release_handler, kesy);
+	key->esc = 1;
+	return (0);
+}
+
+void	listen_input(t_scene scene, t_keys *keys)
+{
+	mlx_hook(scene.win, KEY_PRESS, KEY_PRESS_MASK, key_press_handler, keys);
+	mlx_hook(scene.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release_handler, keys);
+	mlx_hook(scene.win, ON_DESTROY, NO_EVENT_MASK, finish_program, keys);
 }

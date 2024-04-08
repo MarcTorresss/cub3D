@@ -30,6 +30,8 @@ typedef struct s_keys
 
 # define KEY_PRESS 02
 # define KEY_RELEASE 03
+# define ON_DESTROY 17
+# define NO_EVENT_MASK 0L
 # define KEY_PRESS_MASK (1L<<0)
 # define KEY_RELEASE_MASK (1L<<1)
 

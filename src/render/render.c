@@ -29,22 +29,22 @@ static void	check_move(t_keys *key, t_player *player)
 	t_vec2	move;
 
 	ft_memset(&move, 0, sizeof(t_vec2));
-	if (key->up)
+	if (key->w)
 	{
 		move.x += player->dir.x * FRQ;
 		move.y += player->dir.y * FRQ;
 	}
-	if (key->down)
+	if (key->s)
 	{
 		move.x -= player->dir.x * FRQ;
 		move.y -= player->dir.y * FRQ;
 	}
-	if (key->left)
+	if (key->a)
 	{
 		move.x -= player->dir.y * FRQ;
 		move.y += player->dir.x * FRQ;
 	}
-	if (key->right)
+	if (key->d)
 	{
 		move.x += player->dir.y * FRQ;
 		move.y -= player->dir.x * FRQ;
@@ -54,24 +54,24 @@ static void	check_move(t_keys *key, t_player *player)
 
 static void	check_rotate(t_keys *key, t_player *player)
 {
-	if (key->a)
+	if (key->left)
 	{
 		player->dir = normalize_vec2(rotate_vec2(player->dir, 45 * FRQ));
 		player->plane = normalize_vec2(rotate_vec2(player->plane, 45 * FRQ));
 		player->plane = scalar_vec2(player->plane, PLANE_SCALE);
 	}
-	if (key->d)
+	if (key->right)
 	{
 		player->dir = normalize_vec2(rotate_vec2(player->dir, -45 * FRQ));
 		player->plane = normalize_vec2(rotate_vec2(player->plane, -45 * FRQ));
 		player->plane = scalar_vec2(player->plane, PLANE_SCALE);
 	}
-	if (key->w)
+	if (key->up)
 	{
 		if (player->v_dist < 1000)
 			player->v_dist += 1000 * FRQ;
 	}
-	if (key->s)
+	if (key->down)
 	{
 		if (player->v_dist > -1000)
 		player->v_dist -= 1000 * FRQ;
