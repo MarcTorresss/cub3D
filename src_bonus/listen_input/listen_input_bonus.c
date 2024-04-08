@@ -14,7 +14,7 @@
 #include "key_hook.h"
 #include <mlx.h>
 
-int	mouse_moving_handler(int x, int y, t_scene *scene)
+int	mouse_moving_handler(int x, int y, void **pack)
 {
 	static t_player	*player;
 	static t_vec2	prev_point;
@@ -23,7 +23,7 @@ int	mouse_moving_handler(int x, int y, t_scene *scene)
 
 	if (player == NULL)
 	{
-		player = &scene->player;
+		player = &((t_scene *)(pack[0]))->player;
 		prev_point = create_vector2d(x, y);
 	}
 	// keys = ((t_keys *)((pack[1])));
@@ -53,5 +53,6 @@ void	listen_input(t_scene *scene, t_keys *keys)
 			mouse_press_handler, keys);
 	mlx_hook(scene->win, MOUSE_UP, MOUSE_UP_MASK, \
 			mouse_release_handler, keys);
-	mlx_hook(scene->win, ON_MOUSE_MOVE, MOUSE_MOVE_MASK, mouse_moving_handler, scene);
+	mlx_hook(scene->win, ON_MOUSE_MOVE, MOUSE_MOVE_MASK, \
+			mouse_moving_handler, (void *[]){scene, keys});
 }

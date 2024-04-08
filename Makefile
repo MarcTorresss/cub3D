@@ -31,6 +31,7 @@ OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 BONUS_OBJS		:=$(patsubst %.c, $(OBJDIR)/%.o, $(BONUS_SRCS))
 
 DEPS			:=$(OBJS:.o=.d)
+DEPS			+=$(BONUS_OBJS:.o=.d)
 DEPFLAGS		:=-MMD
 
 CC				:=gcc
