@@ -32,6 +32,7 @@ int    render(void **pack)
     scene = (t_scene *)(pack[0]);
     keys = (t_keys *)(pack[1]);
 	check_exit(keys, scene);
+	check_space(keys, scene);
 	check_key_move(keys, &scene->player, scene->map);
 	check_key_rotate(keys, &scene->player);
 	draw(*scene);

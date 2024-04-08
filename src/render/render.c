@@ -52,32 +52,6 @@ static void	check_move(t_keys *key, t_player *player)
 	player->pos = sum_vec2(player->pos, move);
 }
 
-static void	check_rotate(t_keys *key, t_player *player)
-{
-	if (key->left)
-	{
-		player->dir = normalize_vec2(rotate_vec2(player->dir, 45 * FRQ));
-		player->plane = normalize_vec2(rotate_vec2(player->plane, 45 * FRQ));
-		player->plane = scalar_vec2(player->plane, PLANE_SCALE);
-	}
-	if (key->right)
-	{
-		player->dir = normalize_vec2(rotate_vec2(player->dir, -45 * FRQ));
-		player->plane = normalize_vec2(rotate_vec2(player->plane, -45 * FRQ));
-		player->plane = scalar_vec2(player->plane, PLANE_SCALE);
-	}
-	if (key->up)
-	{
-		if (player->v_dist < 1000)
-			player->v_dist += 1000 * FRQ;
-	}
-	if (key->down)
-	{
-		if (player->v_dist > -1000)
-		player->v_dist -= 1000 * FRQ;
-	}
-}
-
 int    render(void **pack)
 {
     t_scene *scene;
@@ -86,8 +60,9 @@ int    render(void **pack)
     scene = (t_scene *)(pack[0]);
     keys = (t_keys *)(pack[1]);
 	check_exit(keys, scene);
+	check_space(keys, scene);
 	check_move(keys, &scene->player);
-	check_rotate(keys, &scene->player);
+	check_key_rotate(keys, &scene->player);
 	draw(*scene);
 	return (0);
 }

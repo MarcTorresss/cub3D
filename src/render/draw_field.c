@@ -12,22 +12,6 @@
 
 #include "scene.h"
 #include "ray.h"
-#include <math.h>
-
-static t_uint	apply_light(t_uint color, double dist)
-{
-	double	scalar;
-	char	r;
-	char	g;
-	char	b;
-
-	scalar = exp(-dist/6.0f);
-	r = (double)((color & 0x00FF0000) >> 16) * scalar;
-	g = (double)((color & 0x0000FF00) >> 8) * scalar;
-	b = (double)(color & 0x000000FF) * scalar;
-	color = (r << 16) + (g << 8) + b;
-	return (color);
-}
 
 static void	draw_ceiling(t_scene scene, int x, int end)
 {
@@ -98,7 +82,6 @@ void	draw_field(t_scene scene, t_ray ray, int x, double h)
 	while (start <= end && start < scene.height&& size > 0)
 	{
 		color = get_color_pixel(scene, ray, (double)(end - start) / size);
-		color = apply_light(color, ray.perp_dist);
 		put_pixel(scene.screen, x, start, color);
 		start++;
 	}

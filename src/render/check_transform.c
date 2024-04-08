@@ -14,7 +14,13 @@
 #include "key_hook.h"
 #include "libft.h"
 
-int    is_not_wall(char **map, t_vec2 move, t_player player)
+void	check_space(t_keys *key, t_scene *scene)
+{
+	if (key->space)
+		scene->player = set_player(scene->map);
+}
+
+static int    is_not_wall(char **map, t_vec2 move, t_player player)
 {
     int x;
     int y;
@@ -59,14 +65,14 @@ void	check_key_rotate(t_keys *key, t_player *player)
 {
 	if (key->left)
 	{
-		player->dir = normalize_vec2(rotate_vec2(player->dir, 45 * FRQ));
-		player->plane = normalize_vec2(rotate_vec2(player->plane, 45 * FRQ));
+		player->dir = normalize_vec2(rotate_vec2(player->dir, 75 * FRQ));
+		player->plane = normalize_vec2(rotate_vec2(player->plane, 75 * FRQ));
 		player->plane = scalar_vec2(player->plane, PLANE_SCALE);
 	}
 	if (key->right)
 	{
-		player->dir = normalize_vec2(rotate_vec2(player->dir, -45 * FRQ));
-		player->plane = normalize_vec2(rotate_vec2(player->plane, -45 * FRQ));
+		player->dir = normalize_vec2(rotate_vec2(player->dir, -75 * FRQ));
+		player->plane = normalize_vec2(rotate_vec2(player->plane, -75 * FRQ));
 		player->plane = scalar_vec2(player->plane, PLANE_SCALE);
 	}
 	if (key->up)

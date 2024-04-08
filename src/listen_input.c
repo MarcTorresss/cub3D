@@ -35,6 +35,8 @@ static int    key_press_handler(int keycode, t_keys *keys)
         keys->a = 1;
 	if (keycode == KEY_D)
         keys->d = 1;
+	if (keycode == KEY_SPACE)
+		keys->space = 1;
 	return (0);
 }
 
@@ -56,6 +58,8 @@ static int    key_release_handler(int keycode, t_keys *keys)
         keys->a = 0;
 	if (keycode == KEY_D)
         keys->d = 0;
+	if (keycode == KEY_SPACE)
+		keys->space = 0;
 	return (0);
 }
 

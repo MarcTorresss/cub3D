@@ -15,7 +15,7 @@ NAME			:=cub3D
 SRCDIR			:=src
 SRCS			:=main.c check_elements.c check_fill.c check_map.c utils_map.c \
 				  draw.c hit.c image.c render.c player.c ray.c draw_field.c  \
-				  free_mlx.c listen_input.c
+				  free_mlx.c listen_input.c check_transform.c
 
 BONUS			:=.bonus
 

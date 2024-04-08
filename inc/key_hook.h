@@ -26,6 +26,7 @@ typedef struct s_keys
 	t_byte	down;
 	t_byte	left;
 	t_byte	right;
+	t_byte	space;
 }	t_keys;
 
 # define KEY_PRESS 02
@@ -92,11 +93,13 @@ typedef struct s_keys
 
 /*--EXTRA--*/
 // # define KEY_EXIT 53
+// # define KEY_SPACE 49
 # define KEY_EXIT 65307
-# define KEY_SPACE 49
+# define KEY_SPACE 32
 
 void	listen_input(t_scene scene, t_keys *kesy);
 
+void	check_space(t_keys *key, t_scene *scene);
 void	check_key_move(t_keys *key, t_player *player, char **map);
 void	check_key_rotate(t_keys *key, t_player *player);
 
