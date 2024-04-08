@@ -15,16 +15,16 @@ NAME			:=cub3D
 SRCDIR			:=src
 SRCS			:=main.c check_elements.c check_fill.c check_map.c utils_map.c \
 				  draw.c hit.c image.c render.c player.c ray.c draw_field.c  \
-				  free_mlx.c listen_input.c check_transform.c
+				  free_mlx.c listen_input.c check_transform.c key_input.c
 
 BONUS			:=.bonus
 
 BONUS_SRCDIR	:=src_bonus
 BONUS_SRCS		:=main_bonus.c check_elements.c check_fill.c check_map.c \
 				  utils_map.c hit.c image.c render_bonus.c player.c ray.c \
-				  draw_field.c free_mlx.c listen_input.c draw_bonus.c \
-				  draw_minimap_bonus.c draw_square_bonus.c \
-				  draw_triangle_bonus.c check_transform.c
+				  draw_field.c free_mlx.c listen_input_bonus.c draw_bonus.c \
+				  draw_minimap_bonus.c draw_square_bonus.c key_input.c \
+				  draw_triangle_bonus.c check_transform.c mouse_input_bonus.c
 
 OBJDIR			:=objs
 OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
@@ -57,6 +57,10 @@ $(OBJDIR)/%.o:	$(SRCDIR)/render/%.c Makefile
 					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
 					echo "(CUB3D) COMPILING $@"
 
+$(OBJDIR)/%.o:	$(SRCDIR)/listen_input/%.c Makefile
+					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
+					echo "(CUB3D) COMPILING $@"
+
 bonus:			$(OBJDIR) libft vector minilibx $(BONUS)
 
 $(BONUS):		$(BONUS_OBJS) Makefile
@@ -70,6 +74,10 @@ $(OBJDIR)/%.o:	$(BONUS_SRCDIR)/%.c Makefile
 					echo "(CUB3D_BONUS) COMPILING $@"
 
 $(OBJDIR)/%.o:	$(BONUS_SRCDIR)/render/%.c Makefile
+					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
+					echo "(CUB3D_BONUS) COMPILING $@"
+
+$(OBJDIR)/%.o:	$(BONUS_SRCDIR)/listen_input/%.c Makefile
 					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
 					echo "(CUB3D_BONUS) COMPILING $@"
 

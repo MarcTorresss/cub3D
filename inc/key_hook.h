@@ -27,14 +27,23 @@ typedef struct s_keys
 	t_byte	left;
 	t_byte	right;
 	t_byte	space;
+	t_byte	left_m;
+	t_byte	right_m;
 }	t_keys;
 
 # define KEY_PRESS 02
 # define KEY_RELEASE 03
+# define MOUSE_DOWN 04
+# define MOUSE_UP 05
+# define ON_MOUSE_MOVE 06
+
 # define ON_DESTROY 17
 # define NO_EVENT_MASK 0L
 # define KEY_PRESS_MASK (1L<<0)
 # define KEY_RELEASE_MASK (1L<<1)
+# define MOUSE_DOWN_MASK (1L<<2)
+# define MOUSE_UP_MASK (1L<<3)
+# define MOUSE_MOVE_MASK (1L<<6)
 
 /*--NUMBERS--*/
 # define KEY_1 18
@@ -97,7 +106,14 @@ typedef struct s_keys
 # define KEY_EXIT 65307
 # define KEY_SPACE 32
 
-void	listen_input(t_scene scene, t_keys *kesy);
+void	listen_input(t_scene *scene, t_keys *keys);
+
+int		key_press_handler(int keycode, t_keys *keys);
+int		key_release_handler(int keycode, t_keys *keys);
+int		finish_program(t_keys *key);
+
+int		mouse_press_handler(int button, int x, int y, t_keys *key);
+int		mouse_release_handler(int button, int x, int y, t_keys *key);
 
 void	check_space(t_keys *key, t_scene *scene);
 void	check_key_move(t_keys *key, t_player *player, char **map);

@@ -89,7 +89,7 @@ int	main(int argc, char **argv)
 	custom_data_init(&data);
 	set_scene(&scene, data);
 	ft_memset(&keys, 0, sizeof(t_keys));
-	listen_input(scene, &keys);
+	listen_input(&scene, &keys);
 	mlx_loop_hook(data.mlx, render, (void *[]){&scene, &keys});
 	mlx_loop(data.mlx);
 }

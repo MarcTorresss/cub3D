@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/28 17:12:37 by junghwle          #+#    #+#             */
+/*   Created: 2024/04/08 17:12:37 by junghwle          #+#    #+#             */
 /*   Updated: 2024/04/08 17:18:02 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -13,6 +13,7 @@
 #include "scene.h"
 #include "key_hook.h"
 #include <mlx.h>
+#include <stdlib.h>
 
 void	listen_input(t_scene *scene, t_keys *keys)
 {
