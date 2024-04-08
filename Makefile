@@ -21,10 +21,10 @@ BONUS			:=.bonus
 
 BONUS_SRCDIR	:=src_bonus
 BONUS_SRCS		:=main_bonus.c check_elements.c check_fill.c check_map.c \
-				  utils_map.c hit.c image.c render.c player.c ray.c \
+				  utils_map.c hit.c image.c render_bonus.c player.c ray.c \
 				  draw_field.c free_mlx.c listen_input.c draw_bonus.c \
 				  draw_minimap_bonus.c draw_square_bonus.c \
-				  draw_triangle_bonus.c
+				  draw_triangle_bonus.c check_transform.c
 
 OBJDIR			:=objs
 OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))

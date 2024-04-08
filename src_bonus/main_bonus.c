@@ -30,11 +30,11 @@ void	custom_data_init(t_data *data)
 	data->map[9] = (char *)malloc(sizeof(char) * 100);
 	data->map[10] = NULL;
 	ft_strlcpy(data->map[0], "       111111111   ", 100);
-	ft_strlcpy(data->map[1], "      1111N0000111 ", 100);
+	ft_strlcpy(data->map[1], "      111100000111 ", 100);
 	ft_strlcpy(data->map[2], "1111111001111111   ", 100);
 	ft_strlcpy(data->map[3], "110100001100000111 ", 100);
 	ft_strlcpy(data->map[4], "1100010000000001111", 100);
-	ft_strlcpy(data->map[5], "11100001000000111  ", 100);
+	ft_strlcpy(data->map[5], "1110000100W000111  ", 100);
 	ft_strlcpy(data->map[6], "11001000000000011  ", 100);
 	ft_strlcpy(data->map[7], "1000000001111111   ", 100);
 	ft_strlcpy(data->map[8], " 111101001111      ", 100);

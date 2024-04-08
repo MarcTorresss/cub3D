@@ -97,4 +97,7 @@ typedef struct s_keys
 
 void	listen_input(t_scene scene, t_keys *kesy);
 
+void	check_key_move(t_keys *key, t_player *player, char **map);
+void	check_key_rotate(t_keys *key, t_player *player);
+
 #endif
