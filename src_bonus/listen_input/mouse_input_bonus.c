@@ -13,24 +13,44 @@
 #include "scene.h"
 #include "key_hook.h"
 
-int	mouse_press_handler(int button, int x, int y, t_keys *key)
+int	mouse_press_handler(int button, int x, int y, t_scene *scene)
 {
-	(void) x;
-	(void) y;
 	if (button == 1)
-		key->left_m = 1;
+		scene->left_m = 1;
 	else if (button == 3)
-		key->right_m = 1;
+		scene->right_m = 1;
+	scene->prev_point = create_vector2d(x, y);
 	return (0);
 }
 
-int	mouse_release_handler(int button, int x, int y, t_keys *key)
+int	mouse_release_handler(int button, int x, int y, t_scene *scene)
 {
 	(void) x;
 	(void) y;
 	if (button == 1)
-		key->left_m = 0;
+		scene->left_m = 0;
 	else if (button == 3)
-		key->right_m = 0;
+		scene->right_m = 0;
+	return (0);
+}
+
+int	mouse_moving_handler(int x, int y, t_scene *scene)
+{
+	t_player	*player;
+	t_vec2		step;
+
+	player = &scene->player;
+	if (scene->right_m == 1)
+	{
+		step.x = (x - scene->prev_point.x) * 2;
+		step.y = (y - scene->prev_point.y) * 40;
+		player->dir = normalize_vec2(rotate_vec2(player->dir, step.x * FRQ));
+		player->plane = normalize_vec2(rotate_vec2(player->plane, \
+													step.x * FRQ));
+		player->plane = scalar_vec2(player->plane, PLANE_SCALE);
+		if (player->v_dist + step.y < 1000 && player->v_dist + step.y > -1000)
+			player->v_dist += step.y * FRQ;
+		scene->prev_point = create_vector2d(x, y);
+	}
 	return (0);
 }

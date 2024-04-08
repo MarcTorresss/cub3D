@@ -27,8 +27,6 @@ typedef struct s_keys
 	t_byte	left;
 	t_byte	right;
 	t_byte	space;
-	t_byte	left_m;
-	t_byte	right_m;
 }	t_keys;
 
 # define KEY_PRESS 02
@@ -112,8 +110,9 @@ int		key_press_handler(int keycode, t_keys *keys);
 int		key_release_handler(int keycode, t_keys *keys);
 int		finish_program(t_keys *key);
 
-int		mouse_press_handler(int button, int x, int y, t_keys *key);
-int		mouse_release_handler(int button, int x, int y, t_keys *key);
+int		mouse_press_handler(int button, int x, int y, t_scene *scene);
+int		mouse_release_handler(int button, int x, int y, t_scene *scene);
+int		mouse_moving_handler(int x, int y, t_scene *scene);
 
 void	check_space(t_keys *key, t_scene *scene);
 void	check_key_move(t_keys *key, t_player *player, char **map);

@@ -27,6 +27,8 @@
 
 typedef unsigned int	t_uint;
 
+typedef char	t_byte;
+
 typedef struct s_scene
 {
 	t_player	player;
@@ -46,6 +48,9 @@ typedef struct s_scene
 	t_uint		fcolor;
 	t_img		*full_map;
 	t_img		*mmap;
+	t_byte		left_m;
+	t_byte		right_m;
+	t_vec2		prev_point;
 }	t_scene;
 
 int		render(void **pack);

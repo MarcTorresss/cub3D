@@ -55,6 +55,8 @@ void	set_scene(t_scene *scene, t_data data)
 	scene->cols = data.colsx;
 	scene->width = data.width;
 	scene->height = data.high;
+	scene->left_m = 0;
+	scene->right_m = 0;
 	scene->mlx = data.mlx;
 	scene->win = data.window;
 	scene->screen = get_new_image(scene->mlx, scene->width, scene->height);
