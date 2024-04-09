@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:34:13 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 15:40:42 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:20:47 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	calc_x_y(t_data *data)
 	}
 	data->rowsy = y;
 	data->colsx = x;
-	printf("%d %d\n", data->rowsy, data->colsx);
 }
 
 char	**copy_map(t_parser parser, int y)

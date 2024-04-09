@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 11:54:10 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:30:38 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define PLAYER_COLOR 0x00FFFF00
 # define MMAP_SIZE 20.0F
 # define FRQ 0.03f
+# define PADDING 10
 
 typedef unsigned int	t_uint;
 

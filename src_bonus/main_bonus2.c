@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 18:42:18 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:20:49 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,21 @@
 #include <mlx.h>
 #include <stdlib.h>
 
-char	**padding_map(char **map, int *rows, int *cols)
+char	**padding_map(char **map, int rows, int cols)
 {
 	char	**new_map;
 	int		i;
 
-	*rows += PADDING * 2;
-	*cols += PADDING * 2;
-	new_map = (char **)malloc(sizeof(char *) * (*rows + 1));
+	new_map = (char **)malloc(sizeof(char *) * (rows + 1));
 	if (new_map == NULL)
 		return (NULL);
 	i = 0;
-	while (i < *rows)
+	while (i < rows)
 	{
-		new_map[i] = (char *)malloc(sizeof(char) * (*cols + 1));
+		new_map[i] = (char *)malloc(sizeof(char) * (cols + 1));
 		if (new_map[i] == NULL)
-			return (ft_free_split(new_map), NULL);
-		ft_memset(new_map[i], ' ', *cols + 1);
-		if (i >= PADDING && i < *rows - PADDING)
-			ft_strlcpy(new_map[i] + PADDING, map[i - PADDING], *cols + 1);
-		new_map[i][*cols] = '\0';
+			return (ft_free_split(new_map), NULL);\
+		ft_strlcpy(new_map[i], map[i], cols + 1);\
 		i++;
 	}
 	new_map[i] = NULL;
@@ -44,10 +39,10 @@ char	**padding_map(char **map, int *rows, int *cols)
 
 void	set_scene(t_scene *scene, t_data data)
 {
+	scene->player = set_player(data.map);
 	scene->rows = data.rowsy;
 	scene->cols = data.colsx;
-	scene->map = padding_map(data.map, &scene->rows, &scene->cols);
-	scene->player = set_player(scene->map);
+	scene->map = padding_map(data.map, scene->rows, scene->cols);
 	scene->width = 1920;
 	scene->height = 1080;
 	scene->mlx = mlx_init();
@@ -117,7 +112,7 @@ int	main(int argc, char **argv)
 		ft_fprintf(1, "OK map !\n");
 	set_scene(&scene, data);
 	(void) keys;
-	free_all(&parser, &data);
+	// free_all(&parser, &data);
 	ft_memset(&keys, 0, sizeof(t_keys));
 	listen_input(&scene, &keys);
 	mlx_loop_hook(scene.mlx, render, (void *[]){&scene, &keys});

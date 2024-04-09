@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
+#    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
-#    Updated: 2024/04/09 16:53:18 by martorre         ###   ########.fr        #
+#    Updated: 2024/04/09 18:47:11 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,14 +36,12 @@ DEPFLAGS		:=-MMD
 
 CC				:=gcc
 CFLAGS			:=-Wall -Werror -Wextra 
-DEBUG			:=-g -fsanitize=address
+#DEBUG			:=-g -fsanitize=address
 
 INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux -I./mlx
 MLXLIB			:=-Lmlx -lmlx -framework OpenGL -framework AppKit
 #MLXLIB			:=-Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
 LIBS			:=libft/libft.a vector/vector.a $(MLXLIB)
-				  
-
 
 all: 			$(OBJDIR) libft vector minilibx $(NAME)
 
