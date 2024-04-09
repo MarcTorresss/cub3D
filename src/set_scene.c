@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 20:22:38 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:28:07 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 
 void	set_mlx(t_scene *scene, t_parser parser, t_data data)
 {
-	
+
 	scene->mlx = mlx_init();
 	if (scene->mlx == NULL)
 	{

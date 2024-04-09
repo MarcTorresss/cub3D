@@ -6,7 +6,7 @@
 #    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
-#    Updated: 2024/04/09 19:55:51 by junghwle         ###   ########.fr        #
+#    Updated: 2024/04/09 20:29:10 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ BONUS_SRCS		:=main_bonus.c check_elements.c check_map.c utils_map2.c\
 				  draw_triangle_bonus.c check_transform.c mouse_input_bonus.c \
 				  set_scene.c
 
-OBJDIR			:=objs
+OBJDIR			:=.objs
 OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 BONUS_OBJS		:=$(patsubst %.c, $(OBJDIR)/%.o, $(BONUS_SRCS))
 
@@ -38,7 +38,7 @@ DEPFLAGS		:=-MMD
 
 CC				:=gcc
 CFLAGS			:=-Wall -Werror -Wextra 
-DEBUG			:=-g -fsanitize=address
+#DEBUG			:=-g -fsanitize=address
 
 INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux -I./mlx
 MLXLIB			:=-Lmlx -lmlx -framework OpenGL -framework AppKit
