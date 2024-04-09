@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 20:21:53 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 22:17:23 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	draw(t_scene scene)
 
 	draw_minimap(scene, scene.player);
 	x = 0;
+	printf("\n\n\nDraw\n\n\n\n");
 	while (x < scene.width)
 	{
 		set_ray(&ray, scene.player, scene.width, x);
