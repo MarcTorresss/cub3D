@@ -16,11 +16,9 @@ int	cont_words(char *s, char c)
 {
 	int	i;
 	int	cont;
-	int	parau;
 
 	i = 0;
 	cont = 0;
-	parau = 0;
 	while (s[i] != '\0')
 	{
 		if (i == 0 && s[i] != c)

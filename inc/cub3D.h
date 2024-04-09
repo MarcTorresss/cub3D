@@ -6,17 +6,20 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 13:20:11 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:57:51 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libft/libft.h"
+# include "libft.h"
+# include "vector.h"
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 # define ERR_FD "Error:\nInvalid fd :(\n"
 # define ERR_EX "Error:\nInvalid extension :(\n"
@@ -75,7 +78,7 @@ typedef struct s_point
 {
 	int		x;
 	int		y;
-}			t_point;
+}	t_point;
 
 typedef struct s_pos
 {

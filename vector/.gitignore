@@ -1,0 +1,4 @@
+vector.a
+/objs
+*.o
+*.d

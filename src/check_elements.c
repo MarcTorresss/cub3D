@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:12:40 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 14:46:36 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:57:18 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,3 +149,4 @@ int	check_elements(t_parser *parser)
 	ft_free_split(sp_c);
 	return (0);
 }
+

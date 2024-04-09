@@ -5,76 +5,108 @@
 #                                                     +:+ +:+         +:+      #
 #    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/05 17:31:34 by martorre          #+#    #+#              #
-#    Updated: 2024/04/09 13:13:46 by martorre         ###   ########.fr        #
+#    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
+#    Updated: 2024/04/09 14:58:37 by martorre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror #-g -fsanitize=address
-RM		=	rm -fr
+NAME			:=cub3D
 
-NAME		=	cub3D
-COMP		=	./libft/libft.a
-INC			=	./inc/cub3D.h
+SRCDIR			:=src
+SRCS			:=main.c check_elements.c check_fill.c check_map.c utils_map.c \
+				  draw.c hit.c image.c render.c player.c ray.c draw_field.c  \
+				  free_mlx.c listen_input.c check_transform.c key_input.c
 
-DIR_OBJ		=	obj/
-DIR_SRC		=	src/
+BONUS			:=.bonus
 
-# *******************************	FILES	******************************* #
+BONUS_SRCDIR	:=src_bonus
+BONUS_SRCS		:=main_bonus.c check_elements.c check_fill.c check_map.c \
+				  utils_map.c hit.c image.c render_bonus.c player.c ray.c \
+				  draw_field.c free_mlx.c listen_input_bonus.c draw_bonus.c \
+				  draw_minimap_bonus.c draw_square_bonus.c key_input.c \
+				  draw_triangle_bonus.c check_transform.c mouse_input_bonus.c
 
-FILES		=	main.c check_map.c utils_map.c utils_map2.c check_elements.c
+OBJDIR			:=objs
+OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
+BONUS_OBJS		:=$(patsubst %.c, $(OBJDIR)/%.o, $(BONUS_SRCS))
 
-FILES_SRC	=	$(addprefix $(DIR_SRC),$(FILES))
+DEPS			:=$(OBJS:.o=.d)
+DEPS			+=$(BONUS_OBJS:.o=.d)
+DEPFLAGS		:=-MMD
 
-# *********************************	OBJECTS	****************************** #
+CC				:=gcc
+CFLAGS			:=-Wall -Werror -Wextra 
+#DEBUG			:=-g -fsanitize=address
 
-OBJ			=	$(addprefix $(DIR_OBJ),$(FILES_SRC:.c=.o))
+INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux
+LIBS			:=libft/libft.a vector/vector.a -Lmlx_linux -lmlx_Linux \
+				  -lXext -lX11 -lm -lz 
+				  
 
-# *******************************  COLORS	******************************* #
 
-RED			=	\033[0;31m
-GREEN		=	\033[0;32m
-YELLOW		=	\033[0;33m
-BLUE		=	\033[0;34m
-PURPLE		=	\033[0;35m
-CYAN		=	\033[0;36m
-RESET		=	\033[0m
-GREEN_BOLD	=	\033[1;32m
-BLUE_BOLD	=	\033[1;34m
-CYAN_BOLD	=	\033[1;36m
+all: 			$(OBJDIR) libft vector minilibx $(NAME)
 
-# *******************************  RULES ******************************* #
+$(NAME):		$(OBJS) Makefile
+					$(CC) $(CFLAGS) $(DEBUG) $(OBJS) $(LIBS) $(INCS) -o $(NAME)
+					echo "(CUB3D) COMPILING $@"
 
-all : $(DIR_OBJ) lib $(NAME)
+$(OBJDIR)/%.o:	$(SRCDIR)/%.c Makefile
+					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
+					echo "(CUB3D) COMPILING $@"
 
-lib :
-	$(MAKE) -C ./libft --no-print-directory
+$(OBJDIR)/%.o:	$(SRCDIR)/render/%.c Makefile
+					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
+					echo "(CUB3D) COMPILING $@"
 
-$(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(COMP) -o $@
+$(OBJDIR)/%.o:	$(SRCDIR)/listen_input/%.c Makefile
+					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
+					echo "(CUB3D) COMPILING $@"
 
-	@echo "${BLUE_BOLD}cub3D ${GREEN}compiled ✅\n${RESET}"
+bonus:			$(OBJDIR) libft vector minilibx $(BONUS)
 
-$(DIR_OBJ)%.o: %.c Makefile $(INC)
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "${YELLOW}Compiling ${RESET}$@...${RESET}"
+$(BONUS):		$(BONUS_OBJS) Makefile
+					$(CC) $(CFLAGS) $(DEBUG) $(BONUS_OBJS) \
+						$(LIBS) $(INCS) -o $(NAME)
+					echo "(CUB3D_BONUS) COMPILING $(NAME)"
+					touch $@
 
-$(DIR_OBJ):
-	@mkdir -p $(DIR_OBJ)
+$(OBJDIR)/%.o:	$(BONUS_SRCDIR)/%.c Makefile
+					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
+					echo "(CUB3D_BONUS) COMPILING $@"
 
-clean	:
-	@$(MAKE) -C libft clean --no-print-directory
-	@$(RM) $(DIR_OBJ)
-	@echo "${RED}Deleting${RESET} all objects 🗑"
+$(OBJDIR)/%.o:	$(BONUS_SRCDIR)/render/%.c Makefile
+					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
+					echo "(CUB3D_BONUS) COMPILING $@"
 
-fclean	: clean
-	@$(MAKE) -C libft fclean --no-print-directory
-	@$(RM) $(NAME) 
-	@echo "${BLUE_BOLD}cub3D ${RED}deleted${RESET}"
+$(OBJDIR)/%.o:	$(BONUS_SRCDIR)/listen_input/%.c Makefile
+					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
+					echo "(CUB3D_BONUS) COMPILING $@"
 
-re		: fclean
-	@$(MAKE) all
+$(OBJDIR):		Makefile
+					mkdir -p $@
 
-.PHONY : all clean fclean re lib
+libft:
+					make -C libft --no-print-directory
+
+vector:
+					make -C vector --no-print-directory
+
+minilibx:
+					make -C mlx_linux --no-print-directory
+
+clean:
+					make -C libft fclean
+					make -C vector fclean
+					make -C mlx_linux clean
+					rm -rf $(OBJDIR)
+
+fclean:			clean
+					rm -f $(NAME)
+					rm -f $(BONUS)
+
+re:				fclean all
+
+-include $(DEPS)
+
+.PHONY:			all clean fclean re libft vector minilibx
+.SILENT:
