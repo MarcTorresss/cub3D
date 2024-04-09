@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:13 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 11:53:43 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:14:50 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ typedef struct s_keys
 # define KEY_0 29
 
 /*--ALPHABETS--*/
-// # define KEY_A 0
-// # define KEY_D 2
-// # define KEY_S 1
-// # define KEY_W 13
-# define KEY_A 97
-# define KEY_D 100
-# define KEY_S 115
-# define KEY_W 119
+# define KEY_A 0
+# define KEY_D 2
+# define KEY_S 1
+# define KEY_W 13
+// # define KEY_A 97
+// # define KEY_D 100
+// # define KEY_S 115
+// # define KEY_W 119
 
 # define KEY_B 11
 # define KEY_C 8
@@ -89,20 +89,20 @@ typedef struct s_keys
 # define KEY_Z 6
 
 /*--ARROWS--*/
-// # define KEY_UP 126
-// # define KEY_DOWN 125
-// # define KEY_LEFT 123
-// # define KEY_RIGHT 124
-# define KEY_UP 65362
-# define KEY_DOWN 65364
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+// # define KEY_UP 65362
+// # define KEY_DOWN 65364
+// # define KEY_LEFT 65361
+// # define KEY_RIGHT 65363
 
 /*--EXTRA--*/
-// # define KEY_EXIT 53
-// # define KEY_SPACE 49
-# define KEY_EXIT 65307
-# define KEY_SPACE 32
+# define KEY_EXIT 53
+# define KEY_SPACE 49
+// # define KEY_EXIT 65307
+// # define KEY_SPACE 32
 
 void	listen_input(t_scene *scene, t_keys *keys);
 

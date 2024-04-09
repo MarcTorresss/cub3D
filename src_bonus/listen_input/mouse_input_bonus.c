@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_input.c                                      :+:      :+:    :+:   */
+/*   mouse_input_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:12:37 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 17:18:02 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:14:57 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	mouse_press_handler(int button, int x, int y, t_scene *scene)
 {
 	if (button == 1)
 		scene->left_m = 1;
-	else if (button == 3)
+	else if (button == 2)
 		scene->right_m = 1;
 	scene->prev_point = create_vector2d(x, y);
 	return (0);
@@ -29,7 +29,7 @@ int	mouse_release_handler(int button, int x, int y, t_scene *scene)
 	(void) y;
 	if (button == 1)
 		scene->left_m = 0;
-	else if (button == 3)
+	else if (button == 2)
 		scene->right_m = 0;
 	return (0);
 }

@@ -6,21 +6,21 @@
 #    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
-#    Updated: 2024/04/09 14:58:37 by martorre         ###   ########.fr        #
+#    Updated: 2024/04/09 16:53:18 by martorre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:=cub3D
 
 SRCDIR			:=src
-SRCS			:=main.c check_elements.c check_fill.c check_map.c utils_map.c \
+SRCS			:=main.c check_elements.c check_map.c utils_map.c utils_map2.c \
 				  draw.c hit.c image.c render.c player.c ray.c draw_field.c  \
 				  free_mlx.c listen_input.c check_transform.c key_input.c
 
 BONUS			:=.bonus
 
 BONUS_SRCDIR	:=src_bonus
-BONUS_SRCS		:=main_bonus.c check_elements.c check_fill.c check_map.c \
+BONUS_SRCS		:=main_bonus.c check_elements.c check_map.c utils_map2.c\
 				  utils_map.c hit.c image.c render_bonus.c player.c ray.c \
 				  draw_field.c free_mlx.c listen_input_bonus.c draw_bonus.c \
 				  draw_minimap_bonus.c draw_square_bonus.c key_input.c \
@@ -36,11 +36,12 @@ DEPFLAGS		:=-MMD
 
 CC				:=gcc
 CFLAGS			:=-Wall -Werror -Wextra 
-#DEBUG			:=-g -fsanitize=address
+DEBUG			:=-g -fsanitize=address
 
-INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux
-LIBS			:=libft/libft.a vector/vector.a -Lmlx_linux -lmlx_Linux \
-				  -lXext -lX11 -lm -lz 
+INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux -I./mlx
+MLXLIB			:=-Lmlx -lmlx -framework OpenGL -framework AppKit
+#MLXLIB			:=-Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
+LIBS			:=libft/libft.a vector/vector.a $(MLXLIB)
 				  
 
 
@@ -92,12 +93,12 @@ vector:
 					make -C vector --no-print-directory
 
 minilibx:
-					make -C mlx_linux --no-print-directory
+					make -C mlx --no-print-directory
 
 clean:
 					make -C libft fclean
 					make -C vector fclean
-					make -C mlx_linux clean
+					make -C mlx clean
 					rm -rf $(OBJDIR)
 
 fclean:			clean

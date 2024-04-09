@@ -6,11 +6,12 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:12:40 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 14:57:18 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:00:01 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
+#include "scene.h"
 
 int	check_num(char *str, t_parser *parser)
 {
@@ -98,27 +99,24 @@ int	do_it(t_parser *parser, char *str)
 	return (0);
 }
 
-void	convert_hexadecimal(char **sp_f, char **sp_c/*, t_scene *scene*/)
+void	convert_hexadecimal(char **sp_f, char **sp_c, t_scene *scene)
 {
 	unsigned int	r;
 	unsigned int	g;
 	unsigned int	b;
-	int				color;
 
 	r = ft_atol(sp_f[0]);
 	g = ft_atol(sp_f[1]);
 	b = ft_atol(sp_f[2]);
-	color = (r << 16) + (g << 8) + b;
-	//scene->fcolor = (r << 16) + (g << 8) + b;
-	// ft_fprintf(1, "color hexe = %x", color);
+	scene->ccolor = (r << 16) + (g << 8) + b;
 
 	r = ft_atol(sp_c[0]);
 	g = ft_atol(sp_c[1]);
 	b = ft_atol(sp_c[2]);
-	//scene->ccolor = (r << 16) + (g << 8) + b;
+	scene->fcolor = (r << 16) + (g << 8) + b;
 }
 
-int	check_elements(t_parser *parser)
+int	check_elements(t_parser *parser, t_scene *scene)
 {
 	int y;
 
@@ -144,7 +142,7 @@ int	check_elements(t_parser *parser)
     if (count_args(sp_f) != 3 || count_args(sp_c) != 3)
         return (1);
 	else
-		convert_hexadecimal(sp_f, sp_c);
+		convert_hexadecimal(sp_f, sp_c, scene);
 	ft_free_split(sp_f);
 	ft_free_split(sp_c);
 	return (0);

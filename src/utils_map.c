@@ -6,26 +6,32 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:34:13 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 14:56:43 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:40:42 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void	calc_x_y(t_parser *parser)
+void	calc_x_y(t_data *data)
 {
 	int	x;
 	int	y;
+	int	i;
 
 	x = 0;
 	y = 0;
-	while (parser->file[y] != NULL)
+	i = 0;
+	while (data->map[y] != NULL)
 		y++;
-	while (parser->file[0][x] != '\n'
-		&& parser->file[0][x] != '\0')
-		x++;
-	parser->rowsy = y;
-	parser->colsx = x;
+	while (i < y)
+	{
+		if (x < ft_strlen(data->map[i]))
+			x = ft_strlen(data->map[i]);
+		i++;
+	}
+	data->rowsy = y;
+	data->colsx = x;
+	printf("%d %d\n", data->rowsy, data->colsx);
 }
 
 char	**copy_map(t_parser parser, int y)
