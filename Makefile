@@ -6,7 +6,7 @@
 #    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
-#    Updated: 2024/04/09 20:29:10 by junghwle         ###   ########.fr        #
+#    Updated: 2024/04/09 20:32:05 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ BONUS_SRCS		:=main_bonus.c check_elements.c check_map.c utils_map2.c\
 				  draw_field.c free_mlx.c listen_input_bonus.c draw_bonus.c \
 				  draw_minimap_bonus.c draw_square_bonus.c key_input.c \
 				  draw_triangle_bonus.c check_transform.c mouse_input_bonus.c \
-				  set_scene.c
+				  set_scene_bonus.c
 
 OBJDIR			:=.objs
 OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))

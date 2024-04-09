@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 20:32:42 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:28:07 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,14 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 	scene->s_wall = get_new_image_xpm(scene->mlx, parser.elem.SO);
 	scene->e_wall = get_new_image_xpm(scene->mlx, parser.elem.EA);
 	scene->w_wall = get_new_image_xpm(scene->mlx, parser.elem.WE);
-	scene->full_map = NULL;
-	scene->mmap = NULL;
+	scene->full_map = get_new_image(scene->mlx, \
+							scene->rows * GRID_UNIT + MMAP_SIZE * GRID_UNIT, \
+							scene->cols * GRID_UNIT + MMAP_SIZE * GRID_UNIT);
+	scene->mmap = get_new_image(scene->mlx, \
+							MMAP_SIZE * GRID_UNIT, MMAP_SIZE * GRID_UNIT);
 	if (scene->screen == NULL || scene->n_wall == NULL || \
-		scene->s_wall == NULL || scene->e_wall == NULL || \
-		scene->w_wall == NULL)
+		scene->s_wall == NULL || scene->e_wall == NULL || scene->mmap == NULL \
+		|| scene->w_wall == NULL || scene->full_map == NULL)
 	{
 		free_all(&parser, &data);
 		free_mlx(scene);
