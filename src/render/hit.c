@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 22:12:17 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/07 19:20:35 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:24:16 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	record_hit(t_ray *ray, t_hit hit, int side)
 int	perform_dda(t_hit h, t_ray *r)
 {
 	int	side;
-	
+
 	while (h.mapx >= 0 && h.mapx < h.rows && h.mapy >= 0 && h.mapy < h.cols)
 	{
 		if (h.sidedist_x < h.sidedist_y)

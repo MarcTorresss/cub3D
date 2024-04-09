@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 18:42:18 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:20:51 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,60 +16,7 @@
 #include <mlx.h>
 #include <stdlib.h>
 
-char	**padding_map(char **map, int *rows, int *cols)
-{
-	char	**new_map;
-	int		i;
-
-	*rows += PADDING * 2;
-	*cols += PADDING * 2;
-	new_map = (char **)malloc(sizeof(char *) * (*rows + 1));
-	if (new_map == NULL)
-		return (NULL);
-	i = 0;
-	while (i < *rows)
-	{
-		new_map[i] = (char *)malloc(sizeof(char) * (*cols + 1));
-		if (new_map[i] == NULL)
-			return (ft_free_split(new_map), NULL);
-		ft_memset(new_map[i], ' ', *cols + 1);
-		if (i >= PADDING && i < *rows - PADDING)
-			ft_strlcpy(new_map[i] + PADDING, map[i - PADDING], *cols + 1);
-		new_map[i][*cols] = '\0';
-		i++;
-	}
-	new_map[i] = NULL;
-	return (new_map);
-}
-
-void	set_scene(t_scene *scene, t_data data)
-{
-	scene->rows = data.rowsy;
-	scene->cols = data.colsx;
-	scene->map = padding_map(data.map, &scene->rows, &scene->cols);
-	scene->player = set_player(scene->map);
-	scene->width = 1920;
-	scene->height = 1080;
-	scene->mlx = mlx_init();
-	scene->win = mlx_new_window(scene->mlx, scene->width, scene->height, "cub3D");
-	scene->screen = get_new_image(scene->mlx, scene->width, scene->height);
-	scene->n_wall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
-	scene->s_wall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
-	scene->e_wall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
-	scene->w_wall = get_new_image_xpm(scene->mlx, "./resources/Dogecoin.xpm");
-	scene->full_map = get_new_image(scene->mlx, \
-							scene->rows * GRID_UNIT + MMAP_SIZE * GRID_UNIT, \
-							scene->cols * GRID_UNIT + MMAP_SIZE * GRID_UNIT);
-	scene->mmap = get_new_image(scene->mlx, \
-							MMAP_SIZE * GRID_UNIT, MMAP_SIZE * GRID_UNIT);
-	if (scene->screen == NULL || scene->n_wall == NULL || \
-		scene->s_wall == NULL || scene->e_wall == NULL || scene->mmap == NULL \
-		|| scene->w_wall == NULL || scene->full_map == NULL)
-	{
-		free_mlx(scene);
-		exit(0);
-	}
-}
+void	set_scene(t_scene *scene, t_parser parser, t_data data);
 
 void	free_all(t_parser *parser, t_data *data)
 {
@@ -110,13 +57,10 @@ int	main(int argc, char **argv)
 		return (ft_fprintf(2, ERR_MAP), free_all(&parser, &data), 1);
 	calc_x_y(&data);
 	if (check_map(data, &parser))
-	{
-		ft_fprintf(2, ERR_MAP);
-	}
+		return (ft_fprintf(2, ERR_MAP), free_all(&parser, &data), 1);
 	else
 		ft_fprintf(1, "OK map !\n");
-	set_scene(&scene, data);
-	(void) keys;
+	set_scene(&scene, parser, data);
 	free_all(&parser, &data);
 	ft_memset(&keys, 0, sizeof(t_keys));
 	listen_input(&scene, &keys);

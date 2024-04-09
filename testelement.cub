@@ -1,8 +1,8 @@
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./resources/Dogecoin.xpm
+SO ./resources/Dogecoin.xpm
+WE ./resources/Dogecoin.xpm
+EA ./resources/Dogecoin.xpm
 
 F 0,100,200
 C 50,50,50
@@ -12,7 +12,7 @@ C 50,50,50
         1011000001110000000000001
         1000000000000000000000001
 111111111101100000111000000000001
-10000000000001110111101111111111
+10000000000001110011101111111111
 11110111111111011100000010001
 111101111111110111010100000N1
 1100000011 111011100000010001

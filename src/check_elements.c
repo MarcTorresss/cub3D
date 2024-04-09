@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:12:40 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 16:00:01 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:47:55 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,10 @@ int	check_elements(t_parser *parser, t_scene *scene)
 		|| parser->elem.qtt.F != 1 || parser->elem.qtt.C != 1
 		|| parser->elem.qtt.is_zero != 0)
 		return (1);
-    char **sp_f = ft_split(parser->elem.F, ',');
-    char **sp_c = ft_split(parser->elem.C, ',');
-    if (count_args(sp_f) != 3 || count_args(sp_c) != 3)
-        return (1);
+	char **sp_f = ft_split(parser->elem.F, ',');
+	char **sp_c = ft_split(parser->elem.C, ',');
+	if (count_args(sp_f) != 3 || count_args(sp_c) != 3)
+		return (1);
 	else
 		convert_hexadecimal(sp_f, sp_c, scene);
 	ft_free_split(sp_f);

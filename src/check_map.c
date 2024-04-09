@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 14:56:24 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:26:20 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int	check_map(t_data data, t_parser *parser)
 		return (1);
 	while (data.map[y] != NULL && data.map[y][++x] != '\0')
 	{
-
 		if (ft_check(data.map, x, y, parser->letterplayer) == 1)
 			return (1);
 		if (data.map[y][x] == '\n')

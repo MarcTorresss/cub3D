@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:40:37 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 12:18:02 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:24:10 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ static void	check_move(t_keys *key, t_player *player)
 	player->pos = sum_vec2(player->pos, move);
 }
 
-int    render(void **pack)
+int	render(void **pack)
 {
-    t_scene *scene;
-    t_keys  *keys;
+	t_scene	*scene;
+	t_keys	*keys;
 
-    scene = (t_scene *)(pack[0]);
-    keys = (t_keys *)(pack[1]);
+	scene = (t_scene *)(pack[0]);
+	keys = (t_keys *)(pack[1]);
 	check_exit(keys, scene);
 	check_space(keys, scene);
 	check_move(keys, &scene->player);
