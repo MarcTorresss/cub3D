@@ -6,7 +6,7 @@
 #    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 17:31:34 by martorre          #+#    #+#              #
-#    Updated: 2024/04/08 18:02:29 by martorre         ###   ########.fr        #
+#    Updated: 2024/04/09 13:13:46 by martorre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ DIR_SRC		=	src/
 
 # *******************************	FILES	******************************* #
 
-FILES		=	main.c check_map.c check_fill.c utils_map.c check_elements.c
+FILES		=	main.c check_map.c utils_map.c utils_map2.c check_elements.c
 
 FILES_SRC	=	$(addprefix $(DIR_SRC),$(FILES))
 
@@ -73,15 +73,6 @@ fclean	: clean
 	@$(MAKE) -C libft fclean --no-print-directory
 	@$(RM) $(NAME) 
 	@echo "${BLUE_BOLD}cub3D ${RED}deleted${RESET}"
-
-norm	:
-	@printf "${PURPLE}SEARCHING FOR A PRINTF IN THE PROJECT: "
-	@printf "%i \n${RESET}" $(shell grep "	printf" *.c | wc -l)
-	@printf "${YELLOW}Norminette...\n${RESET}"
-	@printf "${RED}"
-	@norminette src/*/*.c src/*.c inc/*.h > test && printf "$(GREEN)\t[OK]\n" || grep Error test
-	@printf "${RESET}"
-	@rm test
 
 re		: fclean
 	@$(MAKE) all

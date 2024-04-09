@@ -6,13 +6,13 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:34:13 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/08 13:13:35 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:53:00 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void    calc_x_y(t_parser *parser)
+void	calc_x_y(t_parser *parser)
 {
 	int	x;
 	int	y;
@@ -21,12 +21,11 @@ void    calc_x_y(t_parser *parser)
 	y = 0;
 	while (parser->file[y] != NULL)
 		y++;
-	while (parser->file[0][x] != '\n' && parser->file[0][x] != '\0')
+	while (parser->file[0][x] != '\n'
+		&& parser->file[0][x] != '\0')
 		x++;
 	parser->rowsy = y;
 	parser->colsx = x;
-	// ft_fprintf(1, "rowsy = %d\n", parser->rowsy);
-	// ft_fprintf(1, "colsx = %d\n", parser->colsx);
 }
 
 char	**copy_map(t_parser parser, int y)
@@ -42,22 +41,19 @@ char	**copy_map(t_parser parser, int y)
 	new = malloc(sizeof(char *) * (parser.rowsfile - y + 1));
 	if (!new)
 		return (NULL);
-	// ft_fprintf(2, "%s\n", parser.file[y]);
 	new[i] = ft_strdup(parser.file[y]);
 	while (parser.file[y] != NULL)
 	{
-		//ft_fprintf(2, "%s", new[i]);
 		y++;
 		i++;
 		new[i] = ft_strdup(parser.file[y]);
 	}
-	///new[y] = NULL;
 	return (new);
 }
 
 int	ft_rowsfile(char **file)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (file[y] != NULL)
@@ -75,12 +71,25 @@ int	init_map(t_data *data, t_parser *parser)
 	while (parser->file[y] != NULL)
 	{
 		trimed = ft_strtrim(parser->file[y], " ");
-		if ( trimed[0] == '1')
+		if (trimed[0] == '1')
 			break ;
-		y++; 
+		y++;
+		free(trimed);
 	}
-	// ft_fprintf(1, "the y = %d", y);
-	// ft_fprintf(1, "start = %d", data->rowsfile - y);
+	free(trimed);
 	data->map = copy_map(*parser, y);
 	return (0);
+}
+
+void	ft_free_split(char **check_line)
+{
+	int	i;
+
+	i = 0;
+	while (check_line[i] != NULL)
+	{
+		free(check_line[i]);
+		i++;
+	}
+	free(check_line);
 }
