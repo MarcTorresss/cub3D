@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:34:13 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/10 14:17:13 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:32:09 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	calc_x_y(t_data *data)
 	i = 0;
 	while (data->map != NULL && data->map[y] != NULL)
 		y++;
-	while (data->map != NULL && data->map[y] != NULL)
+	while ((data->map != NULL && data->map[i] != NULL))
 	{
 		if (x < ft_strlen(data->map[i]))
 			x = ft_strlen(data->map[i]);

@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/10 17:48:30 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:40:37 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,26 @@
 #include <stdlib.h>
 # define PADDING 10
 
+void	delete_enter(char **map)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
+	while (map != NULL && map[i] != NULL)
+	{
+		map[i][ft_strlen(map[i]) - 1] = '\0';
+		i++;
+	}
+}
 char	**padding_map(char **map, int *rows, int *cols)
 {
 	char	**new_map;
 	int		i;
 
+	(void)map;
+	delete_enter(map);
 	*rows += PADDING * 2;
 	*cols += PADDING * 2;
 	new_map = (char **)malloc(sizeof(char *) * (*rows + 1));
@@ -39,10 +54,10 @@ char	**padding_map(char **map, int *rows, int *cols)
 		new_map[i][*cols] = '\0';
 		i++;
 	}
-	// for (int i = 0; new_map[i] != NULL; i++)
-	// {
-		// printf("%s", new_map[i]);
-	// }
+	for (int i = 0; new_map[i] != NULL; i++)
+	{
+		printf("%s\n", new_map[i]);
+	}
 	new_map[i] = NULL;
 	return (new_map);
 }
