@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:34:13 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 15:40:42 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:17:13 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	calc_x_y(t_data *data)
 	x = 0;
 	y = 0;
 	i = 0;
-	while (data->map[y] != NULL)
+	while (data->map != NULL && data->map[y] != NULL)
 		y++;
-	while (i < y)
+	while (data->map != NULL && data->map[y] != NULL)
 	{
 		if (x < ft_strlen(data->map[i]))
 			x = ft_strlen(data->map[i]);
@@ -31,7 +31,6 @@ void	calc_x_y(t_data *data)
 	}
 	data->rowsy = y;
 	data->colsx = x;
-	printf("%d %d\n", data->rowsy, data->colsx);
 }
 
 char	**copy_map(t_parser parser, int y)

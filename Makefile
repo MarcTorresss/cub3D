@@ -6,7 +6,7 @@
 #    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
-#    Updated: 2024/04/09 16:53:18 by martorre         ###   ########.fr        #
+#    Updated: 2024/04/10 14:59:38 by martorre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,19 @@ NAME			:=cub3D
 
 SRCDIR			:=src
 SRCS			:=main.c check_elements.c check_map.c utils_map.c utils_map2.c \
-				  draw.c hit.c image.c render.c player.c ray.c draw_field.c  \
-				  free_mlx.c listen_input.c check_transform.c key_input.c
+				  utils_elements.c draw.c hit.c image.c render.c player.c ray.c \
+				  draw_field.c free_mlx.c listen_input.c check_transform.c \
+				  key_input.c
 
 BONUS			:=.bonus
 
 BONUS_SRCDIR	:=src_bonus
 BONUS_SRCS		:=main_bonus.c check_elements.c check_map.c utils_map2.c\
-				  utils_map.c hit.c image.c render_bonus.c player.c ray.c \
-				  draw_field.c free_mlx.c listen_input_bonus.c draw_bonus.c \
-				  draw_minimap_bonus.c draw_square_bonus.c key_input.c \
-				  draw_triangle_bonus.c check_transform.c mouse_input_bonus.c
+				  utils_map.c check_map_bonus.c hit.c image.c render_bonus.c \
+				  player.c ray.c draw_field.c free_mlx.c listen_input_bonus.c \
+				  draw_bonus.c draw_minimap_bonus.c draw_square_bonus.c \
+				  key_input.c draw_triangle_bonus.c check_transform.c \
+				  mouse_input_bonus.c utils_elements.c\
 
 OBJDIR			:=objs
 OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
@@ -36,7 +38,7 @@ DEPFLAGS		:=-MMD
 
 CC				:=gcc
 CFLAGS			:=-Wall -Werror -Wextra 
-DEBUG			:=-g -fsanitize=address
+#DEBUG			:=-g -fsanitize=address
 
 INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux -I./mlx
 MLXLIB			:=-Lmlx -lmlx -framework OpenGL -framework AppKit

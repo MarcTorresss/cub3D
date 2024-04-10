@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 15:58:10 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:14:50 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,8 @@ int	main(int argc, char **argv)
 	if (init_map(&data, &parser) == 1)
 		return (ft_fprintf(2, ERR_MAP), free_all(&parser, &data), 1);
 	calc_x_y(&data);
-	printf("%d %d\n", data.rowsy, data.colsx);
-	if (check_map(data, &parser))
-	{
-		ft_fprintf(2, ERR_MAP);
-	}
+	if (check_map_bonus(data, &parser))
+		return (ft_fprintf(2, ERR_MAP), free_all(&parser, &data), 1);
 	else
 		ft_fprintf(1, "OK map !\n");
 	set_scene(&scene, data);

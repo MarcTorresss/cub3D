@@ -6,28 +6,39 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:12:40 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 16:00:01 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:05:07 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 #include "scene.h"
 
-int	check_num(char *str, t_parser *parser)
+void	check_more_elements(char **check_line, t_parser *parser)
 {
-	if (str != NULL)
+	if (ft_strcmp(check_line[0], "EA") == 0)
 	{
-		if (str[0] != '1')
-		{
-			parser->elem.qtt.is_zero++;
-			return (free(str), 1);
-		}
+		if (parser->elem.EA == NULL)
+			parser->elem.EA = ft_substr(check_line[1], 0,
+					ft_strlen(check_line[1]));
+		parser->elem.qtt.EA++;
 	}
-	free(str);
-	return (0);
+	if (ft_strcmp(check_line[0], "F") == 0)
+	{
+		if (parser->elem.F == NULL)
+			parser->elem.F = ft_substr(check_line[1], 0,
+					ft_strlen(check_line[1]));
+		parser->elem.qtt.F++;
+	}
+	if (ft_strcmp(check_line[0], "C") == 0)
+	{
+		if (parser->elem.C == NULL)
+			parser->elem.C = ft_substr(check_line[1], 0,
+					ft_strlen(check_line[1]));
+		parser->elem.qtt.C++;
+	}
 }
 
-int	check_elemet(char **check_line, t_parser *parser)
+void	check_elemet(char **check_line, t_parser *parser)
 {
 	if (ft_strcmp(check_line[0], "NO") == 0)
 	{
@@ -50,38 +61,7 @@ int	check_elemet(char **check_line, t_parser *parser)
 					ft_strlen(check_line[1]));
 		parser->elem.qtt.WE++;
 	}
-	if (ft_strcmp(check_line[0], "EA") == 0)
-	{
-		if (parser->elem.EA == NULL)
-			parser->elem.EA = ft_substr(check_line[1], 0,
-					ft_strlen(check_line[1]));
-		parser->elem.qtt.EA++;
-	}
-	if (ft_strcmp(check_line[0], "F") == 0)
-	{
-		if (parser->elem.F == NULL)
-			parser->elem.F = ft_substr(check_line[1], 0,
-					ft_strlen(check_line[1]));
-		parser->elem.qtt.F++;
-	}
-	if (ft_strcmp(check_line[0], "C") == 0)
-	{
-		if (parser->elem.C == NULL)
-			parser->elem.C = ft_substr(check_line[1], 0,
-					ft_strlen(check_line[1]));
-		parser->elem.qtt.C++;
-	}
-	return (0);
-}
-
-int	count_args(char **check_line)
-{
-	int	i;
-
-	i = 0;
-	while (check_line[i] != NULL)
-		i++;
-	return (i);
+	check_more_elements(check_line, parser);
 }
 
 int	do_it(t_parser *parser, char *str)
@@ -99,26 +79,19 @@ int	do_it(t_parser *parser, char *str)
 	return (0);
 }
 
-void	convert_hexadecimal(char **sp_f, char **sp_c, t_scene *scene)
+int	qtts_okei(t_parser parser)
 {
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-
-	r = ft_atol(sp_f[0]);
-	g = ft_atol(sp_f[1]);
-	b = ft_atol(sp_f[2]);
-	scene->ccolor = (r << 16) + (g << 8) + b;
-
-	r = ft_atol(sp_c[0]);
-	g = ft_atol(sp_c[1]);
-	b = ft_atol(sp_c[2]);
-	scene->fcolor = (r << 16) + (g << 8) + b;
+	if (parser.elem.qtt.NO != 1 || parser.elem.qtt.SO != 1
+		|| parser.elem.qtt.WE != 1 || parser.elem.qtt.EA != 1
+		|| parser.elem.qtt.F != 1 || parser.elem.qtt.C != 1
+		|| parser.elem.qtt.is_zero != 0)
+		return (1);
+	return (0);
 }
 
 int	check_elements(t_parser *parser, t_scene *scene)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (parser->file[y] != NULL)
@@ -132,19 +105,9 @@ int	check_elements(t_parser *parser, t_scene *scene)
 			y++;
 		}
 	}
-	if (parser->elem.qtt.NO != 1 || parser->elem.qtt.SO != 1
-		|| parser->elem.qtt.WE != 1 || parser->elem.qtt.EA != 1
-		|| parser->elem.qtt.F != 1 || parser->elem.qtt.C != 1
-		|| parser->elem.qtt.is_zero != 0)
+	if (qtts_okei(*parser) == 1)
 		return (1);
-    char **sp_f = ft_split(parser->elem.F, ',');
-    char **sp_c = ft_split(parser->elem.C, ',');
-    if (count_args(sp_f) != 3 || count_args(sp_c) != 3)
-        return (1);
-	else
-		convert_hexadecimal(sp_f, sp_c, scene);
-	ft_free_split(sp_f);
-	ft_free_split(sp_c);
+	if (check_f_c(parser, scene) == 1)
+		return (1);
 	return (0);
 }
-

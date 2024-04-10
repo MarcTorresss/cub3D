@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 15:57:49 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:47:56 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,18 @@ typedef struct s_pos
 	t_point	begin;
 }			t_pos;
 
-void		parser_init(char *str, t_parser *parser, t_data *data);
-int			check_map(t_data data, t_parser *parser);
+void		parser_init(char *str, t_parser *parser);
+// int			check_map(t_parser *parser, t_scene scene);
+int			check_map(t_parser *parser, t_data data);
 int			calc_line(char *str);
 int			check_elements(t_parser *parser, t_scene *scene);
 int			init_map(t_data *data, t_parser *parser);
 void		calc_x_y(t_data *data);
-void		free_all(t_parser *parser, t_data *data);
+int			check_f_c(t_parser *parser, t_scene *scene);
+int			count_args(char **check_line);
+int			check_num(char *str, t_parser *parser);
+int			check_map_bonus(t_data data, t_parser *parser);
+void		free_all(t_parser *parser, t_data *data, t_scene *scene);
 void		ft_free_split(char **check_line);
 void		ft_free_elements(t_parser *parser);
 
