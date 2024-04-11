@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:12:40 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/10 17:05:07 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:39:29 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ void	check_more_elements(char **check_line, t_parser *parser)
 {
 	if (ft_strcmp(check_line[0], "EA") == 0)
 	{
-		if (parser->elem.EA == NULL)
-			parser->elem.EA = ft_substr(check_line[1], 0,
+		if (parser->elem.ea == NULL)
+			parser->elem.ea = ft_substr(check_line[1], 0,
 					ft_strlen(check_line[1]));
-		parser->elem.qtt.EA++;
+		parser->elem.qtt.ea++;
 	}
 	if (ft_strcmp(check_line[0], "F") == 0)
 	{
-		if (parser->elem.F == NULL)
-			parser->elem.F = ft_substr(check_line[1], 0,
+		if (parser->elem.f == NULL)
+			parser->elem.f = ft_substr(check_line[1], 0,
 					ft_strlen(check_line[1]));
-		parser->elem.qtt.F++;
+		parser->elem.qtt.f++;
 	}
 	if (ft_strcmp(check_line[0], "C") == 0)
 	{
-		if (parser->elem.C == NULL)
-			parser->elem.C = ft_substr(check_line[1], 0,
+		if (parser->elem.c == NULL)
+			parser->elem.c = ft_substr(check_line[1], 0,
 					ft_strlen(check_line[1]));
-		parser->elem.qtt.C++;
+		parser->elem.qtt.c++;
 	}
 }
 
@@ -42,24 +42,24 @@ void	check_elemet(char **check_line, t_parser *parser)
 {
 	if (ft_strcmp(check_line[0], "NO") == 0)
 	{
-		if (parser->elem.NO == NULL)
-			parser->elem.NO = ft_substr(check_line[1], 0,
+		if (parser->elem.no == NULL)
+			parser->elem.no = ft_substr(check_line[1], 0,
 					ft_strlen(check_line[1]));
-		parser->elem.qtt.NO++;
+		parser->elem.qtt.no++;
 	}
 	if (ft_strcmp(check_line[0], "SO") == 0)
 	{
-		if (parser->elem.SO == NULL)
-			parser->elem.SO = ft_substr(check_line[1], 0,
+		if (parser->elem.so == NULL)
+			parser->elem.so = ft_substr(check_line[1], 0,
 					ft_strlen(check_line[1]));
-		parser->elem.qtt.SO++;
+		parser->elem.qtt.so++;
 	}
 	if (ft_strcmp(check_line[0], "WE") == 0)
 	{
-		if (parser->elem.WE == NULL)
-			parser->elem.WE = ft_substr(check_line[1], 0,
+		if (parser->elem.we == NULL)
+			parser->elem.we = ft_substr(check_line[1], 0,
 					ft_strlen(check_line[1]));
-		parser->elem.qtt.WE++;
+		parser->elem.qtt.we++;
 	}
 	check_more_elements(check_line, parser);
 }
@@ -81,9 +81,9 @@ int	do_it(t_parser *parser, char *str)
 
 int	qtts_okei(t_parser parser)
 {
-	if (parser.elem.qtt.NO != 1 || parser.elem.qtt.SO != 1
-		|| parser.elem.qtt.WE != 1 || parser.elem.qtt.EA != 1
-		|| parser.elem.qtt.F != 1 || parser.elem.qtt.C != 1
+	if (parser.elem.qtt.no != 1 || parser.elem.qtt.so != 1
+		|| parser.elem.qtt.we != 1 || parser.elem.qtt.ea != 1
+		|| parser.elem.qtt.f != 1 || parser.elem.qtt.c != 1
 		|| parser.elem.qtt.is_zero != 0)
 		return (1);
 	return (0);

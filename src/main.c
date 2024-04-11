@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/10 18:40:37 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:10:32 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,9 @@ char	**padding_map(char **map, int *rows, int *cols)
 			return (ft_free_split(new_map), NULL);
 		ft_memset(new_map[i], ' ', *cols + 1);
 		if (i >= PADDING && i < *rows - PADDING)
-			ft_strlcpy(new_map[i] + PADDING, map[i - PADDING], *cols + 1);
+			ft_strlcpy(new_map[i] + PADDING - 2, map[i - PADDING], *cols + 1);
 		new_map[i][*cols] = '\0';
 		i++;
-	}
-	for (int i = 0; new_map[i] != NULL; i++)
-	{
-		printf("%s\n", new_map[i]);
 	}
 	new_map[i] = NULL;
 	return (new_map);
@@ -92,62 +88,30 @@ void	set_scene(t_scene *scene, t_data data)
 	}
 }
 
-void	free_all(t_parser *parser, t_data *data, t_scene *scene)
-{
-	int	y;
-
-	y = 0;
-	while (parser->file[y] != NULL)
-	{
-		free(parser->file[y]);
-		y++;
-	}
-	free(parser->file);
-	y = 0;
-	while (data && data->map && data->map[y] != NULL)
-	{
-		free(data->map[y]);
-		y++;
-	}
-	free(data->map);
-	y = 0;
-	while (scene && scene->map && scene->map[y] != NULL)
-	{
-		free(scene->map[y]);
-		y++;
-	}
-	free(scene->map);
-	ft_free_elements(parser);
-}
-
 int	main(int argc, char **argv)
 {
 	t_data		data;
 	t_parser	parser;
 	t_scene		scene;
-	// t_keys		keys;
+	t_keys		keys;
 
 	if (argc != 2)
 		return (ft_fprintf(2, "Bad arguments :\\\n"), 2);
 	parser_init(argv[1], &parser);
 	if (parser.file == NULL)
-		return (free_all(&parser, &data, &scene), 1);
+		return (free_parser(&parser), 1);
 	if (check_elements(&parser, &scene) == 1)
-		return (ft_fprintf(2, ERR_FILE), free_all(&parser, &data, &scene), 1);
+		return (ft_fprintf(2, ERR_FILE), free_parser(&parser), 1);
 	if (init_map(&data, &parser) == 1)
-		return (ft_fprintf(2, ERR_MAP), free_all(&parser, &data, &scene), 1);
+		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
 	calc_x_y(&data);
 	set_scene(&scene, data);
-	// if (check_map(&parser, scene))
-	if (check_map(&parser, data))
-		return (ft_fprintf(2, ERR_MAP), free_all(&parser, &data, &scene), 1);
-	else
-		ft_fprintf(1, "OK map !\n");
-	// (void)keys;
-	// ft_memset(&keys, 0, sizeof(t_keys));
-	// listen_input(&scene, &keys);
-	// mlx_loop_hook(scene.mlx, render, (void *[]){&scene, &keys});
-	// mlx_loop(scene.mlx);
-	free_all(&parser, &data, &scene);
+	if (check_map(&parser, scene))
+		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
+	ft_memset(&keys, 0, sizeof(t_keys));
+	listen_input(&scene, &keys);
+	mlx_loop_hook(scene.mlx, render, (void *[]){&scene, &keys});
+	mlx_loop(scene.mlx);
+	free_data(&parser, &data, &scene);
 	return (0);
 }

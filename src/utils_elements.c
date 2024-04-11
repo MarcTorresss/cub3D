@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:52:29 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/10 13:18:47 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:39:59 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ int	check_f_c(t_parser *parser, t_scene *scene)
 	char	**sp_f;
 	char	**sp_c;
 
-	sp_f = ft_split(parser->elem.F, ',');
-	sp_c = ft_split(parser->elem.C, ',');
+	sp_f = ft_split(parser->elem.f, ',');
+	sp_c = ft_split(parser->elem.c, ',');
 	if (count_args(sp_f) != 3 || count_args(sp_c) != 3)
 		return (ft_free_split(sp_f), ft_free_split(sp_c), 1);
 	else

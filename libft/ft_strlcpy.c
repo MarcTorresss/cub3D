@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:07:54 by martorre          #+#    #+#             */
-/*   Updated: 2023/09/14 13:10:31 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:35:05 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 				dst[i] = src[i];
 				i++;
 			}
-			dst[i] = '\0';
 		}
 	}
-	else
-		dst[i] = '\0';
 	return (len);
 }
 
+			// dst[i] = '\0';
+	// else
+		// dst[i] = '\0';
 /*
 int	main(void)
 {

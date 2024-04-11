@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:34:13 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/10 18:32:09 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:03:25 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,4 @@ int	init_map(t_data *data, t_parser *parser)
 	free(trimed);
 	data->map = copy_map(*parser, y);
 	return (0);
-}
-
-void	ft_free_split(char **check_line)
-{
-	int	i;
-
-	i = 0;
-	while (check_line[i] != NULL)
-	{
-		free(check_line[i]);
-		i++;
-	}
-	free(check_line);
 }
