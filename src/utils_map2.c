@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 15:37:32 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:38:05 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	calc_line(char *str)
 	return (y);
 }
 
-char	**check_file(char *str, t_parser *parser, t_data *data)
+char	**check_file(char *str, t_parser *parser)
 {
 	int		i;
 	int		fd;
@@ -60,7 +60,7 @@ char	**check_file(char *str, t_parser *parser, t_data *data)
 		return (NULL);
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
-		return (free(new), free_all(parser, data), ft_fprintf(2, ERR_FD), NULL);
+		return (free(new), ft_fprintf(2, ERR_FD), NULL);
 	new[++i] = get_next_line(fd);
 	while (new[i++] != NULL)
 		new[i] = get_next_line(fd);
@@ -68,39 +68,39 @@ char	**check_file(char *str, t_parser *parser, t_data *data)
 	return (new);
 }
 
-void	parser_init(char *str, t_parser *parser, t_data *data)
+void	parser_init(char *str, t_parser *parser)
 {
-	parser->elem.qtt.NO = 0;
-	parser->elem.qtt.SO = 0;
-	parser->elem.qtt.WE = 0;
-	parser->elem.qtt.EA = 0;
-	parser->elem.qtt.F = 0;
-	parser->elem.qtt.C = 0;
-	parser->elem.NO = NULL;
-	parser->elem.SO = NULL;
-	parser->elem.WE = NULL;
-	parser->elem.EA = NULL;
-	parser->elem.F = NULL;
-	parser->elem.C = NULL;
+	parser->elem.qtt.no = 0;
+	parser->elem.qtt.so = 0;
+	parser->elem.qtt.we = 0;
+	parser->elem.qtt.ea = 0;
+	parser->elem.qtt.f = 0;
+	parser->elem.qtt.c = 0;
+	parser->elem.no = NULL;
+	parser->elem.so = NULL;
+	parser->elem.we = NULL;
+	parser->elem.ea = NULL;
+	parser->elem.f = NULL;
+	parser->elem.c = NULL;
 	parser->elem.qtt.is_zero = 0;
 	parser->rowsfile = 0;
 	parser->colsx = 0;
 	parser->rowsy = 0;
-	parser->file = check_file(str, parser, data);
+	parser->file = check_file(str, parser);
 }
 
 void	ft_free_elements(t_parser *parser)
 {
-	if (parser->elem.NO)
-		free(parser->elem.NO);
-	if (parser->elem.SO)
-		free(parser->elem.SO);
-	if (parser->elem.WE)
-		free(parser->elem.WE);
-	if (parser->elem.EA)
-		free(parser->elem.EA);
-	if (parser->elem.F)
-		free(parser->elem.F);
-	if (parser->elem.C)
-		free(parser->elem.C);
+	if (parser->elem.no)
+		free(parser->elem.no);
+	if (parser->elem.so)
+		free(parser->elem.so);
+	if (parser->elem.we)
+		free(parser->elem.we);
+	if (parser->elem.ea)
+		free(parser->elem.ea);
+	if (parser->elem.f)
+		free(parser->elem.f);
+	if (parser->elem.c)
+		free(parser->elem.c);
 }

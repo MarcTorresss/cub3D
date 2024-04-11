@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:34:13 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 18:20:47 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:03:25 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	calc_x_y(t_data *data)
 	x = 0;
 	y = 0;
 	i = 0;
-	while (data->map[y] != NULL)
+	while (data->map != NULL && data->map[y] != NULL)
 		y++;
-	while (i < y)
+	while ((data->map != NULL && data->map[i] != NULL))
 	{
 		if (x < ft_strlen(data->map[i]))
 			x = ft_strlen(data->map[i]);
@@ -84,17 +84,4 @@ int	init_map(t_data *data, t_parser *parser)
 	free(trimed);
 	data->map = copy_map(*parser, y);
 	return (0);
-}
-
-void	ft_free_split(char **check_line)
-{
-	int	i;
-
-	i = 0;
-	while (check_line[i] != NULL)
-	{
-		free(check_line[i]);
-		i++;
-	}
-	free(check_line);
 }

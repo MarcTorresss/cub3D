@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 15:57:49 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:05:28 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,33 +26,27 @@
 # define ERR_EX "Error:\nInvalid extension :(\n"
 # define ERR_MAP "Error:\nInvalid map :(\n"
 # define ERR_FILE "Error:\nInvalid file data :(\n"
-# define NORTH 'N'
-# define SOUTH 'S'
-# define EAST 'E'
-# define WEST 'W'
-# define DESTROY 17
-# define KEYDOWN 2
 
 typedef struct s_qtts
 {
-	int		NO;
-	int		SO;
-	int		WE;
-	int		EA;
-	int		F;
-	int		C;
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
+	int		f;
+	int		c;
 	int		y;
 	int		is_zero;
 }			t_qtt;
 
 typedef struct s_elements
 {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	char	*F;
-	char	*C;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
 	t_qtt	qtt;
 }			t_elem;
 
@@ -86,14 +80,20 @@ typedef struct s_pos
 	t_point	begin;
 }			t_pos;
 
-void		parser_init(char *str, t_parser *parser, t_data *data);
-int			check_map(t_data data, t_parser *parser);
+void		parser_init(char *str, t_parser *parser);
+int			check_map(t_parser *parser, t_scene scene);
 int			calc_line(char *str);
 int			check_elements(t_parser *parser, t_scene *scene);
 int			init_map(t_data *data, t_parser *parser);
 void		calc_x_y(t_data *data);
-void		free_all(t_parser *parser, t_data *data);
+int			check_f_c(t_parser *parser, t_scene *scene);
+int			count_args(char **check_line);
+int			check_num(char *str, t_parser *parser);
+int			check_map_bonus(t_parser *parser, t_scene scene);
+void		free_all(t_parser *parser, t_data *data, t_scene *scene);
 void		ft_free_split(char **check_line);
 void		ft_free_elements(t_parser *parser);
+void		free_data(t_parser *parser, t_data *data, t_scene *scene);
+void		free_parser(t_parser *parser);
 
 #endif

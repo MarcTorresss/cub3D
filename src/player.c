@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 14:05:19 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:08:13 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_player	set_player(char **map)
 
 	ft_memset(&player, 0, sizeof(t_player));
 	i = 0;
-	while (map[i] != NULL)
+	while (map != NULL && map[i] != NULL)
 	{
 		j = 0;
 		while (map[i][j] != '\0')

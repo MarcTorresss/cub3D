@@ -6,82 +6,62 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:12:40 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 19:47:55 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:39:29 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 #include "scene.h"
 
-int	check_num(char *str, t_parser *parser)
+void	check_more_elements(char **check_line, t_parser *parser)
 {
-	if (str != NULL)
-	{
-		if (str[0] != '1')
-		{
-			parser->elem.qtt.is_zero++;
-			return (free(str), 1);
-		}
-	}
-	free(str);
-	return (0);
-}
-
-int	check_elemet(char **check_line, t_parser *parser)
-{
-	if (ft_strcmp(check_line[0], "NO") == 0)
-	{
-		if (parser->elem.NO == NULL)
-			parser->elem.NO = ft_substr(check_line[1], 0,
-					ft_strlen(check_line[1]));
-		parser->elem.qtt.NO++;
-	}
-	if (ft_strcmp(check_line[0], "SO") == 0)
-	{
-		if (parser->elem.SO == NULL)
-			parser->elem.SO = ft_substr(check_line[1], 0,
-					ft_strlen(check_line[1]));
-		parser->elem.qtt.SO++;
-	}
-	if (ft_strcmp(check_line[0], "WE") == 0)
-	{
-		if (parser->elem.WE == NULL)
-			parser->elem.WE = ft_substr(check_line[1], 0,
-					ft_strlen(check_line[1]));
-		parser->elem.qtt.WE++;
-	}
 	if (ft_strcmp(check_line[0], "EA") == 0)
 	{
-		if (parser->elem.EA == NULL)
-			parser->elem.EA = ft_substr(check_line[1], 0,
+		if (parser->elem.ea == NULL)
+			parser->elem.ea = ft_substr(check_line[1], 0,
 					ft_strlen(check_line[1]));
-		parser->elem.qtt.EA++;
+		parser->elem.qtt.ea++;
 	}
 	if (ft_strcmp(check_line[0], "F") == 0)
 	{
-		if (parser->elem.F == NULL)
-			parser->elem.F = ft_substr(check_line[1], 0,
+		if (parser->elem.f == NULL)
+			parser->elem.f = ft_substr(check_line[1], 0,
 					ft_strlen(check_line[1]));
-		parser->elem.qtt.F++;
+		parser->elem.qtt.f++;
 	}
 	if (ft_strcmp(check_line[0], "C") == 0)
 	{
-		if (parser->elem.C == NULL)
-			parser->elem.C = ft_substr(check_line[1], 0,
+		if (parser->elem.c == NULL)
+			parser->elem.c = ft_substr(check_line[1], 0,
 					ft_strlen(check_line[1]));
-		parser->elem.qtt.C++;
+		parser->elem.qtt.c++;
 	}
-	return (0);
 }
 
-int	count_args(char **check_line)
+void	check_elemet(char **check_line, t_parser *parser)
 {
-	int	i;
-
-	i = 0;
-	while (check_line[i] != NULL)
-		i++;
-	return (i);
+	if (ft_strcmp(check_line[0], "NO") == 0)
+	{
+		if (parser->elem.no == NULL)
+			parser->elem.no = ft_substr(check_line[1], 0,
+					ft_strlen(check_line[1]));
+		parser->elem.qtt.no++;
+	}
+	if (ft_strcmp(check_line[0], "SO") == 0)
+	{
+		if (parser->elem.so == NULL)
+			parser->elem.so = ft_substr(check_line[1], 0,
+					ft_strlen(check_line[1]));
+		parser->elem.qtt.so++;
+	}
+	if (ft_strcmp(check_line[0], "WE") == 0)
+	{
+		if (parser->elem.we == NULL)
+			parser->elem.we = ft_substr(check_line[1], 0,
+					ft_strlen(check_line[1]));
+		parser->elem.qtt.we++;
+	}
+	check_more_elements(check_line, parser);
 }
 
 int	do_it(t_parser *parser, char *str)
@@ -99,26 +79,19 @@ int	do_it(t_parser *parser, char *str)
 	return (0);
 }
 
-void	convert_hexadecimal(char **sp_f, char **sp_c, t_scene *scene)
+int	qtts_okei(t_parser parser)
 {
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-
-	r = ft_atol(sp_f[0]);
-	g = ft_atol(sp_f[1]);
-	b = ft_atol(sp_f[2]);
-	scene->ccolor = (r << 16) + (g << 8) + b;
-
-	r = ft_atol(sp_c[0]);
-	g = ft_atol(sp_c[1]);
-	b = ft_atol(sp_c[2]);
-	scene->fcolor = (r << 16) + (g << 8) + b;
+	if (parser.elem.qtt.no != 1 || parser.elem.qtt.so != 1
+		|| parser.elem.qtt.we != 1 || parser.elem.qtt.ea != 1
+		|| parser.elem.qtt.f != 1 || parser.elem.qtt.c != 1
+		|| parser.elem.qtt.is_zero != 0)
+		return (1);
+	return (0);
 }
 
 int	check_elements(t_parser *parser, t_scene *scene)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (parser->file[y] != NULL)
@@ -132,19 +105,9 @@ int	check_elements(t_parser *parser, t_scene *scene)
 			y++;
 		}
 	}
-	if (parser->elem.qtt.NO != 1 || parser->elem.qtt.SO != 1
-		|| parser->elem.qtt.WE != 1 || parser->elem.qtt.EA != 1
-		|| parser->elem.qtt.F != 1 || parser->elem.qtt.C != 1
-		|| parser->elem.qtt.is_zero != 0)
+	if (qtts_okei(*parser) == 1)
 		return (1);
-	char **sp_f = ft_split(parser->elem.F, ',');
-	char **sp_c = ft_split(parser->elem.C, ',');
-	if (count_args(sp_f) != 3 || count_args(sp_c) != 3)
+	if (check_f_c(parser, scene) == 1)
 		return (1);
-	else
-		convert_hexadecimal(sp_f, sp_c, scene);
-	ft_free_split(sp_f);
-	ft_free_split(sp_c);
 	return (0);
 }
-
