@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 14:05:09 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 22:17:23 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ void	draw(t_scene scene)
 	int		x;
 	t_ray	ray;
 	double	height;
-	
+
 	draw_minimap(scene, scene.player);
 	x = 0;
+	printf("\n\n\nDraw\n\n\n\n");
 	while (x < scene.width)
 	{
 		set_ray(&ray, scene.player, scene.width, x);
 		ray.v_dist = scene.player.v_dist;
-		if (hit(&ray, scene.map, scene.rows, scene.cols) && ray.perp_dist >= 0.0001)
+		if (hit(&ray, scene.map, scene.rows, scene.cols) && \
+				ray.perp_dist >= 0.0001)
 		{
 			height = scene.height / ray.perp_dist * BOX_UNIT;
 			draw_field(scene, ray, x, height);

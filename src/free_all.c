@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 13:02:41 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 13:08:00 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:35:10 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	free_scene(t_parser *parser, t_scene *scene)
 		free(scene->map[y]);
 		y++;
 	}
-	free(scene->map);
 	free_parser(parser);
 }
 

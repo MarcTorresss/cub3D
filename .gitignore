@@ -1,6 +1,6 @@
 cub3D
 /obj
-/objs
+/.objs
 /libft/temp
 **/*.a
 *.o

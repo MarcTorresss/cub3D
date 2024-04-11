@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_field.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 16:48:26 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:24:22 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	draw_field(t_scene scene, t_ray ray, int x, double h)
 	if (end < 0)
 		end = 0;
 	draw_ceiling(scene, x, start);
-	while (start <= end && start < scene.height&& size > 0)
+	while (start <= end && start < scene.height && size > 0)
 	{
 		color = get_color_pixel(scene, ray, (double)(end - start) / size);
 		put_pixel(scene.screen, x, start, color);

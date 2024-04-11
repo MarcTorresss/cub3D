@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:13 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 15:14:50 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:12:52 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ typedef struct s_keys
 # define ON_MOUSE_MOVE 06
 
 # define ON_DESTROY 17
-# define NO_EVENT_MASK 0L
-# define KEY_PRESS_MASK (1L<<0)
-# define KEY_RELEASE_MASK (1L<<1)
-# define MOUSE_DOWN_MASK (1L<<2)
-# define MOUSE_UP_MASK (1L<<3)
-# define MOUSE_MOVE_MASK (1L<<6)
+# define NO_EVENT_MASK 0
+# define KEY_PRESS_MASK 1
+# define KEY_RELEASE_MASK 2
+# define MOUSE_DOWN_MASK 4
+# define MOUSE_UP_MASK 8
+# define MOUSE_MOVE_MASK 64
 
 /*--NUMBERS--*/
 # define KEY_1 18

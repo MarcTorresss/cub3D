@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_input_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:12:37 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 15:14:57 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:25:14 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	mouse_moving_handler(int x, int y, t_scene *scene)
 		player->plane = normalize_vec2(rotate_vec2(player->plane, \
 													step.x * FRQ));
 		player->plane = scalar_vec2(player->plane, PLANE_SCALE);
-		if (player->v_dist + step.y < 1000 && player->v_dist + step.y > -1000)
+		if ((step.y < 0 && player->v_dist >= -1000) || \
+			(step.y > 0 && player->v_dist <= 1000))
 			player->v_dist += step.y * FRQ;
 		scene->prev_point = create_vector2d(x, y);
 	}
