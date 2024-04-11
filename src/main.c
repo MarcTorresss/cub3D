@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 13:10:32 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:28:19 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <mlx.h>
 #include <stdlib.h>
 # define PADDING 10
+
+void	set_scene(t_scene *scene, t_parser parser, t_data data);
 
 void	delete_enter(char **map)
 {

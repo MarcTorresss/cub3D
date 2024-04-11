@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 21:35:02 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 21:44:39 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:25:13 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	check_space(t_keys *key, t_scene *scene)
 		scene->player = set_player(scene->map);
 }
 
-static int    is_not_wall(char **map, t_vec2 move, t_player player)
+static int	is_not_wall(char **map, t_vec2 move, t_player player)
 {
-    int x;
-    int y;
+	int	x;
+	int	y;
 
-    x = (int)(player.pos.x + move.x * 6);
-    y = (int)(player.pos.y + move.y * 6);
-    if (map[x][y] == '1')
-        return (0);
-    return (1);
+	x = (int)(player.pos.x + move.x * 6);
+	y = (int)(player.pos.y + move.y * 6);
+	if (map[x][y] == '1')
+		return (0);
+	return (1);
 }
 
 void	check_key_move(t_keys *key, t_player *player, char **map)
@@ -57,8 +57,8 @@ void	check_key_move(t_keys *key, t_player *player, char **map)
 		move.x += player->dir.y * FRQ;
 		move.y -= player->dir.x * FRQ;
 	}
-    if (is_not_wall(map, move, *player))
-	    player->pos = sum_vec2(player->pos, move);
+	if (is_not_wall(map, move, *player))
+		player->pos = sum_vec2(player->pos, move);
 }
 
 void	check_key_rotate(t_keys *key, t_player *player)
@@ -83,6 +83,6 @@ void	check_key_rotate(t_keys *key, t_player *player)
 	if (key->down)
 	{
 		if (player->v_dist > -1000)
-		player->v_dist -= 1000 * FRQ;
+			player->v_dist -= 1000 * FRQ;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 14:05:16 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:22:58 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_player
 	t_vec2	dir;
 	t_vec2	plane;
 	double	dir_len;
-	double		v_dist;
+	double	v_dist;
 }	t_player;
 
 t_player	set_player(char **map);

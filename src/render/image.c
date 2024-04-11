@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:37:03 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 12:19:36 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:17:51 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ void	copy_image(t_img *dst, t_img *src, t_vec2 pmin, t_vec2 pmax)
 		j = 0;
 		while (j + pmin.y < pmax.y && j < src->height)
 		{
-			src_addr = src->addr + (j + (int)pmin.y) * src->line_length + \
+			if ((j + (int)pmin.y) > 0 && (i + (int)pmin.x) > 0)
+				src_addr = src->addr + (j + (int)pmin.y) * src->line_length + \
 								(i + (int)pmin.x) * (src->bits_per_pixel / 8);
 			put_pixel(dst, i, j, *(t_uint *) src_addr);
 			j++;

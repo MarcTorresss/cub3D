@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
+#    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
 #    Updated: 2024/04/11 13:06:05 by martorre         ###   ########.fr        #
@@ -17,7 +17,7 @@ SRCS			:=main.c check_elements.c check_map.c utils_map.c utils_map2.c \
 				  utils_elements.c draw.c hit.c image.c render.c player.c ray.c \
 				  draw_field.c free_mlx.c listen_input.c check_transform.c \
 				  key_input.c free_all.c
-
+          
 BONUS			:=.bonus
 
 BONUS_SRCDIR	:=src_bonus
@@ -28,7 +28,7 @@ BONUS_SRCS		:=main_bonus.c check_elements.c check_map.c utils_map2.c\
 				  key_input.c draw_triangle_bonus.c check_transform.c \
 				  mouse_input_bonus.c utils_elements.c free_all.c\
 
-OBJDIR			:=objs
+OBJDIR			:=.objs
 OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 BONUS_OBJS		:=$(patsubst %.c, $(OBJDIR)/%.o, $(BONUS_SRCS))
 
@@ -44,8 +44,6 @@ INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux -I./mlx
 MLXLIB			:=-Lmlx -lmlx -framework OpenGL -framework AppKit
 #MLXLIB			:=-Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
 LIBS			:=libft/libft.a vector/vector.a $(MLXLIB)
-				  
-
 
 all: 			$(OBJDIR) libft vector minilibx $(NAME)
 
