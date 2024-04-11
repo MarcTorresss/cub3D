@@ -42,20 +42,20 @@ char	**padding_map(char **map, int *rows, int *cols)
 
 static void	trim_image_path(t_parser *parser)
 {
-	parser->elem.NO[ft_strlen(parser->elem.NO) - 1] = '\0';
-	parser->elem.SO[ft_strlen(parser->elem.SO) - 1] = '\0';
-	parser->elem.EA[ft_strlen(parser->elem.EA) - 1] = '\0';
-	parser->elem.WE[ft_strlen(parser->elem.WE) - 1] = '\0';
+	parser->elem.no[ft_strlen(parser->elem.no) - 1] = '\0';
+	parser->elem.so[ft_strlen(parser->elem.so) - 1] = '\0';
+	parser->elem.ea[ft_strlen(parser->elem.ea) - 1] = '\0';
+	parser->elem.we[ft_strlen(parser->elem.we) - 1] = '\0';
 }
 
 static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 {
 	trim_image_path(&parser);
 	scene->screen = get_new_image(scene->mlx, scene->width, scene->height);
-	scene->n_wall = get_new_image_xpm(scene->mlx, parser.elem.NO);
-	scene->s_wall = get_new_image_xpm(scene->mlx, parser.elem.SO);
-	scene->e_wall = get_new_image_xpm(scene->mlx, parser.elem.EA);
-	scene->w_wall = get_new_image_xpm(scene->mlx, parser.elem.WE);
+	scene->n_wall = get_new_image_xpm(scene->mlx, parser.elem.no);
+	scene->s_wall = get_new_image_xpm(scene->mlx, parser.elem.so);
+	scene->e_wall = get_new_image_xpm(scene->mlx, parser.elem.ea);
+	scene->w_wall = get_new_image_xpm(scene->mlx, parser.elem.we);
 	scene->full_map = get_new_image(scene->mlx, \
 							scene->rows * GRID_UNIT + MMAP_SIZE * GRID_UNIT, \
 							scene->cols * GRID_UNIT + MMAP_SIZE * GRID_UNIT);
