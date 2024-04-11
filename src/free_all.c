@@ -29,15 +29,6 @@ void	free_parser(t_parser *parser)
 
 void	free_scene(t_parser *parser, t_scene *scene)
 {
-	int	y;
-
-	y = 0;
-	(void)scene;
-	while (scene && scene->map && scene->map[y] != NULL)
-	{
-		free(scene->map[y]);
-		y++;
-	}
 	free_mlx(scene);
 	free_parser(parser);
 }
