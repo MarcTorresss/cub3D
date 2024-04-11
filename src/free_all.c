@@ -38,6 +38,7 @@ void	free_scene(t_parser *parser, t_scene *scene)
 		free(scene->map[y]);
 		y++;
 	}
+	free_mlx(scene);
 	free_parser(parser);
 }
 
