@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 13:05:28 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:38:54 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int			check_f_c(t_parser *parser, t_scene *scene);
 int			count_args(char **check_line);
 int			check_num(char *str, t_parser *parser);
 int			check_map_bonus(t_parser *parser, t_scene scene);
-void		free_all(t_parser *parser, t_data *data, t_scene *scene);
 void		ft_free_split(char **check_line);
 void		ft_free_elements(t_parser *parser);
 void		free_data(t_parser *parser, t_data *data, t_scene *scene);

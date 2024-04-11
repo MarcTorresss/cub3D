@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 13:10:45 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:37:37 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "key_hook.h"
 #include <mlx.h>
 #include <stdlib.h>
-# define PADDING 10
 
 void	set_scene(t_scene *scene, t_parser parser, t_data data);
 
@@ -32,26 +31,6 @@ void	delete_enter(char **map)
 		i++;
 	}
 }
-char	**padding_map(char **map, int *rows, int *cols)
-{
-	delete_enter(map);
-	*rows += PADDING * 2;
-	*cols += PADDING * 2;
-	new_map = (char **)malloc(sizeof(char *) * (*rows + 1));
-	if (new_map == NULL)
-		return (NULL);
-	i = 0;
-	while (i < *rows)
-	{
-		new_map[i] = (char *)malloc(sizeof(char) * (*cols + 1));
-		if (new_map[i] == NULL)
-			return (ft_free_split(new_map), NULL);
-		ft_memset(new_map[i], ' ', *cols + 1);
-		if (i >= PADDING && i < *rows - PADDING)
-			ft_strlcpy(new_map[i] + PADDING - 2, map[i - PADDING], *cols + 1);
-		new_map[i][*cols] = '\0';
-		i++;
-	}
 
 void	set_scene2(t_scene *scene)
 {
@@ -108,7 +87,7 @@ int	main(int argc, char **argv)
 		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
 	calc_x_y(&data);
 	set_scene(&scene, parser, data);
-	set_scene2(&scene);
+	//set_scene2(&scene);
 	if (check_map_bonus(&parser, scene))
 		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
 	ft_memset(&keys, 0, sizeof(t_keys));
