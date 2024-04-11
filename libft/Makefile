@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
+#    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 18:13:35 by pfontenl          #+#    #+#              #
-#    Updated: 2024/02/21 11:38:50 by martorre         ###   ########.fr        #
+#    Updated: 2024/04/07 19:22:48 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_strnstr.c ft_split.c ft_strjoin
 ft_strtrim.c ft_calloc.c ft_strtrim.c ft_strmapi.c ft_striteri.c ft_lstnew_bonus.c\
 ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c\
 ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstclear_bonus.c ft_lstmap_bonus.c ft_join_n_destroy.c\
-ft_strlenz.c\
+ft_strlenz.c ft_min.c ft_max.c\
 
 
 FILES_PRINTF = ft_fprintf.c ft_numutils.c ft_utils.c\

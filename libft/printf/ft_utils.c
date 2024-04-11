@@ -19,9 +19,6 @@ int	ft_putchar(char c, int fd)
 
 int	ft_putstr(char *s, int fd)
 {
-	int	i;
-
-	i = 0;
 	if (s == NULL)
 		return (write(fd, "(null)", 6));
 	else

@@ -6,30 +6,34 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:34:13 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/04 19:16:41 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:03:25 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void    calc_x_y(t_data *data)
+void	calc_x_y(t_data *data)
 {
 	int	x;
 	int	y;
+	int	i;
 
 	x = 0;
 	y = 0;
-	while (data->file[y] != NULL)
+	i = 0;
+	while (data->map != NULL && data->map[y] != NULL)
 		y++;
-	while (data->file[0][x] != '\n' && data->file[0][x] != '\0')
-		x++;
+	while ((data->map != NULL && data->map[i] != NULL))
+	{
+		if (x < ft_strlen(data->map[i]))
+			x = ft_strlen(data->map[i]);
+		i++;
+	}
 	data->rowsy = y;
 	data->colsx = x;
-	// ft_fprintf(1, "rowsy = %d\n", data->rowsy);
-	// ft_fprintf(1, "colsx = %d\n", data->colsx);
 }
 
-char	**copy_map(t_data data, int y)
+char	**copy_map(t_parser parser, int y)
 {
 	int		i;
 	int		fd;
@@ -39,25 +43,22 @@ char	**copy_map(t_data data, int y)
 	i = 0;
 	if (y == 0)
 		return (NULL);
-	new = malloc(sizeof(char *) * (data.rowsfile - y + 1));
+	new = malloc(sizeof(char *) * (parser.rowsfile - y + 1));
 	if (!new)
 		return (NULL);
-	// ft_fprintf(2, "%s\n", data.file[y]);
-	new[i] = ft_strdup(data.file[y]);
-	while (data.file[y] != NULL)
+	new[i] = ft_strdup(parser.file[y]);
+	while (parser.file[y] != NULL)
 	{
-		//ft_fprintf(2, "%s", new[i]);
 		y++;
 		i++;
-		new[i] = ft_strdup(data.file[y]);
+		new[i] = ft_strdup(parser.file[y]);
 	}
-	///new[y] = NULL;
 	return (new);
 }
 
 int	ft_rowsfile(char **file)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (file[y] != NULL)
@@ -65,22 +66,22 @@ int	ft_rowsfile(char **file)
 	return (y);
 }
 
-int	init_map(t_data *data)
+int	init_map(t_data *data, t_parser *parser)
 {
 	int		y;
 	char	*trimed;
 
 	y = 0;
-	data->rowsfile = ft_rowsfile(data->file);
-	while (data->file[y] != NULL)
+	parser->rowsfile = ft_rowsfile(parser->file);
+	while (parser->file[y] != NULL)
 	{
-		trimed = ft_strtrim(data->file[y], " ");
-		if ( trimed[0] == '1')
+		trimed = ft_strtrim(parser->file[y], " ");
+		if (trimed[0] == '1')
 			break ;
 		y++;
+		free(trimed);
 	}
-	// ft_fprintf(1, "the y = %d", y);
-	// ft_fprintf(1, "start = %d", data->rowsfile - y);
-	data->map = copy_map(*data, y);
+	free(trimed);
+	data->map = copy_map(*parser, y);
 	return (0);
 }

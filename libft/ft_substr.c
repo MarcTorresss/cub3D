@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:58:12 by martorre          #+#    #+#             */
-/*   Updated: 2024/03/12 15:55:45 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:01:38 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	new = malloc(i +1);
 	if (!new)
 	{
-		ft_putstr_fd("minishell: malloc failed\n", 2);
+		ft_putstr_fd("cub3d: malloc failed\n", 2);
 		exit(1);
 	}
 	while (j < i && start < ft_strlenz((char *)s))
