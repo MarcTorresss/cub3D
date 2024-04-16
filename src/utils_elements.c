@@ -23,7 +23,7 @@ int	count_args(char **check_line)
 	return (i);
 }
 
-int	check_rgb_rang(unsigned int r, unsigned int g, unsigned int b)
+int	check_rgb_rang(int r, int g, int b)
 {
 	if ((r >= 0 && r <= 255) && (g >= 0 && g <= 255) && (b >= 0 && b <= 255))
 		return (0);
@@ -54,9 +54,9 @@ int	check_rgb_nums(char **mat)
 
 int	convert_hexadecimal(char **sp_f, char **sp_c, t_scene *scene)
 {
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
+	int	r;
+	int	g;
+	int	b;
 
 	r = ft_atol(sp_f[0]);
 	g = ft_atol(sp_f[1]);

@@ -72,10 +72,8 @@ t_player	set_player(char **map)
 void	delete_enter(char **map)
 {
 	int	i;
-	int	x;
 
 	i = 0;
-	x = 0;
 	while (map != NULL && map[i] != NULL)
 	{
 		map[i][ft_strlen(map[i]) - 1] = '\0';

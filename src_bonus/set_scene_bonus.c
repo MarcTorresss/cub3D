@@ -93,6 +93,7 @@ void	set_mlx(t_scene *scene, t_parser parser, t_data data)
 
 void	set_scene(t_scene *scene, t_parser parser, t_data *data)
 {
+
 	calc_x_y(data);
 	scene->rows = data->rowsy;
 	scene->cols = data->colsx;

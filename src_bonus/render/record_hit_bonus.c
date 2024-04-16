@@ -58,7 +58,7 @@ static int	hit_door_horizontal(t_ray *ray, t_hit hit, t_scene scene)
 		ray->hpoint.y += 0.5f;
 	ray->perp_dist = length_vec2(ray->p_dir) * distance_vec2(ray->hpoint,
 			ray->from) / length_vec2(ray->dir);
-	ray->door = 1;
+	ray->door = get_door_object(scene, hit.mapx, hit.mapy);
 	return (1);
 }
 
@@ -81,7 +81,7 @@ static int	hit_door_vertical(t_ray *ray, t_hit hit, t_scene scene)
 		ray->hpoint.x += 0.5f;
 	ray->perp_dist = length_vec2(ray->p_dir) * distance_vec2(ray->hpoint,
 			ray->from) / length_vec2(ray->dir);
-	ray->door = 1;
+	ray->door = get_door_object(scene, hit.mapx, hit.mapy);
 	return (1);
 }
 

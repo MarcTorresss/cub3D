@@ -86,11 +86,9 @@ int	check_map(t_parser *parser, t_scene scene)
 {
 	int	y;
 	int	x;
-	int	qtt;
 
 	y = 0;
 	x = 0;
-	qtt = 0;
 	if (check_player(scene.map, parser) == 1)
 		return (1);
 	while (scene.map != NULL && scene.map[y] != NULL)

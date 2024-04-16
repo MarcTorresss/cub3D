@@ -17,7 +17,7 @@ void	door_animation(t_scene *scene, int x, int y)
 	t_door	*door;
 
 	door = get_door_object(*scene, x, y);
-	init_door_animation(door);
+	init_door_animation(door, scene->map);
 }
 
 void	check_mouse_click(t_scene *scene)

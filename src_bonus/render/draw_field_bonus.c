@@ -39,7 +39,9 @@ static void	draw_floor(t_scene scene, int x, int start)
 
 static t_img	*get_wall_img(t_scene scene, t_ray ray)
 {
-	if (ray.w_dir == 'N')
+	if (ray.door != NULL)
+		return (scene.door);
+	else if (ray.w_dir == 'N')
 		return (scene.n_wall);
 	else if (ray.w_dir == 'E')
 		return (scene.e_wall);
@@ -64,6 +66,10 @@ static t_uint	get_color_pixel(t_scene scene, t_ray ray, double h)
 	else
 		w = 1 - (ray.hpoint.x - (int)ray.hpoint.x);
 	img = get_wall_img(scene, ray);
+	if (ray.door != NULL && ray.door->state == 'o')
+		w += 1 - ray.door->timer;
+	else if (ray.door != NULL && ray.door->state == 'd')
+		w += ray.door->timer;
 	return (get_texture_color(img, w, h));
 }
 

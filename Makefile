@@ -23,10 +23,10 @@ BONUS			:=.bonus
 BONUS_SRCDIR	:=src_bonus
 BONUS_SRCS		:=main_bonus.c check_elements.c check_map.c utils_map2.c\
 				  utils_map.c check_map_bonus.c hit_bonus.c image.c \
-				  player.c ray.c draw_field.c free_mlx.c listen_input_bonus.c \
+				  player.c ray.c free_mlx.c listen_input_bonus.c \
 				  draw_bonus.c draw_minimap_bonus.c draw_square_bonus.c \
 				  key_input.c draw_triangle_bonus.c check_transform.c \
-				  mouse_input_bonus.c utils_elements.c \
+				  mouse_input_bonus.c utils_elements.c draw_field_bonus.c \
 				  set_scene_bonus.c render_bonus.c record_hit_bonus.c \
 				  draw_fullmap_bonus.c check_mouse_click_bonus.c \
 				  check_doors_bonus.c check_elements_bonus.c free_all.c \

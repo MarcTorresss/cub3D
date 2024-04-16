@@ -74,11 +74,9 @@ int	check_map_bonus(t_parser *parser, t_scene scene)
 {
 	int	y;
 	int	x;
-	int	qtt;
 
 	y = 0;
 	x = -1;
-	qtt = 0;
 	if (check_player_bonus(scene.map, parser) == 1)
 		return (1);
 	while (scene.map != NULL && scene.map[y] != NULL)

@@ -74,6 +74,7 @@ t_door	*init_door(char **map)
 
 	x = -1;
 	y = 0;
+	door = NULL;
 	while (map != NULL && map[y] != NULL)
 	{
 		if (map[y][++x] == '\0')

@@ -21,36 +21,42 @@ long	get_current_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	finish_animation(t_door *door)
+void	finish_animation(t_door *door, char **map)
 {
 	if (door->state == 'o')
+	{
+		map[door->y][door->x] = 'O';
 		door->state = 'O';
+	}
 	if (door->state == 'd')
 		door->state = 'D';
+	door->timer = 0;
 }
 
-void	update_timer(t_door *door)
+void	update_timer(t_door *door, char **map, long prev_frame)
 {
 	int	time;
 
 	if (door->state == 'd' || door->state == 'o')
 	{
-		time = get_current_time() - door->timer;
-		if (time < 0)
-			finish_animation(door);
+		time = get_current_time() - prev_frame;
+		door->timer -= (double)time / 1000.0f;
+		if (door->timer < 0)
+			finish_animation(door, map);
 	}
 }
 
-void	init_door_animation(t_door *door)
+void	init_door_animation(t_door *door, char **map)
 {
-	if (door->state == 'O')
+	if (door->state == 'O' && door->timer == 0)
 	{
+		map[door->y][door->x] = 'D';
 		door->state = 'd';
-		door->timer = 1;
+		door->timer = 1.0f;
 	}
-	else
+	else if (door->state == 'D' && door->timer == 0)
 	{
 		door->state = 'o';
-		door->timer = 0.1;
+		door->timer = 1.0f;
 	}
 }

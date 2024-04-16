@@ -72,9 +72,10 @@ void	draw_triangle(t_img *img, t_vec2 vertices[3], t_uint color);
 void	free_mlx(t_scene *scene);
 
 t_door	*init_door(char **map);
-void	init_door_animation(t_door *doors);
-void	update_timer(t_door *door);
+void	init_door_animation(t_door *doors, char **map);
+void	update_timer(t_door *door, char **map, long prev_frame);
 t_door	*get_door_object(t_scene scene, int x, int y);
 void	delete_enter(char **map);
+long	get_current_time(void);
 
 #endif

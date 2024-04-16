@@ -36,10 +36,8 @@ void	calc_x_y(t_data *data)
 char	**copy_map(t_parser parser, int y)
 {
 	int		i;
-	int		fd;
 	char	**new;
 
-	fd = 0;
 	i = 0;
 	if (y == 0)
 		return (NULL);

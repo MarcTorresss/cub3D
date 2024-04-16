@@ -16,7 +16,7 @@
 #include <mlx.h>
 #include <stdlib.h>
 
-void	set_scene(t_scene *scene, t_parser parser, t_data data);
+void	set_scene(t_scene *scene, t_parser parser, t_data *data);
 
 int	main(int argc, char **argv)
 {
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 		return (ft_fprintf(2, ERR_FILE), free_parser(&parser), 1);
 	if (init_map(&data, &parser) == 1)
 		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
-	set_scene(&scene, parser, data);
+	set_scene(&scene, parser, &data);
 	if (check_map_bonus(&parser, scene))
 	{
 		ft_fprintf(2, ERR_MAP);
