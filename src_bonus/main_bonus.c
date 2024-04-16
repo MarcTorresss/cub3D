@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 12:23:44 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:36:55 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 	parser_init(argv[1], &parser);
 	if (parser.file == NULL)
 		return (free_parser(&parser), 1);
-	if (check_elements(&parser, &scene) == 1)
+	if (check_elements_bonus(&parser, &scene) == 1)
 		return (ft_fprintf(2, ERR_FILE), free_parser(&parser), 1);
 	if (init_map(&data, &parser) == 1)
 		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
@@ -81,6 +81,4 @@ int	main(int argc, char **argv)
 	listen_input(&scene, &keys);
 	mlx_loop_hook(scene.mlx, render, (void *[]){&scene, &keys});
 	mlx_loop(scene.mlx);
-	free_data(&parser, &data, &scene);
-	return (0);
 }

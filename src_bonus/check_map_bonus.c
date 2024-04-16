@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 12:24:02 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:24:55 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,22 @@ int	is_this_char(char **map, int x, int y, char letterplayer)
 }
 int	ft_check_bonus(char **map, int x, int y, char letterplayer)
 {
-	if (map[y][x] != '1' && map[y][x] != '0'
-		&& map[y][x] != letterplayer
-		&& map[y][x] != ' ' && map[y][x] != '\0'
-		&& map[y][x] != 'D' && map[y][x] != 'O')
+	if (map[y][x] != '1' && map[y][x] != '0' && map[y][x] != letterplayer
+		&& map[y][x] != ' ' && map[y][x] != 'D'
+		&& map[y][x] != 'O' && map[y][x] != '\0')
 		return (1);
 	if (is_this_char(map, x, y, letterplayer) == 1 && y == 0)
 		return (1);
-	if ((is_this_char(map, x, y, letterplayer)) 
+	if ((is_this_char(map, x, y, letterplayer) == 1) 
 		&& (map[y - 1][x] == ' ' || map[y + 1][x] == ' '))
 		return (1);
-	if ((is_this_char(map, x, y, letterplayer)) && map[y + 1] == NULL)
+	if ((is_this_char(map, x, y, letterplayer) == 1) && map[y + 1] == NULL)
 		return (1);
-	if ((is_this_char(map, x, y, letterplayer))
-		&& (map[y][x + 1] == ' ' || map[y][x + 1] == '\0'))
+	if ((is_this_char(map, x, y, letterplayer) == 1)
+		&& (map[y][x + 1] == ' ' || map[y][x - 1] == ' '))
 		return (1);
-	if ((is_this_char(map, x, y, letterplayer)) && map[y][x - 1] == ' ')
-		return (1);
+	if (ft_check_doors(map, x, y) == 1)
+			return (1);
 	return (0);
 }
 
@@ -84,14 +83,17 @@ int	check_map_bonus(t_parser *parser, t_scene scene)
 	qtt = 0;
 	if (check_player_bonus(scene.map, parser) == 1)
 		return (1);
-	while (scene.map[y] != NULL && scene.map[y][++x] != '\0')
+	while (scene.map != NULL && scene.map[y] != NULL)
 	{
-		if (ft_check_bonus(scene.map, x, y, parser->letterplayer) == 1)
-			return (1);
-		if (scene.map[y][x] == '\n')
+		if (scene.map[y][++x] == '\0')
 		{
-			x = -1;
+			x = 0;
 			y++;
+		}
+		else
+		{
+			if (ft_check_bonus(scene.map, x, y, parser->letterplayer) == 1)
+				return (1);
 		}
 	}
 	return (0);

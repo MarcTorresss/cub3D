@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 13:33:49 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:36:39 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 		|| scene->w_wall == NULL || scene->full_map == NULL)
 	{
 		free_data(&parser, &data, scene);
+		ft_fprintf(2, ERR_IMG);
 		exit(0);
 	}
 }

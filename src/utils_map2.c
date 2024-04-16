@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 12:38:05 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:02:53 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	parser_init(char *str, t_parser *parser)
 	parser->elem.qtt.ea = 0;
 	parser->elem.qtt.f = 0;
 	parser->elem.qtt.c = 0;
+	parser->elem.qtt.door = 0;
 	parser->elem.no = NULL;
 	parser->elem.so = NULL;
 	parser->elem.we = NULL;
@@ -103,4 +104,6 @@ void	ft_free_elements(t_parser *parser)
 		free(parser->elem.f);
 	if (parser->elem.c)
 		free(parser->elem.c);
+	if (parser->elem.door)
+		free(parser->elem.door);
 }

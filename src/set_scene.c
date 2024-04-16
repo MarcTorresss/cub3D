@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 11:25:59 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:45:35 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 		scene->w_wall == NULL)
 	{
 		free_data(&parser, &data, scene);
+		ft_fprintf(2, ERR_IMG);
 		exit(0);
 	}
 }
