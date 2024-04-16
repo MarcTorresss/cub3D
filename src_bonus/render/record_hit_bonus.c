@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   record_hit_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:47:22 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 16:11:02 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:54:52 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	record_wall_hit(t_ray *ray, t_hit hit, int side)
 static int	hit_door_horizontal(t_ray *ray, t_scene scene)
 {
 	double	v;
-	
+
+	(void) scene;
 	if (ray->w_dir == 'W')
 		v = ray->hpoint.x - 0.5f * ray->dir.x / ray->dir.y;
 	else
@@ -53,7 +54,8 @@ static int	hit_door_horizontal(t_ray *ray, t_scene scene)
 		ray->hpoint.y -= 0.5f;
 	else
 		ray->hpoint.y += 0.5f;
-	ray->perp_dist = length_vec2(ray->p_dir) * distance_vec2(ray->hpoint, ray->from) / length_vec2(ray->dir);
+	ray->perp_dist = length_vec2(ray->p_dir) * distance_vec2(ray->hpoint,
+			ray->from) / length_vec2(ray->dir);
 	ray->door = 1;
 	return (1);
 }
@@ -62,7 +64,7 @@ static int	hit_door_vertical(t_ray *ray, t_scene scene)
 {
 	double	v;
 	t_door	*door;
-	
+
 	if (ray->w_dir == 'N')
 		v = ray->hpoint.y - 0.5f * ray->dir.y / ray->dir.x;
 	else
@@ -73,13 +75,13 @@ static int	hit_door_vertical(t_ray *ray, t_scene scene)
 	if (door == NULL)
 		return (0);
 	if (door->state == 'd' || door->state == 'o')
-	
-	ray->hpoint.y = v;
+		ray->hpoint.y = v;
 	if (ray->w_dir == 'N')
 		ray->hpoint.x -= 0.5f;
 	else
 		ray->hpoint.x += 0.5f;
-	ray->perp_dist = length_vec2(ray->p_dir) * distance_vec2(ray->hpoint, ray->from) / length_vec2(ray->dir);
+	ray->perp_dist = length_vec2(ray->p_dir) * distance_vec2(ray->hpoint,
+			ray->from) / length_vec2(ray->dir);
 	ray->door = 1;
 	return (1);
 }

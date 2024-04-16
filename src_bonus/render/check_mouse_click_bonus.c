@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_mouse_click_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:46:55 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 15:19:26 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:27:31 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	close_door(t_scene *scene, int x, int y)
 
 void	check_mouse_click(t_scene *scene)
 {
-	static int flag;
-	t_vec2	action_point;
-	int		x;
-	int		y;
-	
+	static int	flag;
+	t_vec2		action_point;
+	int			x;
+	int			y;
+
 	if (scene->map[(int)scene->player.pos.x][(int)scene->player.pos.y] == 'O')
 		return ;
 	if (scene->left_m == 1 && flag == 0)

@@ -3,30 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 14:54:16 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:24:12 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include "scene.h"
 #include "player.h"
+#include "scene.h"
 
-void	delete_enter(char **map)
-{
-	int	i;
-	int	x;
-
-	i = 0;
-	x = 0;
-	while (map != NULL && map[i] != NULL)
-	{
-		map[i][ft_strlen(map[i]) - 1] = '\0';
-		i++;
-	}
-}
 char	**padding_map(char **map, int *rows, int *cols)
 {
 	char	**new_map;
@@ -73,9 +60,8 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 	scene->full_map = NULL;
 	scene->mmap = NULL;
 	scene->door = NULL;
-	if (scene->screen == NULL || scene->n_wall == NULL || \
-		scene->s_wall == NULL || scene->e_wall == NULL || \
-		scene->w_wall == NULL)
+	if (scene->screen == NULL || scene->n_wall == NULL || scene->s_wall == NULL
+		|| scene->e_wall == NULL || scene->w_wall == NULL)
 	{
 		free_data(&parser, &data, scene);
 		ft_fprintf(2, ERR_IMG);
@@ -85,15 +71,14 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 
 void	set_mlx(t_scene *scene, t_parser parser, t_data data)
 {
-
 	scene->mlx = mlx_init();
 	if (scene->mlx == NULL)
 	{
 		free_data(&parser, &data, scene);
 		exit(0);
 	}
-	scene->win = mlx_new_window(scene->mlx, scene->width, \
-		scene->height, "cub3D");
+	scene->win = mlx_new_window(scene->mlx, scene->width, scene->height,
+			"cub3D");
 	if (scene->win == NULL)
 	{
 		free_data(&parser, &data, scene);
@@ -101,20 +86,21 @@ void	set_mlx(t_scene *scene, t_parser parser, t_data data)
 	}
 }
 
-void	set_scene(t_scene *scene, t_parser parser, t_data data)
+void	set_scene(t_scene *scene, t_parser parser, t_data *data)
 {
-	scene->rows = data.rowsy;
-	scene->cols = data.colsx;
+	calc_x_y(data);
+	scene->rows = data->rowsy;
+	scene->cols = data->colsx;
 	scene->width = 1920;
 	scene->height = 1080;
-	scene->map = padding_map(data.map, &scene->rows, &scene->cols);
+	scene->map = padding_map(data->map, &scene->rows, &scene->cols);
 	scene->player = set_player(scene->map);
-	set_mlx(scene, parser, data);
+	set_mlx(scene, parser, *data);
 	if (scene->map == NULL)
 	{
-		free_data(&parser, &data, scene);
+		free_data(&parser, data, scene);
 		mlx_destroy_window(scene->mlx, scene->win);
 		exit(0);
 	}
-	set_scene_image(scene, parser, data);
+	set_scene_image(scene, parser, *data);
 }

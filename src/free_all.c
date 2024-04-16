@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 13:02:41 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 13:35:03 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:16:10 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	free_data(t_parser *parser, t_data *data, t_scene *scene)
 
 void	ft_free_split(char **check_line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (check_line[i] != NULL)

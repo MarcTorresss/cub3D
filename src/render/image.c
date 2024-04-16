@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:37:03 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 14:58:08 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:19:20 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "image.h"
-#include "vector.h"
 #include "libft.h"
-#include <stdlib.h>
+#include "vector.h"
 #include <mlx.h>
+#include <stdlib.h>
 
 t_img	*get_new_image(void *mlx, int w, int h)
 {
@@ -26,8 +26,8 @@ t_img	*get_new_image(void *mlx, int w, int h)
 	image->img = mlx_new_image(mlx, w, h);
 	if (image->img == NULL)
 		return (free(image), NULL);
-	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel, \
-									&image->line_length, &image->endian);
+	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel,
+			&image->line_length, &image->endian);
 	if (image->addr == NULL)
 		return (mlx_destroy_image(mlx, image->img), free(image), NULL);
 	image->width = w;
@@ -42,17 +42,17 @@ t_img	*get_new_image_xpm(void *mlx, char *img_path)
 	image = (t_img *)malloc(sizeof(t_img));
 	if (image == NULL)
 		return (NULL);
-	image->img = mlx_xpm_file_to_image(mlx, img_path, \
-										&image->width, &image->height);
+	image->img = mlx_xpm_file_to_image(mlx, img_path, &image->width,
+			&image->height);
 	if (image->img == NULL)
 		return (free(image), NULL);
-	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel, \
-									&image->line_length, &image->endian);
+	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel,
+			&image->line_length, &image->endian);
 	if (image->addr == NULL)
 		return (mlx_destroy_image(mlx, image->img), free(image), NULL);
 	return (image);
 }
-#include "libft.h"
+
 t_uint	get_texture_color(t_img *img, double w, double h)
 {
 	int		x;
@@ -66,7 +66,7 @@ t_uint	get_texture_color(t_img *img, double w, double h)
 	if (y >= img->height)
 		y = img->height - 1;
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	return (*(t_uint *) dst);
+	return (*(t_uint *)dst);
 }
 
 void	put_pixel(t_img *img, int x, int y, int color)
@@ -74,7 +74,7 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	char	*dst;
 
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(t_uint *) dst = color;
+	*(t_uint *)dst = color;
 }
 
 void	copy_image(t_img *dst, t_img *src, t_vec2 pmin, t_vec2 pmax)
@@ -90,9 +90,9 @@ void	copy_image(t_img *dst, t_img *src, t_vec2 pmin, t_vec2 pmax)
 		while (j + pmin.y < pmax.y && j < src->height)
 		{
 			if ((j + (int)pmin.y) > 0 && (i + (int)pmin.x) > 0)
-				src_addr = src->addr + (j + (int)pmin.y) * src->line_length + \
-								(i + (int)pmin.x) * (src->bits_per_pixel / 8);
-			put_pixel(dst, i, j, *(t_uint *) src_addr);
+				src_addr = src->addr + (j + (int)pmin.y) * src->line_length + (i
+						+ (int)pmin.x) * (src->bits_per_pixel / 8);
+			put_pixel(dst, i, j, *(t_uint *)src_addr);
 			j++;
 		}
 		i++;

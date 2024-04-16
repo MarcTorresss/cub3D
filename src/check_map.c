@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/09 19:26:20 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:22:37 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,24 @@ int	ft_check(char **map, int x, int y, char letterplayer)
 
 int	check_player(char **map, t_parser *parser)
 {
-	int	y;
-	int	x;
-	int	qtt;
+	t_point	pos;
+	int		qtt;
 
-	y = 0;
-	x = -1;
+	pos = init_pos();
 	qtt = 0;
-	while (map != NULL && map[y] != NULL)
+	while (map != NULL && map[pos.y] != NULL)
 	{
-		if (map[y][++x] == '\0')
+		if (map[pos.y][++pos.x] == '\0')
 		{
-			x = -1;
-			y++;
+			pos.x = -1;
+			pos.y++;
 		}
 		else
 		{
-			if (is_this_player(map, x, y) == 1)
+			if (is_this_player(map, pos.x, pos.y) == 1)
 			{
 				qtt++;
-				parser->letterplayer = map[y][x];
+				parser->letterplayer = map[pos.y][pos.x];
 			}
 		}
 	}

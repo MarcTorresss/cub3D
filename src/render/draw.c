@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 19:24:34 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:22:46 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	draw(t_scene scene)
 	{
 		set_ray(&ray, scene.player, scene.width, x);
 		ray.v_dist = scene.player.v_dist;
-		if (hit(&ray, scene.map, scene.rows, scene.cols) && \
-			ray.perp_dist >= 0.0001)
+		if (hit(&ray, scene.map, scene.rows, scene.cols)
+			&& ray.perp_dist >= 0.0001)
 		{
 			height = scene.height / ray.perp_dist * BOX_UNIT;
 			draw_field(scene, ray, x, height);
