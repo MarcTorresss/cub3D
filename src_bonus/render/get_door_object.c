@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:55:13 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:36:17 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:39:14 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,3 @@ int	qtts_okei_bonus(t_parser parser)
 	return (0);
 }
 
-t_point	init_pos(void)
-{
-	t_point	pos;
-
-	pos.x = -1;
-	pos.y = 0;
-	return (pos);
-}
