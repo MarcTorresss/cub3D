@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 13:36:55 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:50:33 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,11 @@ int	main(int argc, char **argv)
 	set_scene(&scene, parser, data);
 	//set_scene2(&scene);
 	if (check_map_bonus(&parser, scene))
-		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
+	{
+		ft_fprintf(2, ERR_MAP);
+		free_data(&parser, &data, &scene);
+		exit(0);
+	}
 	ft_memset(&keys, 0, sizeof(t_keys));
 	listen_input(&scene, &keys);
 	mlx_loop_hook(scene.mlx, render, (void *[]){&scene, &keys});

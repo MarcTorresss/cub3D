@@ -6,7 +6,7 @@
 #    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
-#    Updated: 2024/04/16 14:43:14 by martorre         ###   ########.fr        #
+#    Updated: 2024/04/16 15:29:49 by martorre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCDIR			:=src
 SRCS			:=main.c check_elements.c check_map.c utils_map.c utils_map2.c \
 				  utils_elements.c draw.c hit.c image.c render.c player.c \
 				  ray.c draw_field.c free_mlx.c listen_input.c \
-				  check_transform.c key_input.c set_scene.c
+				  check_transform.c key_input.c set_scene.c free_all.c \
           
 BONUS			:=.bonus
 
@@ -29,7 +29,7 @@ BONUS_SRCS		:=main_bonus.c check_elements.c check_map.c utils_map2.c\
 				  mouse_input_bonus.c utils_elements.c \
 				  set_scene_bonus.c render_bonus.c record_hit_bonus.c \
 				  draw_fullmap_bonus.c check_mouse_click_bonus.c \
-				  check_doors_bonus.c check_elements_bonus.c
+				  check_doors_bonus.c check_elements_bonus.c free_all.c \
 
 OBJDIR			:=.objs
 OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
