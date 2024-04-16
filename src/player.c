@@ -6,12 +6,13 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/11 12:08:13 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:23:11 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "player.h"
+#include "cub3D.h"
 #include <stdlib.h>
 #include <math.h>
 
@@ -66,4 +67,27 @@ t_player	set_player(char **map)
 		i++;
 	}
 	return (player);
+}
+
+void	delete_enter(char **map)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
+	while (map != NULL && map[i] != NULL)
+	{
+		map[i][ft_strlen(map[i]) - 1] = '\0';
+		i++;
+	}
+}
+
+t_point	init_pos(void)
+{
+	t_point	pos;
+
+	pos.x = -1;
+	pos.y = 0;
+	return (pos);
 }

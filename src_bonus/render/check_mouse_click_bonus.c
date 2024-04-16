@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:46:55 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 16:16:35 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:47:08 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	door_animation(t_scene *scene, int x, int y)
 
 void	check_mouse_click(t_scene *scene)
 {
-	static int flag;
-	t_vec2	action_point;
-	int		x;
-	int		y;
-	
+	static int	flag;
+	t_vec2		action_point;
+	int			x;
+	int			y;
+
 	if (scene->map[(int)scene->player.pos.x][(int)scene->player.pos.y] == 'O')
 		return ;
 	if (scene->left_m == 1 && flag == 0)

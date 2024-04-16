@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:19:04 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:46:09 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "ray.h"
 # include "door.h"
 # include <stdio.h>
-#include <sys/time.h>
-#include <unistd.h>
+# include <sys/time.h>
+# include <unistd.h>
 
 # define BOX_UNIT 0.5f
 # define GRID_UNIT 10
@@ -44,6 +44,7 @@ typedef struct s_scene
 	int			cols;
 	int			width;
 	int			height;
+	int			prev_frame;
 	void		*mlx;
 	void		*win;
 	t_img		*screen;
@@ -61,7 +62,6 @@ typedef struct s_scene
 	t_vec2		prev_point;
 }	t_scene;
 
-
 int		render(void **pack);
 void	draw(t_scene scene);
 void	draw_field(t_scene scene, t_ray ray, int x, double h);
@@ -75,5 +75,6 @@ t_door	*init_door(char **map);
 void	init_door_animation(t_door *doors);
 void	update_timer(t_door *door);
 t_door	*get_door_object(t_scene scene, int x, int y);
+void	delete_enter(char **map);
 
 #endif

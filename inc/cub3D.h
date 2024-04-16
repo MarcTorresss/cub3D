@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 13:00:53 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:29:34 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,7 @@ void		free_data(t_parser *parser, t_data *data, t_scene *scene);
 void		free_parser(t_parser *parser);
 int			ft_check_doors(char **map, int x, int y);
 int			check_elements_bonus(t_parser *parser, t_scene *scene);
-
+void		delete_enter(char **map);
+int			qtts_okei_bonus(t_parser parser);
+t_point		init_pos(void);
 #endif

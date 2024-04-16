@@ -6,11 +6,11 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:33:56 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 17:22:48 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:46:23 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "cub3D.h"
 
 int	ft_check_doors(char **map, int x, int y)
 {
@@ -25,20 +25,10 @@ int	ft_check_doors(char **map, int x, int y)
 	return (0);
 }
 
-int	qtts_okei_bonus(t_parser parser)
-{
-	if (parser.elem.qtt.no != 1 || parser.elem.qtt.so != 1
-		|| parser.elem.qtt.we != 1 || parser.elem.qtt.ea != 1
-		|| parser.elem.qtt.f != 1 || parser.elem.qtt.c != 1
-		|| parser.elem.qtt.is_zero != 0 || parser.elem.qtt.door != 1)
-		return (1);
-	return (0);
-}
-
 t_door	*is_door(int x, int y, char state)
 {
 	t_door	*door;
-	
+
 	door = malloc(sizeof(t_door));
 	if (!door)
 		return (NULL);
@@ -75,21 +65,21 @@ void	ft_door_addback(t_door **door, t_door *newdoor)
 		*door = newdoor;
 }
 
-t_door	 *init_door(char **map)
+t_door	*init_door(char **map)
 {
 	int		x;
 	int		y;
 	t_door	*newdoor;
-	t_door	*door = NULL;
+	t_door	*door;
 
-	x = 0;
+	x = -1;
 	y = 0;
 	while (map != NULL && map[y] != NULL)
 	{
-		if (map[y][x] == '\0')
+		if (map[y][++x] == '\0')
 		{
 			x = 0;
-			y++; 
+			y++;
 		}
 		else
 		{
@@ -99,7 +89,6 @@ t_door	 *init_door(char **map)
 				ft_door_addback(&door, newdoor);
 			}
 		}
-		x++;
 	}
 	return (door);
 }

@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 11:17:34 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:27:03 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <mlx.h>
 #include <stdlib.h>
 
-void	set_scene(t_scene *scene, t_parser parser, t_data data);
+void	set_scene(t_scene *scene, t_parser parser, t_data *data);
 
 int	main(int argc, char **argv)
 {
@@ -34,8 +34,7 @@ int	main(int argc, char **argv)
 		return (ft_fprintf(2, ERR_FILE), free_parser(&parser), 1);
 	if (init_map(&data, &parser) == 1)
 		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
-	calc_x_y(&data);
-	set_scene(&scene, parser, data);
+	set_scene(&scene, parser, &data);
 	if (check_map(&parser, scene))
 	{
 		ft_fprintf(2, ERR_MAP);
