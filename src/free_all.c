@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 13:02:41 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 14:35:10 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:09:50 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,8 @@ void	free_parser(t_parser *parser)
 
 void	free_scene(t_parser *parser, t_scene *scene)
 {
-	int	y;
-
-	y = 0;
-	(void)scene;
-	while (scene && scene->map && scene->map[y] != NULL)
-	{
-		free(scene->map[y]);
-		y++;
-	}
+	(void) scene;
+	free_mlx(scene);
 	free_parser(parser);
 }
 

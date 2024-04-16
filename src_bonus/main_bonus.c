@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 14:37:37 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:26:20 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,6 @@
 #include <stdlib.h>
 
 void	set_scene(t_scene *scene, t_parser parser, t_data data);
-
-void	delete_enter(char **map)
-{
-	int	i;
-	int	x;
-
-	i = 0;
-	x = 0;
-	while (map != NULL && map[i] != NULL)
-	{
-		map[i][ft_strlen(map[i]) - 1] = '\0';
-		i++;
-	}
-}
 
 void	set_scene2(t_scene *scene)
 {
@@ -86,8 +72,8 @@ int	main(int argc, char **argv)
 	if (init_map(&data, &parser) == 1)
 		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
 	calc_x_y(&data);
-	set_scene(&scene, parser, data);
-	//set_scene2(&scene);
+	//set_scene(&scene, parser, data);
+	set_scene2(&scene);
 	if (check_map_bonus(&parser, scene))
 		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
 	ft_memset(&keys, 0, sizeof(t_keys));
