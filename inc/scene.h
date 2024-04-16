@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 12:37:31 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:26:33 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "image.h"
 # include "player.h"
 # include "ray.h"
+# include "door.h"
 # include <stdio.h>
 
 # define BOX_UNIT 0.5f
@@ -35,6 +36,7 @@ typedef char			t_byte;
 typedef struct s_scene
 {
 	t_player	player;
+	t_door		**doors;
 	char		**map;
 	int			rows;
 	int			cols;

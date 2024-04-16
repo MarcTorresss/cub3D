@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 11:25:55 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:33:49 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	set_scene(t_scene *scene, t_parser parser, t_data data)
 	scene->height = 1080;
 	scene->map = padding_map(data.map, &scene->rows, &scene->cols);
 	scene->player = set_player(scene->map);
+	//scene->doors = ?
 	set_mlx(scene, parser, data);
 	if (scene->map == NULL)
 	{
