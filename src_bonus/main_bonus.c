@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 14:37:37 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:23:44 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,14 @@
 
 void	set_scene(t_scene *scene, t_parser parser, t_data data);
 
-void	delete_enter(char **map)
-{
-	int	i;
-	int	x;
-
-	i = 0;
-	x = 0;
-	while (map != NULL && map[i] != NULL)
-	{
-		map[i][ft_strlen(map[i]) - 1] = '\0';
-		i++;
-	}
-}
-
 void	set_scene2(t_scene *scene)
 {
-	scene->map = malloc(sizeof(char *) * 4);
+	scene->map = malloc(sizeof(char *) * 5);
 	scene->map[0] = ft_strdup("111");
-	scene->map[1] = ft_strdup("1ED");
-	scene->map[2] = ft_strdup("111");
-	scene->map[3] = NULL;
+	scene->map[1] = ft_strdup("1D1");
+	scene->map[2] = ft_strdup("1N1");
+	scene->map[3] = ft_strdup("111");
+	scene->map[4] = NULL;
 	scene->cols = 3;
 	scene->rows = 3;
 	scene->player = set_player(scene->map);

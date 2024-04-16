@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/11 13:39:02 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:25:59 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,25 @@
 #include "scene.h"
 #include "player.h"
 
+void	delete_enter(char **map)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
+	while (map != NULL && map[i] != NULL)
+	{
+		map[i][ft_strlen(map[i]) - 1] = '\0';
+		i++;
+	}
+}
 char	**padding_map(char **map, int *rows, int *cols)
 {
 	char	**new_map;
 	int		i;
 
+	delete_enter(map);
 	*rows += PADDING * 2;
 	*cols += PADDING * 2;
 	new_map = (char **)malloc(sizeof(char *) * (*rows + 1));
@@ -32,7 +46,7 @@ char	**padding_map(char **map, int *rows, int *cols)
 			return (ft_free_split(new_map), NULL);
 		ft_memset(new_map[i], ' ', *cols + 1);
 		if (i >= PADDING && i < *rows - PADDING)
-			ft_strlcpy(new_map[i] + PADDING, map[i - PADDING], *cols + 1);
+			ft_strlcpy(new_map[i] + PADDING - 2, map[i - PADDING], *cols + 1);
 		new_map[i][*cols] = '\0';
 		i++;
 	}
@@ -63,7 +77,6 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 		scene->w_wall == NULL)
 	{
 		free_data(&parser, &data, scene);
-		free_mlx(scene);
 		exit(0);
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_scene.c                                        :+:      :+:    :+:   */
+/*   set_scene_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 20:28:07 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:33:49 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,25 @@
 #include "scene.h"
 #include "player.h"
 
+void	delete_enter(char **map)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
+	while (map != NULL && map[i] != NULL)
+	{
+		map[i][ft_strlen(map[i]) - 1] = '\0';
+		i++;
+	}
+}
 char	**padding_map(char **map, int *rows, int *cols)
 {
 	char	**new_map;
 	int		i;
 
+	delete_enter(map);
 	*rows += PADDING * 2;
 	*cols += PADDING * 2;
 	new_map = (char **)malloc(sizeof(char *) * (*rows + 1));
@@ -32,7 +46,7 @@ char	**padding_map(char **map, int *rows, int *cols)
 			return (ft_free_split(new_map), NULL);
 		ft_memset(new_map[i], ' ', *cols + 1);
 		if (i >= PADDING && i < *rows - PADDING)
-			ft_strlcpy(new_map[i] + PADDING, map[i - PADDING], *cols + 1);
+			ft_strlcpy(new_map[i] + PADDING - 2, map[i - PADDING], *cols + 1);
 		new_map[i][*cols] = '\0';
 		i++;
 	}
@@ -65,8 +79,7 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 		scene->s_wall == NULL || scene->e_wall == NULL || scene->mmap == NULL \
 		|| scene->w_wall == NULL || scene->full_map == NULL)
 	{
-		free_all(&parser, &data);
-		free_mlx(scene);
+		free_data(&parser, &data, scene);
 		exit(0);
 	}
 }
@@ -77,14 +90,14 @@ void	set_mlx(t_scene *scene, t_parser parser, t_data data)
 	scene->mlx = mlx_init();
 	if (scene->mlx == NULL)
 	{
-		free_all(&parser, &data);
+		free_data(&parser, &data, scene);
 		exit(0);
 	}
 	scene->win = mlx_new_window(scene->mlx, scene->width, \
 		scene->height, "cub3D");
 	if (scene->win == NULL)
 	{
-		free_all(&parser, &data);
+		free_data(&parser, &data, scene);
 		exit(0);
 	}
 }
@@ -97,10 +110,11 @@ void	set_scene(t_scene *scene, t_parser parser, t_data data)
 	scene->height = 1080;
 	scene->map = padding_map(data.map, &scene->rows, &scene->cols);
 	scene->player = set_player(scene->map);
+	//scene->doors = ?
 	set_mlx(scene, parser, data);
 	if (scene->map == NULL)
 	{
-		free_all(&parser, &data);
+		free_data(&parser, &data, scene);
 		mlx_destroy_window(scene->mlx, scene->win);
 		exit(0);
 	}

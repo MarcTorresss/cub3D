@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 11:42:16 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 19:26:12 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:19:26 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static void	free_image(void *mlx, t_img *img)
 {
-	if (img != NULL)
+	if (img)
 	{
 		mlx_destroy_image(mlx, img->img);
 		free(img);

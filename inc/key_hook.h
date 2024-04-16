@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:54:13 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 20:12:52 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:55:02 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ int		mouse_moving_handler(int x, int y, t_scene *scene);
 void	check_space(t_keys *key, t_scene *scene);
 void	check_key_move(t_keys *key, t_player *player, char **map);
 void	check_key_rotate(t_keys *key, t_player *player);
+void	check_mouse_click(t_scene *scene);
 
 #endif
