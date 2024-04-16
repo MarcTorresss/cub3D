@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 16:12:46 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:16:53 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	draw_triangle(t_img *img, t_vec2 vertices[3], t_uint color);
 void	free_mlx(t_scene *scene);
 t_door	*init_door(char **map);
 void	init_door_animation(t_door *doors);
+void	update_timer(t_door *door);
 t_door	*get_door_object(t_scene scene, int x, int y);
 
 #endif

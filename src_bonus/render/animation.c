@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:21:30 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 16:11:23 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:18:14 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@ void	update_timer(t_door *door)
 {
 	int	time;
 
-	time = get_current_time();
 	if (door->state == 'd' || door->state == 'o')
+	{
 		time = get_current_time() - door->timer;
-	if (time < 0)
-		finish_animation(door);
+		if (time < 0)
+			finish_animation(door);
+	}
 }
 
 void	init_door_animation(t_door *door)

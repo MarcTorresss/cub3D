@@ -6,20 +6,18 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:46:55 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 15:19:26 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:16:35 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-void	open_door(t_scene *scene, int x, int y)
+void	door_animation(t_scene *scene, int x, int y)
 {
-	scene->map[x][y] = 'O';
-}
+	t_door	*door;
 
-void	close_door(t_scene *scene, int x, int y)
-{
-	scene->map[x][y] = 'D';
+	door = get_door_object(*scene, x, y);
+	init_door_animation(door);
 }
 
 void	check_mouse_click(t_scene *scene)
@@ -37,10 +35,8 @@ void	check_mouse_click(t_scene *scene)
 						scalar_vec2(scene->player.dir, 0.4));
 		x = (int)action_point.x;
 		y = (int)action_point.y;
-		if (scene->map[x][y] == 'D')
-			open_door(scene, x, y);
-		else if (scene->map[x][y] == 'O')
-			close_door(scene, x, y);
+		if (scene->map[x][y] == 'D' || scene->map[x][y] == 'O')
+			door_animation(scene, x, y);
 		flag = 1;
 	}
 	else if (scene->left_m == 0 && flag == 1)
