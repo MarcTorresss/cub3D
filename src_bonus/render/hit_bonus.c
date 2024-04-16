@@ -6,23 +6,24 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 22:12:17 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 11:41:33 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:59:45 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "scene.h"
 #include "hit.h"
 #include <math.h>
 
-static int	check_object(t_hit h, t_ray *r, int side)
+static int	check_object(t_hit h, t_ray *r, int side, t_scene scene)
 {
 	if (h.map[h.mapx][h.mapy] == '1')
 		return (record_wall_hit(r, h, side), 1);
 	if (h.map[h.mapx][h.mapy] == 'D')
-		return (record_door_hit(r, h, side));
+		return (record_door_hit(r, h, side, scene));
 	return (0);
 }
 
-static int	perform_dda(t_hit h, t_ray *r)
+static int	perform_dda(t_hit h, t_ray *r, t_scene scene)
 {
 	int	side;
 
@@ -42,7 +43,7 @@ static int	perform_dda(t_hit h, t_ray *r)
 		}
 		if (h.mapx < 0 || h.mapx >= h.rows || h.mapy < 0 || h.mapy >= h.cols)
 			return (0);
-		else if (check_object(h, r, side))
+		else if (check_object(h, r, side, scene))
 			return (1);
 	}
 	return (0);
@@ -74,18 +75,18 @@ static void	set_hit_step(t_hit *hit, t_ray *ray)
 	}
 }
 
-int	hit(t_ray *ray, char **map, int rows, int cols)
+int	hit(t_ray *ray, t_scene scene)
 {
 	t_hit	hit;
 
-	if (ray->from.x < 0 || ray->from.x >= rows || \
-		ray->from.y < 0 || ray->from.y >= cols)
+	if (ray->from.x < 0 || ray->from.x >= scene.rows || \
+		ray->from.y < 0 || ray->from.y >= scene.cols)
 		return (0);
-	hit.map = map;
+	hit.map = scene.map;
 	hit.mapx = (ray->from.x);
 	hit.mapy = (ray->from.y);
-	hit.rows = rows;
-	hit.cols = cols;
+	hit.rows = scene.rows;
+	hit.cols = scene.cols;
 	if (ray->dir.x == 0)
 		hit.deltadist_x = 1e308;
 	else
@@ -95,5 +96,5 @@ int	hit(t_ray *ray, char **map, int rows, int cols)
 	else
 		hit.deltadist_y = fabs(1.0f / ray->dir.y);
 	set_hit_step(&hit, ray);
-	return (perform_dda(hit, ray));
+	return (perform_dda(hit, ray, scene));
 }
