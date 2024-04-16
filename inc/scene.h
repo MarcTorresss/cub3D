@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 13:37:13 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:39:21 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_scene
 	t_img		*s_wall;
 	t_img		*e_wall;
 	t_img		*w_wall;
+	t_img		*door;
 	t_uint		ccolor;
 	t_uint		fcolor;
 	t_img		*full_map;

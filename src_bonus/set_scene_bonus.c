@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 13:36:39 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:12:56 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	trim_image_path(t_parser *parser)
 	parser->elem.so[ft_strlen(parser->elem.so) - 1] = '\0';
 	parser->elem.ea[ft_strlen(parser->elem.ea) - 1] = '\0';
 	parser->elem.we[ft_strlen(parser->elem.we) - 1] = '\0';
+	parser->elem.door[ft_strlen(parser->elem.door) - 1] = '\0';
 }
 
 static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
@@ -70,6 +71,7 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 	scene->s_wall = get_new_image_xpm(scene->mlx, parser.elem.so);
 	scene->e_wall = get_new_image_xpm(scene->mlx, parser.elem.ea);
 	scene->w_wall = get_new_image_xpm(scene->mlx, parser.elem.we);
+	scene->door = get_new_image_xpm(scene->mlx, parser.elem.door);
 	scene->full_map = get_new_image(scene->mlx, \
 							scene->rows * GRID_UNIT + MMAP_SIZE * GRID_UNIT, \
 							scene->cols * GRID_UNIT + MMAP_SIZE * GRID_UNIT);
@@ -77,7 +79,8 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 							MMAP_SIZE * GRID_UNIT, MMAP_SIZE * GRID_UNIT);
 	if (scene->screen == NULL || scene->n_wall == NULL || \
 		scene->s_wall == NULL || scene->e_wall == NULL || scene->mmap == NULL \
-		|| scene->w_wall == NULL || scene->full_map == NULL)
+		|| scene->w_wall == NULL || scene->full_map == NULL || \
+		scene->door == NULL)
 	{
 		free_data(&parser, &data, scene);
 		ft_fprintf(2, ERR_IMG);

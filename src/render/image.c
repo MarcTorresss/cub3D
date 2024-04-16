@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:37:03 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 20:17:51 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:58:08 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_img	*get_new_image_xpm(void *mlx, char *img_path)
 		return (mlx_destroy_image(mlx, image->img), free(image), NULL);
 	return (image);
 }
-
+#include "libft.h"
 t_uint	get_texture_color(t_img *img, double w, double h)
 {
 	int		x;

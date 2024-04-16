@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 19:24:22 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:15:09 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,36 @@ static void	draw_floor(t_scene scene, int x, int start)
 	}
 }
 
+static t_img	*get_wall_img(t_scene scene, t_ray ray)
+{
+	if (ray.door)
+		return (scene.door);
+	else if (ray.w_dir == 'N')
+		return (scene.n_wall);
+	else if (ray.w_dir == 'E')
+		return (scene.e_wall);
+	else if (ray.w_dir == 'S')
+		return (scene.s_wall);
+	else
+		return (scene.w_wall);
+}
+
 static t_uint	get_color_pixel(t_scene scene, t_ray ray, double h)
 {
 	double	w;
+	t_img	*img;
 
 	h = 1 - h;
 	if (ray.w_dir == 'N')
-	{
 		w = ray.hpoint.y - (int)ray.hpoint.y;
-		return (get_texture_color(scene.n_wall, w, h));
-	}
 	else if (ray.w_dir == 'E')
-	{
 		w = ray.hpoint.x - (int)ray.hpoint.x;
-		return (get_texture_color(scene.e_wall, w, h));
-	}
 	else if (ray.w_dir == 'S')
-	{
 		w = 1 - (ray.hpoint.y - (int)ray.hpoint.y);
-		return (get_texture_color(scene.s_wall, w, h));
-	}
 	else
-	{
 		w = 1 - (ray.hpoint.x - (int)ray.hpoint.x);
-		return (get_texture_color(scene.w_wall, w, h));
-	}
+	img = get_wall_img(scene, ray);
+	return (get_texture_color(img, w, h));
 }
 
 void	draw_field(t_scene scene, t_ray ray, int x, double h)

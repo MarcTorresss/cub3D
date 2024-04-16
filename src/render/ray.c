@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 21:00:41 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 12:33:06 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:14:27 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void	set_ray(t_ray *ray, t_player player, double width, double x)
 	ray->dir.x = player.dir.x + player.plane.x * plane_len;
 	ray->dir.y = player.dir.y + player.plane.y * plane_len;
 	ray->p_dir = player.dir;
+	ray->door = 0;
 }

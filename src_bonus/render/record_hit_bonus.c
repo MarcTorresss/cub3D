@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:47:22 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 12:29:57 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:14:47 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	hit_door_vertical(t_ray *ray)
 	else
 		ray->hpoint.y += 0.5f;
 	ray->perp_dist = length_vec2(ray->p_dir) * distance_vec2(ray->hpoint, ray->from) / length_vec2(ray->dir);
+	ray->door = 1;
 	return (1);
 }
 
@@ -72,6 +73,7 @@ int	hit_door_horizontal(t_ray *ray)
 	else
 		ray->hpoint.x += 0.5f;
 	ray->perp_dist = length_vec2(ray->p_dir) * distance_vec2(ray->hpoint, ray->from) / length_vec2(ray->dir);
+	ray->door = 1;
 	return (1);
 }
 

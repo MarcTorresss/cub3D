@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/08 14:05:14 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:13:47 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_ray
 	char	w_dir;
 	t_vec2	hpoint;
 	int		v_dist;
+	int		door;
 }	t_ray;
 
 void	set_ray(t_ray *ray, t_player player, double width, double x);
