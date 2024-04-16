@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:33:56 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 15:36:34 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:47:20 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,5 @@ t_door	 *init_door(char **map)
 		i++;
 		door = door->next;
 	}
-	
 	return (door);
 }

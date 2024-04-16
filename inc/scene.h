@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 15:38:26 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:01:06 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "ray.h"
 # include "door.h"
 # include <stdio.h>
+#include <sys/time.h>
+#include <unistd.h>
 
 # define BOX_UNIT 0.5f
 # define GRID_UNIT 10
@@ -69,5 +71,6 @@ void	draw_square(t_img *img, t_vec2 pmin, t_vec2 pmax, t_uint color);
 void	draw_triangle(t_img *img, t_vec2 vertices[3], t_uint color);
 void	free_mlx(t_scene *scene);
 t_door	*init_door(char **map);
+void	init_door_animation(t_door *doors);
 
 #endif

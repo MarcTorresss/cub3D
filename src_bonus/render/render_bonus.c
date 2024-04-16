@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:40:37 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 12:55:18 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:46:27 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	render(void **pack)
 	check_key_move(keys, &scene->player, scene->map);
 	check_key_rotate(keys, &scene->player);
 	check_mouse_click(scene);
+	
 	draw(*scene);
 	return (0);
 }
