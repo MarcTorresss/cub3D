@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 13:24:55 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:56:11 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	check_player_bonus(char **map, t_parser *parser)
 	{
 		if (map[y][x] == '\0')
 		{
-			x = -1;
+			x = 0;
 			y++;
 		}
 		else

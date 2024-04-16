@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 15:12:56 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:38:34 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	set_scene(t_scene *scene, t_parser parser, t_data data)
 	scene->height = 1080;
 	scene->map = padding_map(data.map, &scene->rows, &scene->cols);
 	scene->player = set_player(scene->map);
-	//scene->doors = ?
+	scene->doors = init_door(scene->map);
 	set_mlx(scene, parser, data);
 	if (scene->map == NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 14:34:44 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:38:30 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ int	main(int argc, char **argv)
 	calc_x_y(&data);
 	set_scene(&scene, parser, data);
 	if (check_map_bonus(&parser, scene))
-		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
+	{
+		ft_fprintf(2, ERR_MAP);
+		free_data(&parser, &data, &scene);
+		exit(0);
+	}
 	ft_memset(&keys, 0, sizeof(t_keys));
 	listen_input(&scene, &keys);
 	mlx_loop_hook(scene.mlx, render, (void *[]){&scene, &keys});

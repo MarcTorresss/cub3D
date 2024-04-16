@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 14:39:21 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:38:26 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef char			t_byte;
 typedef struct s_scene
 {
 	t_player	player;
-	t_door		**doors;
+	t_door		*doors;
 	char		**map;
 	int			rows;
 	int			cols;
@@ -68,5 +68,6 @@ void	draw_minimap(t_scene scene, t_player player);
 void	draw_square(t_img *img, t_vec2 pmin, t_vec2 pmax, t_uint color);
 void	draw_triangle(t_img *img, t_vec2 vertices[3], t_uint color);
 void	free_mlx(t_scene *scene);
+t_door	*init_door(char **map);
 
 #endif
