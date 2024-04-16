@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:20 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 12:14:04 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:23:44 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	main(int argc, char **argv)
 	if (init_map(&data, &parser) == 1)
 		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
 	calc_x_y(&data);
-	//set_scene(&scene, parser, data);
-	set_scene2(&scene);
+	set_scene(&scene, parser, data);
+	//set_scene2(&scene);
 	if (check_map_bonus(&parser, scene))
 		return (ft_fprintf(2, ERR_MAP), free_data(&parser, &data, &scene), 1);
 	ft_memset(&keys, 0, sizeof(t_keys));

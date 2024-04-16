@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 11:17:17 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:37:31 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define GRID_UNIT 10
 # define WALL_COLOR 0x00808080
 # define PLAYER_COLOR 0x00FFFF00
+# define CLOSED_DOOR_COLOR 0x000000FF
+# define OPENED_DOOR_COLOR 0x0000FF00
 # define MMAP_SIZE 20.0F
 # define FRQ 0.03f
 # define PADDING 10

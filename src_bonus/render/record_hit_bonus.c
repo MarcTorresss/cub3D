@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:47:22 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 12:16:04 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:29:57 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	hit_door_horizontal(t_ray *ray)
 int	record_door_hit(t_ray *ray, t_hit hit, int side)
 {
 	record_wall_hit(ray, hit, side);
-	if (side == 0)
+	if (side == 1)
 		return (hit_door_vertical(ray));
 	else
 		return (hit_door_horizontal(ray));
