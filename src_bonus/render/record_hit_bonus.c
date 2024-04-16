@@ -6,11 +6,12 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:47:22 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 15:14:47 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:11:02 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hit.h"
+#include "scene.h"
 
 void	record_wall_hit(t_ray *ray, t_hit hit, int side)
 {
@@ -37,7 +38,7 @@ void	record_wall_hit(t_ray *ray, t_hit hit, int side)
 	ray->hpoint.y = ray->from.y + ray->dir.y * ratio;
 }
 
-int	hit_door_vertical(t_ray *ray)
+static int	hit_door_horizontal(t_ray *ray, t_scene scene)
 {
 	double	v;
 	
@@ -57,9 +58,10 @@ int	hit_door_vertical(t_ray *ray)
 	return (1);
 }
 
-int	hit_door_horizontal(t_ray *ray)
+static int	hit_door_vertical(t_ray *ray, t_scene scene)
 {
 	double	v;
+	t_door	*door;
 	
 	if (ray->w_dir == 'N')
 		v = ray->hpoint.y - 0.5f * ray->dir.y / ray->dir.x;
@@ -67,6 +69,11 @@ int	hit_door_horizontal(t_ray *ray)
 		v = ray->hpoint.y + 0.5f * ray->dir.y / ray->dir.x;
 	if (v < (int)ray->hpoint.y || v > (int)ray->hpoint.y + 1)
 		return (0);
+	door = get_door_object(scene, (int)ray->hpoint.x, (int)ray->hpoint.y);
+	if (door == NULL)
+		return (0);
+	if (door->state == 'd' || door->state == 'o')
+	
 	ray->hpoint.y = v;
 	if (ray->w_dir == 'N')
 		ray->hpoint.x -= 0.5f;
@@ -77,11 +84,11 @@ int	hit_door_horizontal(t_ray *ray)
 	return (1);
 }
 
-int	record_door_hit(t_ray *ray, t_hit hit, int side)
+int	record_door_hit(t_ray *ray, t_hit hit, int side, t_scene scene)
 {
 	record_wall_hit(ray, hit, side);
 	if (side == 1)
-		return (hit_door_vertical(ray));
+		return (hit_door_horizontal(ray, scene));
 	else
-		return (hit_door_horizontal(ray));
+		return (hit_door_vertical(ray, scene));
 }

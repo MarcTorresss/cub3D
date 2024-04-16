@@ -6,7 +6,7 @@
 #    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
-#    Updated: 2024/04/16 15:50:43 by martorre         ###   ########.fr        #
+#    Updated: 2024/04/16 16:12:50 by martorre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ BONUS_SRCS		:=main_bonus.c check_elements.c check_map.c utils_map2.c\
 				  set_scene_bonus.c render_bonus.c record_hit_bonus.c \
 				  draw_fullmap_bonus.c check_mouse_click_bonus.c \
 				  check_doors_bonus.c check_elements_bonus.c free_all.c \
+				  animation.c get_door_object.c
 
 OBJDIR			:=.objs
 OBJS			:=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))

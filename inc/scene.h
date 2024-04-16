@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 16:01:06 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:12:46 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void	draw_triangle(t_img *img, t_vec2 vertices[3], t_uint color);
 void	free_mlx(t_scene *scene);
 t_door	*init_door(char **map);
 void	init_door_animation(t_door *doors);
+t_door	*get_door_object(t_scene scene, int x, int y);
 
 #endif
