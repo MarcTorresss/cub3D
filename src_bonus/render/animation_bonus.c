@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   animation.c                                        :+:      :+:    :+:   */
+/*   animation_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:21:30 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 16:18:14 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:26:14 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	init_door_animation(t_door *door)
 	if (door->state == 'O')
 	{
 		door->state = 'd';
-		door->timer = get_current_time();
+		door->timer = 1;
 	}
 	else
 	{
 		door->state = 'o';
-		door->timer = get_current_time();
+		door->timer = 0.1;
 	}
 }

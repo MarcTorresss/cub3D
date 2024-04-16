@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 16:00:28 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:43:53 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	draw(t_scene scene)
 	{
 		set_ray(&ray, scene.player, scene.width, x);
 		ray.v_dist = scene.player.v_dist;
-		if (hit(&ray, scene) && \
+		if (hit_bonus(&ray, scene) && \
 				ray.perp_dist >= 0.0001)
 		{
 			height = scene.height / ray.perp_dist * BOX_UNIT;

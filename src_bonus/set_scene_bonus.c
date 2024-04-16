@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 15:47:59 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:14:45 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	**padding_map(char **map, int *rows, int *cols)
 			return (ft_free_split(new_map), NULL);
 		ft_memset(new_map[i], ' ', *cols + 1);
 		if (i >= PADDING && i < *rows - PADDING)
-			ft_strlcpy(new_map[i] + PADDING - 2, map[i - PADDING], *cols + 1);
+			ft_strlcpy(new_map[i] + PADDING, map[i - PADDING], *cols + 1);
 		new_map[i][*cols] = '\0';
 		i++;
 	}
@@ -115,7 +115,6 @@ void	set_scene(t_scene *scene, t_parser parser, t_data data)
 	scene->map = padding_map(data.map, &scene->rows, &scene->cols);
 	scene->player = set_player(scene->map);
 	scene->doors = init_door(scene->map);
-	init_door_animation(scene->doors);
 	set_mlx(scene, parser, data);
 	if (scene->map == NULL)
 	{

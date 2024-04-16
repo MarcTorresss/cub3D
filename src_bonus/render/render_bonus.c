@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:40:37 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 16:19:00 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:53:51 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	render(void **pack)
 	check_key_move(keys, &scene->player, scene->map);
 	check_key_rotate(keys, &scene->player);
 	check_mouse_click(scene);
-	check_door_animation(scene->doors);
+	(void) check_door_animation;
+	//check_door_animation(scene->doors);
 	draw(*scene);
 	return (0);
 }

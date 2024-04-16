@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 22:12:17 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 15:59:45 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:44:00 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	set_hit_step(t_hit *hit, t_ray *ray)
 	}
 }
 
-int	hit(t_ray *ray, t_scene scene)
+int	hit_bonus(t_ray *ray, t_scene scene)
 {
 	t_hit	hit;
 

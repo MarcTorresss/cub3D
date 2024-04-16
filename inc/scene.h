@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 16:16:53 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:19:04 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	draw_minimap(t_scene scene, t_player player);
 void	draw_square(t_img *img, t_vec2 pmin, t_vec2 pmax, t_uint color);
 void	draw_triangle(t_img *img, t_vec2 vertices[3], t_uint color);
 void	free_mlx(t_scene *scene);
+
 t_door	*init_door(char **map);
 void	init_door_animation(t_door *doors);
 void	update_timer(t_door *door);

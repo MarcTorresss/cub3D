@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_doors_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:33:56 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 15:47:20 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:22:48 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,6 @@ t_door	 *init_door(char **map)
 			}
 		}
 		x++;
-	}
-	int i = 0;
-	while (door)
-	{
-		printf("\nDOOR - %d\n", i);
-		printf("x = %d\ny = %d\n state = %c\n", door->x,door->y, door->state);
-		i++;
-		door = door->next;
 	}
 	return (door);
 }
