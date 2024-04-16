@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 21:35:02 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/09 19:25:13 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:45:00 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_space(t_keys *key, t_scene *scene)
 		scene->player = set_player(scene->map);
 }
 
-static int	is_not_wall(char **map, t_vec2 move, t_player player)
+static int	is_not_collision(char **map, t_vec2 move, t_player player)
 {
 	int	x;
 	int	y;
@@ -28,6 +28,8 @@ static int	is_not_wall(char **map, t_vec2 move, t_player player)
 	x = (int)(player.pos.x + move.x * 6);
 	y = (int)(player.pos.y + move.y * 6);
 	if (map[x][y] == '1')
+		return (0);
+	else if (map[x][y] == 'D')
 		return (0);
 	return (1);
 }
@@ -57,7 +59,7 @@ void	check_key_move(t_keys *key, t_player *player, char **map)
 		move.x += player->dir.y * FRQ;
 		move.y -= player->dir.x * FRQ;
 	}
-	if (is_not_wall(map, move, *player))
+	if (is_not_collision(map, move, *player))
 		player->pos = sum_vec2(player->pos, move);
 }
 
