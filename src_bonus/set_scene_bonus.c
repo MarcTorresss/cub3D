@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:19:46 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:37:07 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**padding_map(char **map, int *rows, int *cols)
 			return (ft_free_split(new_map), NULL);
 		ft_memset(new_map[i], ' ', *cols + 1);
 		if (i >= PADDING && i < *rows - PADDING)
-			ft_strlcpy(new_map[i] + PADDING - 2, map[i - PADDING], *cols + 1);
+			ft_strlcpy(new_map[i] + PADDING, map[i - PADDING], *cols + 1);
 		new_map[i][*cols] = '\0';
 		i++;
 	}
