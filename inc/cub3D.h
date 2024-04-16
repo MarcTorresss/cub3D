@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:10:59 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 13:38:54 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:00:53 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define ERR_EX "Error:\nInvalid extension :(\n"
 # define ERR_MAP "Error:\nInvalid map :(\n"
 # define ERR_FILE "Error:\nInvalid file data :(\n"
+# define ERR_IMG "Error;\nImage not found :(\n"
 
 typedef struct s_qtts
 {
@@ -36,6 +37,7 @@ typedef struct s_qtts
 	int		f;
 	int		c;
 	int		y;
+	int		door;
 	int		is_zero;
 }			t_qtt;
 
@@ -47,6 +49,7 @@ typedef struct s_elements
 	char	*ea;
 	char	*f;
 	char	*c;
+	char	*door;
 	t_qtt	qtt;
 }			t_elem;
 
@@ -90,9 +93,12 @@ int			check_f_c(t_parser *parser, t_scene *scene);
 int			count_args(char **check_line);
 int			check_num(char *str, t_parser *parser);
 int			check_map_bonus(t_parser *parser, t_scene scene);
+int			qtts_okei_bonus(t_parser parser);
 void		ft_free_split(char **check_line);
 void		ft_free_elements(t_parser *parser);
 void		free_data(t_parser *parser, t_data *data, t_scene *scene);
 void		free_parser(t_parser *parser);
+int			ft_check_doors(char **map, int x, int y);
+int			check_elements_bonus(t_parser *parser, t_scene *scene);
 
 #endif

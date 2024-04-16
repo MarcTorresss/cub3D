@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:04:00 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 11:17:17 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:34:23 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,14 @@ typedef struct s_scene
 	t_vec2		prev_point;
 }	t_scene;
 
-int		render(void **pack);
 
+int		render(void **pack);
 void	draw(t_scene scene);
 void	draw_field(t_scene scene, t_ray ray, int x, double h);
 void	draw_full_map(t_img *full_map, char **map);
 void	draw_minimap(t_scene scene, t_player player);
 void	draw_square(t_img *img, t_vec2 pmin, t_vec2 pmax, t_uint color);
 void	draw_triangle(t_img *img, t_vec2 vertices[3], t_uint color);
-
 void	free_mlx(t_scene *scene);
 
 #endif
