@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:55:13 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:39:14 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:44:09 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ int	qtts_okei_bonus(t_parser parser)
 		return (1);
 	return (0);
 }
-

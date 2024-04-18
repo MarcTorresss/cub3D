@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:40:37 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:35:34 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:46:51 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	check_exit(t_keys *key, t_scene	*scene)
 	}
 }
 
-static void check_door_animation(t_door *door)
+static void	check_door_animation(t_door *door)
 {
 	while (door != NULL)
 	{

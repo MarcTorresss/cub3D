@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:21:30 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:36:37 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:51:00 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	init_door_animation(t_door *door)
 	if (door->state == 'O')
 	{
 		door->state = 'd';
-		door->timer = get_current_time();
+		door->timer = 1;
 	}
 	else
 	{
 		door->state = 'o';
-		door->timer = get_current_time();
+		door->timer = 1;
 	}
 }
