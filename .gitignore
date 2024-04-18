@@ -8,4 +8,5 @@ cub3D
 /.vscode
 /mlx_linux
 .bonus
+.mandatory
 /_testmap

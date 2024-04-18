@@ -3,14 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: martorre <martorre@student.42.fr>          +#+  +:+       +#+         #
+#    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
-#    Updated: 2024/04/18 12:14:06 by martorre         ###   ########.fr        #
+#    Updated: 2024/04/18 14:32:09 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:=cub3D
+
+MANDATORY		:=.mandatory
 
 SRCDIR			:=src
 SRCS			:=main.c check_elements.c check_map.c utils_map.c utils_map2.c \
@@ -49,11 +51,13 @@ MLXLIB			:=-Lmlx -lmlx -framework OpenGL -framework AppKit
 #MLXLIB			:=-Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
 LIBS			:=libft/libft.a vector/vector.a $(MLXLIB)
 
-all: 			$(OBJDIR) libft vector minilibx $(NAME)
+all: 			$(OBJDIR) libft vector minilibx $(MANDATORY)
 
-$(NAME):		$(OBJS) Makefile
+$(MANDATORY):		$(OBJS) Makefile
 					$(CC) $(CFLAGS) $(DEBUG) $(OBJS) $(LIBS) $(INCS) -o $(NAME)
-					echo "(CUB3D) COMPILING $@"
+					echo "(CUB3D) COMPILING $(NAME)"
+					rm -f $(BONUS)
+					touch $(MANDATORY)
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c Makefile
 					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
@@ -73,7 +77,8 @@ $(BONUS):		$(BONUS_OBJS) Makefile
 					$(CC) $(CFLAGS) $(DEBUG) $(BONUS_OBJS) \
 						$(LIBS) $(INCS) -o $(NAME)
 					echo "(CUB3D_BONUS) COMPILING $(NAME)"
-					touch $@
+					rm -f $(MANDATORY)
+					touch $(BONUS)
 
 $(OBJDIR)/%.o:	$(BONUS_SRCDIR)/%.c Makefile
 					$(CC) $(DEPFLAGS) $(CFLAGS) $(INCS) -c $< -o $@
@@ -103,11 +108,12 @@ clean:
 					make -C libft fclean
 					make -C vector fclean
 					make -C mlx clean
+					rm -f $(BONUS)
+					rm -f $(MANDATORY)
 					rm -rf $(OBJDIR)
 
 fclean:			clean
 					rm -f $(NAME)
-					rm -f $(BONUS)
 
 re:				fclean all
 
