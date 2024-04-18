@@ -10,6 +10,6 @@ This project is written in ``c`` using ``mini-libx`` Library. This library conta
 ## Run Cub3d:
 
 ```
-  git clone git@github.com:bielaltes/cub3d.git
-  cd cub3d ; make ; ./cub3d maps/test.cub
+  git clone git@github.com:MarcTorresss/cub3D.git
+  cd cub3d ; make ; ./cub3d map.cub
 ```
