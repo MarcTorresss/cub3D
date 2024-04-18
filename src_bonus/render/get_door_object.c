@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:55:13 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:47:25 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:15:17 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ int	qtts_okei_bonus(t_parser parser)
 		return (1);
 	return (0);
 }
-

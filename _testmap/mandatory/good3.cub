@@ -1,0 +1,25 @@
+
+
+
+
+
+
+F 0,100,200
+C 50,50,50
+
+
+
+NO ./resources/wall1.xpm
+SO ./resources/wall2.xpm
+WE ./resources/wall3.xpm
+EA ./resources/wall4.xpm
+
+111
+1N1
+111
+
+
+
+
+
+

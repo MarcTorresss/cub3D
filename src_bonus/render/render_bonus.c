@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:40:37 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:47:39 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:15:27 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	check_exit(t_keys *key, t_scene	*scene)
 	}
 }
 
-static void check_door_animation(t_door *door, t_scene *scene)
+static void	check_door_animation(t_door *door, t_scene *scene)
 {
 	while (door != NULL)
 	{

@@ -1,0 +1,13 @@
+NO ./resources/wall1.xpm
+SO ./resources/wall2.xpm
+WE ./resources/wall3.xpm
+EA ./resources/wall4.xpm
+
+F 0,100,200
+C 50,50,50
+
+11111
+10 11
+10N01
+11011
+11111

@@ -6,7 +6,7 @@
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:47:22 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:47:35 by junghwle         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:15:23 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	hit_door_horizontal(t_ray *ray, t_hit hit, t_scene scene)
 static int	hit_door_vertical(t_ray *ray, t_hit hit, t_scene scene)
 {
 	double	v;
-	
+
 	if (ray->w_dir == 'N')
 		v = ray->hpoint.y - 0.5f * ray->dir.y / ray->dir.x;
 	else

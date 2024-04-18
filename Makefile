@@ -6,7 +6,7 @@
 #    By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 14:32:42 by junghwle          #+#    #+#              #
-#    Updated: 2024/04/16 17:45:59 by junghwle         ###   ########.fr        #
+#    Updated: 2024/04/18 10:31:33 by junghwle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ DEPFLAGS		:=-MMD
 
 CC				:=gcc
 CFLAGS			:=-Wall -Werror -Wextra 
-DEBUG			:=-g -fsanitize=address
+#DEBUG			:=-g -fsanitize=address
 
 INCS			:=-I./inc -I./libft -I./vector -I./mlx_linux -I./mlx
 MLXLIB			:=-Lmlx -lmlx -framework OpenGL -framework AppKit
