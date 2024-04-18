@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:17:30 by martorre          #+#    #+#             */
-/*   Updated: 2024/03/13 12:29:17 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:46:41 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ int	cont_words(char *s, char c)
 	while (s[i] != '\0')
 	{
 		if (i == 0 && s[i] != c)
-		{
 			cont++;
-		}
 		else if ((i != 0) && (s[i - 1] == c && s[i] != c))
 			cont++;
 		i++;

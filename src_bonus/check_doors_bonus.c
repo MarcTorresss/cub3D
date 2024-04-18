@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_doors_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:33:56 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 17:37:19 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:46:23 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_door	*init_door(char **map)
 
 	x = -1;
 	y = 0;
+	door = NULL;
 	while (map != NULL && map[y] != NULL)
 	{
 		if (map[y][++x] == '\0')

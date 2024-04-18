@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:48:19 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:37:07 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:58:18 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	set_scene_image(t_scene *scene, t_parser parser, t_data data)
 	scene->e_wall = get_new_image_xpm(scene->mlx, parser.elem.ea);
 	scene->w_wall = get_new_image_xpm(scene->mlx, parser.elem.we);
 	scene->door = get_new_image_xpm(scene->mlx, parser.elem.door);
-	scene->full_map = get_new_image(scene->mlx, scene->rows * GRID_UNIT
+	scene->full_map = get_new_image(scene->mlx, scene->rows * GRID_UNIT \
 			+ MMAP_SIZE * GRID_UNIT, scene->cols * GRID_UNIT + MMAP_SIZE
 			* GRID_UNIT);
 	scene->mmap = get_new_image(scene->mlx, MMAP_SIZE * GRID_UNIT, MMAP_SIZE

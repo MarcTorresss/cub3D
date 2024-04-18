@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:46:55 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:50:05 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:27:33 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	door_animation(t_scene *scene, int x, int y)
 	t_door	*door;
 
 	door = get_door_object(*scene, x, y);
-	init_door_animation(door);
+	init_door_animation(door, scene->map);
 }
 
 void	check_mouse_click(t_scene *scene)

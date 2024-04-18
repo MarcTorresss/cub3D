@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 17:22:37 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:44:31 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_num(char *str, t_parser *parser)
 int	ft_check(char **map, int x, int y, char letterplayer)
 {
 	if (map[y][x] != '1' && map[y][x] != '0' && map[y][x] != letterplayer
-		&& map[y][x] != ' ' && map[y][x] != '\0')
+		&& map[y][x] != ' ' && map[y][x] != '\0' && map[y][x] != '\n')
 		return (1);
 	if ((map[y][x] == '0' || map[y][x] == letterplayer) && y == 0)
 		return (1);
@@ -86,11 +86,9 @@ int	check_map(t_parser *parser, t_scene scene)
 {
 	int	y;
 	int	x;
-	int	qtt;
 
 	y = 0;
 	x = 0;
-	qtt = 0;
 	if (check_player(scene.map, parser) == 1)
 		return (1);
 	while (scene.map != NULL && scene.map[y] != NULL)

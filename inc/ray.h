@@ -15,6 +15,7 @@
 
 # include "vector.h"
 # include "player.h"
+# include "door.h"
 
 typedef struct s_ray
 {
@@ -25,7 +26,7 @@ typedef struct s_ray
 	char	w_dir;
 	t_vec2	hpoint;
 	int		v_dist;
-	int		door;
+	t_door	*door;
 }	t_ray;
 
 void	set_ray(t_ray *ray, t_player player, double width, double x);

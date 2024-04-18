@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
+/*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:34:13 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/11 13:03:25 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:32:11 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ void	calc_x_y(t_data *data)
 char	**copy_map(t_parser parser, int y)
 {
 	int		i;
-	int		fd;
 	char	**new;
 
-	fd = 0;
 	i = 0;
 	if (y == 0)
 		return (NULL);

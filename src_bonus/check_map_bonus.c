@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:55 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/16 17:18:35 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:28:18 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,9 @@ int	check_map_bonus(t_parser *parser, t_scene scene)
 {
 	int	y;
 	int	x;
-	int	qtt;
 
 	y = 0;
 	x = -1;
-	qtt = 0;
 	if (check_player_bonus(scene.map, parser) == 1)
 		return (1);
 	while (scene.map != NULL && scene.map[y] != NULL)

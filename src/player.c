@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:16:53 by junghwle          #+#    #+#             */
-/*   Updated: 2024/04/16 17:23:11 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:33:21 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,12 @@ t_player	set_player(char **map)
 void	delete_enter(char **map)
 {
 	int	i;
-	int	x;
 
 	i = 0;
-	x = 0;
 	while (map != NULL && map[i] != NULL)
 	{
-		map[i][ft_strlen(map[i]) - 1] = '\0';
+		if (map[i][ft_strlen(map[i]) - 1] == '\n')
+			map[i][ft_strlen(map[i]) - 1] = '\0';
 		i++;
 	}
 }
