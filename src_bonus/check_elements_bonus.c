@@ -6,7 +6,7 @@
 /*   By: martorre <martorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:12:40 by martorre          #+#    #+#             */
-/*   Updated: 2024/04/18 12:49:02 by martorre         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:53:44 by martorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_elemt_door(char **check_line, t_parser *parser)
 	{
 		while (check_line && check_line[pos.y] != NULL)
 		{
-			if (ft_strchr("01 \nNSWE", check_line[pos.y][++pos.x]) == NULL
+			if (ft_strchr("01 \nDONSWE", check_line[pos.y][++pos.x]) == NULL
 				&& check_line[pos.y][pos.x] != '\0')
 				return (1);
 			if (check_line[pos.y][pos.x] == '\0')
